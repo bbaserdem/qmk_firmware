@@ -1,6 +1,65 @@
-# Overview
+# Bbaserdem
 
-I have mostly ortholinear keyboards, which share a lot of functions.
+My userspace code for my various keyboards; available here.
+
+# Keyboards
+
+A list of my code accross the QMK repo accessible here.
+(I will sell my built-but-not-using ones.)
+
+## Currently Using
+
+* [Planck (rev6)](../../keyboards/planck/rev6/keymaps/bbaserdem)
+One with Zilents (for the office) and one with BOX Navys (for home)
+* [Planck (light)](../../keyboards/planck/light/keymaps/bbaserdem)
+Choc low Navy
+* [XD75](../../keyboards/xd75/keymaps/bbaserdem)
+
+## Built; but not using
+
+* [Let's Split Eh?](../../keyboards/lets_split_eh/keymaps/default)
+* [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
+* [Gherkin](../../keyboards/gherkin/keymaps/bbaserdem)
+
+## Planned builds
+
+* [Corne](../../keyboards/crkbd/)
+Linear switches (either BOX Dark Yellow, or Orange Healios V2)
+I'm planning on adding a trackpad for this, as detailed 
+[here](https://github.com/manna-harbour/crkbd/blob/master/trackpoint/readme.org).
+* [Kyria](../../keyboards/kyria/)
+Planning on using Choc low burnt orange on this board,
+but possibly can go for tall switches.
+I want to add a
+[thumb slidepad](https://www.sparkfun.com/products/9426), or a 
+[thumb joystick](https://www.sparkfun.com/products/15168) to this keyboard.
+
+## Broken builds
+
+* [Bigseries](../../keyboards/bigseries/1key/keymaps/bbaserdem)
+While I used a big switch Pale Blue; this PCB is unavailable due to
+Cole Markham (novelkeys) being a scammer and disappeared after not delivering
+his group buys.
+Hence can't get my hands on this PCB to rebuild things.
+(No one else should attempt to purchase this; as his website is still up to
+collect funds.)
+
+# Features
+
+My userspace has a lot of shared code between different keyboards.
+These files are prefixed with `sbp-` to differentiate between main repo code.
+
+* [sbp-audio](sbp-audio.c): Code dealing with audio playback using onboard sound.
+Also contains stuff regarding using the devices as MIDI controllers. (WIP)
+* [sbp-underglow](sbp-underglow.c): Controls RGB underglow effects.
+* [sbp-macro](sbp-macro.c): Contains macro and unicode insertion.
+* [sbp-mouse](sbp-mouse.c): Contains new key definitions (diagonal navigation)
+Also contains stuff regarding trackpad devices (WIP)
+* [sbp-process](sbp-process.c): My method of hacking the `process-record`
+function to add new keycodes to it from various files.
+* [sbp-perkey](sbp-perkey.c): Controls per-key RGB LED matrix stuff.
+* [sbp-backlight](sbp-backlight.c): Controls global key single-channel LED stuff.
+* [sbp-tapdance](sbp-tapdance.c): Contains my tap dance definitions.
 
 ## Current keyboards
 
@@ -25,31 +84,91 @@ For which, I have not seen anything.
 * [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
 I have this at hand, but never could get the LED display to work.
 
-
 # Layout
 
-I use Linux, so my setup reflects this a bit.
-Optimized for software implementation of Dvorak and Turkish F layouts.
+![Corne layout](https://imgur.com/6VvQZ2I)
 
-* **Base**: Base layer.
-* **Game**: Brings arrow keys to the main cluster, comfortable for gaming.
-* **Numeric**: Has numericals and symbols.
-* **Function**: Media and function keys.
-* **Mouse**: Manipulates mouse. Can be locked.
-* **Music** Allows playing sounds.
+My personal layout is mostly inspired by the
+[Miryoku layout](../manna-harbour_miryoku/miryoku.org).
+There are some changes to make it friendlier to international keyboards.
+My board is compatible with software implementation of Dvorak and Turkish F.
 
-I do want to implement a unicode layer for character input,
-but I don't know how to get ibus to play nice with software level keymapping.
+## Base
 
-# Functionality
+Base layer uses tap-hold functionality to have access to modifiers.
+The modifiers are mirrored on each half of the layout;
+as to make those modifiers accessible to the keys that overlap them.
+Besides the Alt key; each side has the proper L/R version of the modifier.
+Since Right Alt key is the AltGr key;
+both the L and R versions are availabel on each side.
 
-I try to implement layer indicators on all my keyboards if I can.
-Still waiting on planck rgb daughter board.
+The top-right key is there for artisan keycaps; but also triggers layer locks.
+A layer lock happens when a layer is activated using a down-and-hold press;
+and the lock key is activated.
+When this happens; the layer activator key does not terminate the layer when released.
+
+## Right Half
+
+### Numeric
+
+Creates a semi-numpad on the left half.
+There are macros for paranthesis and bracket entries.
+There is unicode entry in ellipsis on this layer.
+The `MOD` key changes the macro and unicode entry code to be compliant with
+software dvorak/turkish-f/qwerty.
+Brackets seperately available on the thumb keys here as well.
+
+### Symbol
+
+Shifted version of the numeric layer to reduce the need to press three buttons.
+Angular and curly bracket macros are on this layer as well.
+
+### Function
+
+Converts the keys into function keys.
+Also overloads the tap-hold keys with regular counterparts to enable hold-entry.
+Specifically for this layer; using it in conjunction with the center-left key
+in the right half will activate game mode for the left half.
+
+## Left Half
+
+### Navigation
+
+Navigation keys are on the home row in vim style.
+Corresponding jump navigation is on the lower row; with insert here as well.
+On the top row are Windows style macros;
+* Ctrl-Z: Undo
+* Ctrl-Y: Redo
+* Ctrl+C: Copy
+* Ctrl-X: Cut
+* Ctrl-V: Paste
+
+### Mouse
+
+Used to utilize mouse movements.
+The home row moves the cursor; the row below that scrolls in different directions.
+The row below issues scroll in the given direction.
+
+### Media
+
+Used to control RGB effects and music playback.
+
+## Game
+
+Makes the left half into a standart planck qwety down.
+
+## Music
+
+Makes the full board into a midi playback device.
+(WIP) make this into 19-TET tuning.
 
 # Shoutout
 
 Shoutout to drashna for getting the userspace shenanigans started;
 all my code is pretty much inspired from his.
+Shoutout to [Manna Harbour](../manna-harbour_miryoku/README.org) for their
+amazing keymap that inspired me to recreate mine and allowed me to move to
+smaller split keyboards.
 Also a big shoutout to Alison Oğuz and Veysi Erkcan Özcan,
-for getting me started with the C language,
-and taught me coding.
+my professors in college,
+for getting me started with the C language, and teaching me coding.

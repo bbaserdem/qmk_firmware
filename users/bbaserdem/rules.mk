@@ -1,17 +1,17 @@
-# MANUALLY CONFIGURE;
+# Manually configure these on each keyboard
 # BACKLIGHT_ENABLE        # Switch LEDs
 # RGBLIGHT_ENABLE         # LED strip
 # RGB_MATRIX_ENABLE       # Per-key RGB LED
 # AUDIO_ENABLE            # Audio stuff
 # BLUETOOTH_ENABLE        # Bluetooth
 
-# ENABLE
+# These should be enabled in general
 EXTRAKEY_ENABLE = yes   # OS signals like volume control
 MOUSEKEY_ENABLE = yes   # Mouse emulation keys
 TAP_DANCE_ENABLE = yes  # Tap dance keys
 UNICODE_ENABLE = yes    # Used for unicode character emulation
 
-# DISABLE
+# These should be disabled in general
 COMMAND_ENABLE = no     # Some bootmagic thing i dont use
 BOOTMAGIC_ENABLE = no   # Access to EEPROM settings, not needed
 CONSOLE_ENABLE = no     # Allows console output with a command
