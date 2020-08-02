@@ -14,8 +14,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #include "bbaserdem.h"
 
-#define UNICODE_SONG_OSX  COIN_SOUND
-#define UNICODE_SONG_LNX  UNICODE_LINUX
-#define UNICODE_SONG_BSD  MARIO_GAMEOVER
-#define UNICODE_SONG_WIN  UNICODE_WINDOWS
-#define UNICODE_SONG_WINC UNICODE_WINDOWS
+// Used to change RGB underglow layers on keymap layer change
+layer_state_t layer_state_set_underglow(layer_state_t state );

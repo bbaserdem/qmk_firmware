@@ -2,6 +2,14 @@
 
 My userspace code for my various keyboards; available here.
 
+# Todo
+
+- [x] Merge tapdance, macro and unicode into process.
+- [ ] Fix general naming and clean the code
+- [ ] Transition to new layers
+- [ ] Revamp RGB light codes
+- [ ] Fix music mode codes
+
 # Keyboards
 
 A list of my code accross the QMK repo accessible here.
@@ -9,14 +17,16 @@ A list of my code accross the QMK repo accessible here.
 
 ## Currently Using
 
-* [Planck (rev6)](../../keyboards/planck/rev6/keymaps/bbaserdem)
-One with Zilents (for the office) and one with BOX Navys (for home)
-* [Planck (light)](../../keyboards/planck/light/keymaps/bbaserdem)
-Choc low Navy
+* [Planck](../../keyboards/planck/keymaps/bbaserdem): I have 3 plancks;
+  * `rev6`, Office with Zilents
+  * `rev6`, Home use with BOX Navys
+  * `light`, Choc low Navy
+
+## Built; but not really using
+
+* [Planck](../../keyboards/planck/keymaps/bbaserdem)
+A `rev4` from the past, with 
 * [XD75](../../keyboards/xd75/keymaps/bbaserdem)
-
-## Built; but not using
-
 * [Let's Split Eh?](../../keyboards/lets_split_eh/keymaps/default)
 * [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
 * [Gherkin](../../keyboards/gherkin/keymaps/bbaserdem)
@@ -49,17 +59,14 @@ collect funds.)
 My userspace has a lot of shared code between different keyboards.
 These files are prefixed with `sbp-` to differentiate between main repo code.
 
-* [sbp-audio](sbp-audio.c): Code dealing with audio playback using onboard sound.
+* [bb-audio](bb-audio.c): Code dealing with audio playback using onboard sound.
 Also contains stuff regarding using the devices as MIDI controllers. (WIP)
-* [sbp-underglow](sbp-underglow.c): Controls RGB underglow effects.
-* [sbp-macro](sbp-macro.c): Contains macro and unicode insertion.
-* [sbp-mouse](sbp-mouse.c): Contains new key definitions (diagonal navigation)
-Also contains stuff regarding trackpad devices (WIP)
-* [sbp-process](sbp-process.c): My method of hacking the `process-record`
-function to add new keycodes to it from various files.
-* [sbp-perkey](sbp-perkey.c): Controls per-key RGB LED matrix stuff.
-* [sbp-backlight](sbp-backlight.c): Controls global key single-channel LED stuff.
-* [sbp-tapdance](sbp-tapdance.c): Contains my tap dance definitions.
+* [bb-backlight](bb-backlight.c): Controls global key single-channel LED stuff.
+* [bb-keylight](bb-keylight.c): Controls per-key RGB LED matrix stuff.
+* [bb-layout](bb-layout.h): My layout packaged for keymap files.
+* [bb-mouse](bb-mouse.c): Contains new key definitions (diagonal navigation)
+* [bb-process](bb-process.c): My custom keycodes; macros, tap dances, etc.
+* [bb-underglow](bb-underglow.c): Controls RGB underglow effects.
 
 ## Current keyboards
 
@@ -86,7 +93,7 @@ I have this at hand, but never could get the LED display to work.
 
 # Layout
 
-![Corne layout](https://imgur.com/6VvQZ2I)
+![Corne layout](https://i.imgur.com/6VvQZ2I.png)
 
 My personal layout is mostly inspired by the
 [Miryoku layout](../manna-harbour_miryoku/miryoku.org).

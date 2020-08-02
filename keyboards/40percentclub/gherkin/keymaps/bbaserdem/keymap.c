@@ -1,5 +1,5 @@
 /*
- * GHERKIN - Gaming mini-mouse
+ * GHERKIN - Gaming mini-pad
  * Keymap by @bbaserdem
  * Check qmk_firmware/users/bbaserdem for the main part of the code
  */

@@ -2,7 +2,7 @@
  * Replaced functions with noeeprom varieties; I don't need retention across
  * booting.
 */
-#include "rgb_bl_stuff.h"
+#include "sbp-backlight.h"
 
 extern backlight_config_t backlight_config;
 

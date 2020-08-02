@@ -15,42 +15,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "quantum.h"
-#ifdef AUDIO_ENABLE             // Audio stuff
-    #include "audio_stuff.h"
-#endif
-#ifdef BACKLIGHT_ENABLE         // Backlight LED
-    #include "backlight_stuff.h"
-#endif
-#include "macro_stuff.h"       // Double press keys
-#ifdef MOUSEKEY_ENABLE          // Functions for mouse key emulation
-    #include "mouse_emulation.h"
-#endif
-#include "process_records.h"    // Keycodes
-#ifdef RGBLIGHT_ENABLE          // RGB backlight stuff
-    #include "rgb_bl_stuff.h"
-#endif
-#ifdef RGB_MATRIX_ENABLE         // RGB individual key light
-    #include "rgb_key_stuff.h"
-#endif
-#if (__has_include("secret.h")) && !defined(NO_SECRETS) // Secret macros
-    #include "secrets.h"
-#endif
-#ifdef TAP_DANCE_ENABLE         // Tap dance functions
-    #include "tap_dances.h"
-#endif
-#if (defined(UNICODE_ENABLE) || defined(UNICODEMAP_ENABLE) || defined(UCIS_ENABLE))
-    #include "unicode_usage.h"
-#endif
-#include "wrappers.h"           // Layouts
 
-/// Using enum kinda screws things up?
+// Layouts
+#include "wrappers.h"
+
+// Keycodes
+#include "process_records.h"
+
+// Macros
+#include "sbp-macro.h"
+
+// Audio from onboard speakers
+#ifdef AUDIO_ENABLE
+  #include "sbp-audio.h"
+#endif
+
+// Underglow using rgb LEDs
+#ifdef RGBLIGHT_ENABLE          
+    #include "sbp-underglow.h"
+#endif
+
+// Keycap backlight using non-rgb LEDs
+#ifdef BACKLIGHT_ENABLE         
+  #include "sbp-backlight.h"
+#endif
+
+// Mouse-key emulation
+#ifdef MOUSEKEY_ENABLE          
+  #include "mouse_emulation.h"
+#endif
+
+// Keycap backlight using rgb LEDs
+#ifdef RGB_MATRIX_ENABLE         
+    #include "sbp-keylight.h"
+#endif
+
+// Tap dance functions
+#ifdef TAP_DANCE_ENABLE
+    #include "sbp-tapdance.h"
+#endif
+
+/// Enumeration of layers
 enum userspace_layers {
-    _BA = 0,    // Base layer
-    _GA,        // Game layer
-    _NU,        // Numbers layer
-    _SE,        // Settings layer
-    _MO,        // Mouse emulation
-    _MU,        // Music mode
+    _BASE = 0,  // Base layer
+    _GAME,      // Game layer
+    _NUMB,      // Numbers layer
+    _SYMB,      // Symbols layer
+    _FUNC,      // Function keys layer
+    _NAVG,      // Navigation layer
+    _MOUS,      // Mouse keys layer
+    _MEDI,      // Media layer
+    _MUSI,      // Music overlay
+    _MIDI       // MIDI mode
 };
 //*/
 
@@ -70,21 +86,12 @@ void eeconfig_init_keymap(void);
 typedef union {
     uint32_t raw;
     struct {
-        bool        lock_flag       :1;     // Current layer is locked?
-        bool        game_flag       :1;     // Game layer was on previously?
-        bool        rgb_blt_state   :1;     // (Backlight)  On load state?
-        bool        rgb_blt_toggle  :1;     //              Is light on?
         bool        rgb_mat_state   :1;     // (Matrix)     On load state?
         bool        rgb_mat_toggle  :1;     //              Is light on?
-        uint8_t     rgb_blt_mode    :6;     // (Backlight)  Animation mode
-        uint8_t     rgb_blt_sat     :8;     //              Saturation
-        uint8_t     rgb_blt_val     :8;     //              Brightness
-        uint8_t     rgb_blt_speed   :8;     //              Speed
         uint8_t     rgb_mat_mode    :6;     // (Matrix)     Animation mode
         uint8_t     rgb_mat_sat     :8;     //              Saturation
         uint8_t     rgb_mat_val     :8;     //              Brightness
         uint8_t     rgb_mat_speed   :8;     //              Speed
-        uint16_t    rgb_blt_hue     :9;     // (Backlight)  Hue
         uint16_t    rgb_mat_hue     :9;     // (Matrix)     Hue
     };
 } userspace_config_t;
