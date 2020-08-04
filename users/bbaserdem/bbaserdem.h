@@ -11,48 +11,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #pragma once
 
 #include "quantum.h"
 
-// Layouts
-#include "wrappers.h"
-
-// Keycodes
-#include "process_records.h"
-
-// Macros
-#include "sbp-macro.h"
+// Keycodes: including taps, macros, unicode
+#include "bb-process.h"
 
 // Audio from onboard speakers
 #ifdef AUDIO_ENABLE
-  #include "sbp-audio.h"
+  #include "bb-audio.h"
 #endif
 
 // Underglow using rgb LEDs
 #ifdef RGBLIGHT_ENABLE          
-    #include "sbp-underglow.h"
+    #include "bb-underglow.h"
 #endif
 
 // Keycap backlight using non-rgb LEDs
 #ifdef BACKLIGHT_ENABLE         
-  #include "sbp-backlight.h"
+  #include "bb-backlight.h"
 #endif
 
 // Mouse-key emulation
-#ifdef MOUSEKEY_ENABLE          
-  #include "mouse_emulation.h"
-#endif
+#include "bb-mouse.h"
 
 // Keycap backlight using rgb LEDs
 #ifdef RGB_MATRIX_ENABLE         
-    #include "sbp-keylight.h"
-#endif
-
-// Tap dance functions
-#ifdef TAP_DANCE_ENABLE
-    #include "sbp-tapdance.h"
+    #include "bb-keylight.h"
 #endif
 
 /// Enumeration of layers
@@ -68,47 +54,31 @@ enum userspace_layers {
     _MUSI,      // Music overlay
     _MIDI       // MIDI mode
 };
-//*/
 
-// Function definitions that are findable
+// Function definitions that can be accessed through specific keymaps
+// Runs before all initialization
+void keyboard_pre_init_keymap(void);
+// For code that launches once midway through initialization
 void matrix_init_keymap(void);
-void shutdown_keymap(void);
+// For code that launches after initialization is finished.
+void keyboard_post_init_keymap(void);
+// This code also launches on boot; but used after eeprom is available to write
+void eeconfig_init_keymap(void);
+// This code runs on every tick
+void matrix_scan_keymap(void);
+// This code runs after every layer change
+layer_state_t layer_state_set_keymap(layer_state_t state);
+// This code runs when the default layer changes
+layer_state_t default_layer_state_set_keymap (layer_state_t state);
+// This code runs to set LED states
+void led_set_keymap(uint8_t usb_led);
+// For code that runs on suspend
 void suspend_power_down_keymap(void);
 void suspend_wakeup_init_keymap(void);
-void matrix_scan_keymap(void);
-uint32_t layer_state_set_keymap(uint32_t state);
-uint32_t default_layer_state_set_keymap (uint32_t state);
-void led_set_keymap(uint8_t usb_led);
-void eeconfig_init_keymap(void);
+// For code that runs on powerdown
+void shutdown_keymap(void);
 
-// Record keyboard state in this variable, I don't know why I need union,
-//  typedef struct screws things up a bit.
-typedef union {
-    uint32_t raw;
-    struct {
-        bool        rgb_mat_state   :1;     // (Matrix)     On load state?
-        bool        rgb_mat_toggle  :1;     //              Is light on?
-        uint8_t     rgb_mat_mode    :6;     // (Matrix)     Animation mode
-        uint8_t     rgb_mat_sat     :8;     //              Saturation
-        uint8_t     rgb_mat_val     :8;     //              Brightness
-        uint8_t     rgb_mat_speed   :8;     //              Speed
-        uint16_t    rgb_mat_hue     :9;     // (Matrix)     Hue
-    };
-} userspace_config_t;
-
-extern userspace_config_t userspace_config;
-
-// Custom keycodes, with fallback
-
-// Tap Dance
-#ifdef TAP_DANCE_ENABLE
-#define K_NU_GA TD(NUG)
-#define K_SE_MO TD(SEM)
-#else
-#define K_NU_GA MO(_NU)
-#define K_SE_MO MO(_SE)
-#endif
-
+// Custom keycodes
 #define XXX     KC_NO
 
 // Define short macros
@@ -118,7 +88,7 @@ extern userspace_config_t userspace_config;
 #define CUT     LCTL(KC_X)
 #define PASTE   LCTL(KC_V)
 
-// Rename mouse keys with 7 letters
+// Rename mouse keys to 7 letters
 #ifdef MOUSEKEY_ENABLE
 #define MO_S_N  KC_MS_WH_UP
 #define MO_S_S  KC_MS_WH_DOWN
@@ -155,42 +125,19 @@ extern userspace_config_t userspace_config;
 #define MO_AC_2 KC_NO
 #endif
 
-// Rename music keys for consistency
+// Rename music keys for readability
 #ifdef AUDIO_ENABLE
 #define MU_REC  KC_LCTL
 #define MU_STOP KC_LALT
 #define MU_PLAY KC_LGUI
-#define MU_PLAY KC_LGUI
 #define MU_FAST KC_UP
 #define MU_SLOW KC_DOWN
-#define MU_MASK KC_A
+#define MU_MASK KC_NO
 #else
 #define MU_REC  KC_NO
 #define MU_STOP KC_NO
 #define MU_PLAY KC_NO
-#define MU_PLAY KC_NO
 #define MU_FAST KC_NO
 #define MU_SLOW KC_NO
 #define MU_MASK KC_NO
-#endif
-
-// Define UTF shortcuts here
-#ifdef UNICODE_ENABLE
-#define PHY_HBR UC(0x0127)
-#define PHY_DEG UC(0x00b0)
-#define CUR_LIR UC(0x20ba)
-#define CUR_BIT UC(0x20bf)
-#define CUR_EUR UC(0x20ac)
-#define CUR_BPN UC(0x00a3)
-#define CUR_YEN UC(0x00a5)
-#define KC_ELLP UC(0x2026)
-#else
-#define PHY_HBR KC_NO
-#define PHY_DEG KC_NO
-#define CUR_LIR KC_NO
-#define CUR_BIT KC_NO
-#define CUR_EUR KC_NO
-#define CUR_BPN KC_NO
-#define CUR_YEN KC_NO
-#define KC_ELLP MANUAL_ELLIPSIS
 #endif

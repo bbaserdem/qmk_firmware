@@ -13,10 +13,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
-#include "rgb_matrix.h"
-#include "color.h"
 
-bool process_record_rgb_matrix(uint16_t keycode, keyrecord_t *record);
-uint32_t layer_state_set_rgb_matrix(uint32_t state);
-void matrix_init_rgb_matrix(void);
+// For custom indicators
 void rgb_matrix_indicators_user(void);
+// Hook into shutdown code
+void shutdown_keylight(void);

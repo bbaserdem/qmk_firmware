@@ -11,20 +11,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #include "bbaserdem.h"
 
+// Store userspace variables here
 userspace_config_t userspace_config;
 
 /*---------------------------*\
 |*-----KEYBOARD PRE INIT-----*|
 \*---------------------------*/
-
-/*
- * This code runs before anything is started.
+/* This code runs before anything is started.
  * Good for early hardware setup
  */
-
 __attribute__ ((weak)) void keyboard_pre_init_keymap(void) {}
 __attribute__ ((weak)) void keyboard_pre_init_user(void) {
     // Keymap specific stuff
@@ -34,23 +31,15 @@ __attribute__ ((weak)) void keyboard_pre_init_user(void) {
 /*---------------------*\
 |*-----MATRIX INIT-----*|
 \*---------------------*/
-
-/*
- * This code runs once midway thru the firmware process.
+/* This code runs once midway thru the firmware process.
  * So far, sets the base layer and fixes unicode mode
  */
-
 __attribute__ ((weak)) void matrix_init_keymap(void) {}
-
 void matrix_init_user (void) {
-    // Fix beginning base layer
-    set_single_persistent_default_layer(_BA);
-
+    // Fix beginning base layer, in case some other firmware was flashed
+    set_single_persistent_default_layer(_BASE);
     // Unicode mode
-#ifdef UNICODE_ENABLE
     set_unicode_input_mode(UC_LNX);
-#endif
-
     // Keymap specific things
     matrix_init_keymap();
 }
@@ -58,45 +47,44 @@ void matrix_init_user (void) {
 /*----------------------------*\
 |*-----KEYBOARD POST INIT-----*|
 \*----------------------------*/
-
-/*
- * This code runs after anything is started.
- * Good for late hardware setup
+/* This code runs after anything is started.
+ * Good for late hardware setup, like setting up layer specifications
  */
-
 __attribute__ ((weak)) void keyboard_post_init_keymap(void) {}
 __attribute__ ((weak)) void keyboard_post_init_user(void) {
     // Backlight LED
-#ifdef BACKLIGHT_ENABLE
-    matrix_init_backlight();
-#endif
+    #ifdef BACKLIGHT_ENABLE
+    keyboard_post_init_backlight();
+    #endif
 
-    // RGB backlight
-#ifdef RGBLIGHT_ENABLE
-    matrix_init_rgb_light();
-#endif
-
-    // RGB Matrix
-#ifdef RGB_MATRIX_ENABLE
-    matrix_init_rgb_matrix();
-#endif
+    // RGB underglow
+    #ifdef RGBLIGHT_ENABLE
+    keyboard_post_init_underglow();
+    #endif
 
     // Keymap specific stuff
     keyboard_post_init_keymap();
 }
 
+/*-----------------------*\
+|*-----EECONFIG INIT-----*|
+\*-----------------------*/
+/* Default values to send to the eeprom on boot.
+ */
+__attribute__ ((weak)) void eeconfig_init_keymap(void) {}
+void eeconfig_init_user(void) {
+    userspace_config.raw = 0;
+    eeconfig_update_user(userspace_config.raw);
+}
+
 /*---------------------*\
 |*-----MATRIX SCAN-----*|
 \*---------------------*/
-
-/*
- * This code runs every frame
+/* This code runs every frame
  * I used to check for layer switching here, but layer state is better used.
- * Try to not put anything here
+ * Try to not put anything here; as it runs hundreds time per second-ish
  */
-
 __attribute__ ((weak)) void matrix_scan_keymap(void) { }
-
 void matrix_scan_user (void) {
     // Keymap specific scan function
     matrix_scan_keymap();
@@ -105,34 +93,24 @@ void matrix_scan_user (void) {
 /*---------------------*\
 |*-----LAYER STATE-----*|
 \*---------------------*/
-
-/*
- * This code runs after every layer change
+/* This code runs after every layer change
  * State represents the new layer state.
  */
-
-__attribute__ ((weak)) uint32_t layer_state_set_keymap (uint32_t state) {
+__attribute__ ((weak))
+layer_state_t layer_state_set_keymap (layer_state_t state) {
     return state;
 }
-uint32_t layer_state_set_user(uint32_t state) {
-
+layer_state_t layer_state_set_user(layer_state_t state) {
     // Keymap layer state setting
     state = layer_state_set_keymap(state);
-
-    // RGB Backlight
-#ifdef RGBLIGHT_ENABLE
-    layer_state_set_rgb_light(state);
-#endif // RGBLIGHT_ENABLE
-
-    // RGB Matrix
-#ifdef RGB_MATRIX_ENABLE
-    layer_state_set_rgb_matrix(state);
-#endif // RGBLIGHT_ENABLE
-
-    // Audio sounds
-#ifdef AUDIO_ENABLE
+    // For underglow stuff
+    #ifdef RGBLIGHT_ENABLE
+    layer_state_set_underglow(state);
+    #endif
+    // Audio playback
+    #ifdef AUDIO_ENABLE
     layer_state_set_audio(state);
-#endif // AUDIO_ENABLE
+    #endif
 
     return state;
 }
@@ -140,17 +118,14 @@ uint32_t layer_state_set_user(uint32_t state) {
 /*-----------------------------*\
 |*-----DEFAULT LAYER STATE-----*|
 \*-----------------------------*/
-
-/*
- * This code runs after every time default base layer is changed
+/* This code runs after every time default base layer is changed
  */
-
-__attribute__ ((weak)) uint32_t default_layer_state_set_keymap (uint32_t state) {
+__attribute__ ((weak))
+layer_state_t default_layer_state_set_keymap (layer_state_t state) {
     return state;
 }
-
-// Runs state check and changes underglow color and animation
-uint32_t default_layer_state_set_user(uint32_t state) {
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    // Keymap level code
     state = default_layer_state_set_keymap(state);
     return state;
 }
@@ -158,64 +133,52 @@ uint32_t default_layer_state_set_user(uint32_t state) {
 /*------------------------*\
 |*-----LED SET KEYMAP-----*|
 \*------------------------*/
-
-/*
- * I assume this runs to update LEDs, I don't really know
+/* Code for LED indicators
+ * I'm not sure when exactly does this code run
  */
-
 __attribute__ ((weak)) void led_set_keymap(uint8_t usb_led) {}
 void led_set_user(uint8_t usb_led) {
     led_set_keymap(usb_led);
 }
 
-/*-----------------------*\
-|*-----EECONFIG INIT-----*|
-\*-----------------------*/
-
-__attribute__ ((weak)) void eeconfig_init_keymap(void) {}
-
-void eeconfig_init_user(void) {
-    userspace_config.raw = 0;
-    eeconfig_update_user(userspace_config.raw);
-#if (defined(UNICODE_ENABLE) || defined(UNICODEMAP_ENABLE) || defined(UCIS_ENABLE))
-    set_unicode_input_mode(UC_LNX);
-    get_unicode_input_mode();
-#else
-    eeprom_update_byte(EECONFIG_UNICODEMODE, UC_LNX);
-#endif
-}
-
 /*-----------------*\
 |*-----SUSPEND-----*|
 \*-----------------*/
-
 /* Suspend stuff here, mostly for the rgb lighting. 
- * Which got scrapped because suspend code should be in keyboard variant. */
-
+ */
 __attribute__ ((weak)) void suspend_power_down_keymap (void) { }
 void suspend_power_down_user(void) {
     suspend_power_down_keymap();
+    // RGB matrix sleep hook
+    #ifdef RGB_MATRIX_ENABLE
+    suspend_power_down_keylight();
+    #endif
 }
-
 __attribute__ ((weak)) void suspend_wakeup_init_keymap (void) { }
 void suspend_wakeup_init_user(void) {
     suspend_wakeup_init_keymap();
+    // RGB matrix sleep hook
+    #ifdef RGB_MATRIX_ENABLE
+    suspend_wakeup_initkeylight();
+    #endif
 }
+
 /*------------------*\
 |*-----SHUTDOWN-----*|
 \*------------------*/
-
+/* Shutdown stuff here; I don't know what this is useful for.
+ * Probably works when the keyboard is put on boot mode
+ */
 __attribute__ ((weak)) void shutdown_keymap (void) { }
 void shutdown_user(void) {
-#ifdef RGBLIGHT_ENABLE
-    rgblight_enable_noeeprom();
-    rgblight_mode_noeeprom(1);
-    rgblight_setrgb_red();
-#endif // RGBLIGHT_ENABLE
-#ifdef RGB_MATRIX_ENABLE
-    uint16_t timer_start = timer_read();
-    rgb_matrix_set_color_all( 0xFF, 0x00, 0x00 );
-    while(timer_elapsed(timer_start) < 250) { wait_ms(1); }
-#endif //RGB_MATRIX_ENABLE
+    // Make the LED's red on shutdown
+    #ifdef RGBLIGHT_ENABLE
+    shutdown_underglow();
+    #endif
+    // Flash all the key LED's red on shutdown
+    #ifdef RGB_MATRIX_ENABLE
+    shutdown_keylight();
+    #endif
+    // Keymap hooks
     shutdown_keymap();
 }

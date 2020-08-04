@@ -13,6 +13,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
-#include "mousekey.h"
 
 bool process_record_mouse(uint16_t keycode, keyrecord_t *record);

@@ -11,7 +11,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "sbp-mouse.h"
+#include "bb-mouse.h"
 
 bool process_record_mouse(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {

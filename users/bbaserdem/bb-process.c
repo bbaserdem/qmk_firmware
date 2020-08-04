@@ -12,10 +12,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* PROCESS FILE
- * This file has a lot of my 
+ * This file has my macros/unicodes
+ * Hooks for other functionality to inject itself into the process_record
  */
-#pragma once
-#include "bbaserdem.h"
+#include "bb-process.h"
 
 // Unicode definitions
 const uint32_t PROGMEM unicode_map[] = {
@@ -80,11 +80,6 @@ bool process_record_mouse(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 __attribute__ ((weak))
-bool process_record_underglow(uint16_t keycode, keyrecord_t *record) {
-    // RGB Underglow hooks
-    return true;
-}
-__attribute__ ((weak))
 bool process_record_keylight(uint16_t keycode, keyrecord_t *record) {
     // RGB Perkey light hooks
     return true;
@@ -146,7 +141,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Return after running through all individual hooks
     return process_record_keymap(keycode, record)   &&
     process_record_audio(keycode, record)           &&
-    process_record_mouse(keycode, record)           &&
-    process_record_underglow(keycode, record)       &&
-    process_record_keylight(keycode, record);
+    process_record_mouse(keycode, record);
 }

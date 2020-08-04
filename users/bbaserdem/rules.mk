@@ -10,6 +10,8 @@ EXTRAKEY_ENABLE = yes   # OS signals like volume control
 MOUSEKEY_ENABLE = yes   # Mouse emulation keys
 TAP_DANCE_ENABLE = yes  # Tap dance keys
 UNICODEMAP_ENABLE = yes # Used for unicode character emulation
+VELOCIKEY_ENABLE = yes  # Modulate speed effects with typing speed
+KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used
 
 # These should be disabled in general
 COMMAND_ENABLE = no     # Some bootmagic thing i dont use
@@ -17,8 +19,7 @@ BOOTMAGIC_ENABLE = no   # Access to EEPROM settings, not needed
 CONSOLE_ENABLE = no     # Allows console output with a command
 SLEEP_LED_ENABLE = no   # Breathes LED's when computer is asleep. Untested.
 NKRO_ENABLE = no        # Default is 6KRO which is plenty
-FAUXCLICKY_ENABLE = no  # Emulates clicks using speaker
-KEY_LOCK_ENABLE = no    # Allows locking any key. Not used
+FAUXCLICKY_ENABLE = no  # Emulates clicks using speaker, who would want this?
 API_SYSEX_ENABLE = no   # Allows OS to send signals.
 BLUETOOTH_ENABLE = no   # I don't use bluetooth
 
@@ -30,9 +31,9 @@ EXTRAFLAGS += -flto     # Used to make code smaller
 # Use the userspace code unless explicitly disabled
 ifndef DISABLE_USERSPACE
   SRC += bbaserdem.c
-  SRC += sbp-mouse.c
-  SRC += sbp-macro.c
-  SRC += sbp-process.c
+  # Add the extra c files for compilation
+  SRC += bb-mouse.c
+  SRC += bb-process.c
   ifeq ($(strip $(AUDIO_ENABLE)), yes)
     SRC += sbp-audio.c
   endif

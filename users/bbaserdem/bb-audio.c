@@ -12,41 +12,36 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "sbp-audio.h"
-#include "audio.h"
 
-float tone_game[][2]    = SONG(ZELDA_PUZZLE);
-float tone_return[][2]  = SONG(ZELDA_TREASURE);
+float tone_game[][2]    = SONG(GAME_ON_SONG);
+float tone_return[][2]  = SONG(PEOPLE_VULTURES);
+global uint8_t bb_game_flag = false;
 
 // Audio playing when layer changes
 uint32_t layer_state_set_audio(uint32_t state) {
+    // Get this layer
+    uint8_t current_layer = biton32(state);
 
-    uint8_t current_layer = biton32( state );
-
-    if ( userspace_config.game_flag && ( current_layer != _GA ) ) {
+    if (layer_state_cmp(state, _GAME)) {
         stop_all_notes();
-        PLAY_SONG(tone_return);
-        userspace_config.game_flag = false;
-    } else if ( ( current_layer == _GA ) && ( !userspace_config.game_flag) ) {
-        stop_all_notes();
-        PLAY_SONG(tone_game);
-        userspace_config.game_flag = true;
+        PLAY_SONG(GAME_ON_SONG);
     }
 
     return state;
 }
 
-// Audio layer switch
+// Audio layer switch; add the music layer on top of this
 bool process_record_audio(uint16_t keycode, keyrecord_t *record) {
-
     switch (keycode) {
         case MU_TOG:
             if (record->event.pressed) {
-                // On press, turn off layer if active
-                if ( biton32( layer_state ) == _SE ) {
-                    layer_off(_SE);
-                    layer_on(_MU);
-                } else {
+                // On press, exit music mode if enabled
+                if (layer_state_cmp(state, _MUSI)) {
                     layer_off(_MU);
+                // If not enabled; turn off all layers and load music layer
+                } else {
+                    layer_clear();
+                    layer_on(_MUSI);
                 }
             }
             return true;

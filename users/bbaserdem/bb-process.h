@@ -44,9 +44,6 @@ enum userspace_custom_keycodes {
 // These will be delegated to keymap specific stuff (weak definition)
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 
-// These will hold onto the macros 
-bool process_record_macro(uint16_t keycode, keyrecord_t *record);
-
 // Unicodemap implementation
 enum userspace_unicodemap {
     UPC_A_CIRC,
