@@ -13,9 +13,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "bbaserdem.h"
 
-// Store userspace variables here
-userspace_config_t userspace_config;
-
 /*---------------------------*\
 |*-----KEYBOARD PRE INIT-----*|
 \*---------------------------*/

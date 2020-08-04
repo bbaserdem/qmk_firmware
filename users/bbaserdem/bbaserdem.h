@@ -18,6 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Keycodes: including taps, macros, unicode
 #include "bb-process.h"
 
+// Layouts: header file for my layouts
+#include "bb-layouts.h"
+
 // Audio from onboard speakers
 #ifdef AUDIO_ENABLE
   #include "bb-audio.h"
@@ -82,11 +85,11 @@ void shutdown_keymap(void);
 #define XXX     KC_NO
 
 // Define short macros
-#define UNDO    LCTL(KC_Z)
-#define REDO    LCTL(KC_Y)
-#define COPY    LCTL(KC_C)
-#define CUT     LCTL(KC_X)
-#define PASTE   LCTL(KC_V)
+#define BB_UNDO LCTL(KC_Z)
+#define BB_REDO LCTL(KC_Y)
+#define BB_COPY LCTL(KC_C)
+#define BB_CUT  LCTL(KC_X)
+#define BB_PSTE LCTL(KC_V)
 
 // Rename mouse keys to 7 letters
 #ifdef MOUSEKEY_ENABLE
