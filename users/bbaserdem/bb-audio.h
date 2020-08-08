@@ -13,8 +13,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
-
-// My songs
+/* My song definitions and hooks
+ */
 
 /* Title:            People Vultures
  * Author/Composer:  King Gizzard & the Lizard Wizard
@@ -75,6 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MUSIC_ON_SONG   SONG(NONAGON_INFINITY)
 #define MUSIC_OFF_SONG  SONG(WAH_WAH)
 #define GAME_ON_SONG    SONG(BIG_FIG_WASP)
+#define GAME_OFF_SONG   SONG(POLYGONDWANALAND)
 
 // Hook to layer change effects
 layer_state_t layer_state_set_audio(layer_state_t state);

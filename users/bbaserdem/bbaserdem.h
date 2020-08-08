@@ -15,8 +15,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-// Keycodes: including taps, macros, unicode
-#include "bb-process.h"
+// Macros to use, this has base level code so not affected by enabled features
+#include "bb-macro.h"
 
 // Layouts: header file for my layouts
 #include "bb-layouts.h"
@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #include "bb-keylight.h"
 #endif
 
-/// Enumeration of layers
+/// Enumerate of layers
 enum userspace_layers {
     _BASE = 0,  // Base layer
     _GAME,      // Game layer
@@ -67,6 +67,8 @@ void matrix_init_keymap(void);
 void keyboard_post_init_keymap(void);
 // This code also launches on boot; but used after eeprom is available to write
 void eeconfig_init_keymap(void);
+// These will be delegated to keymap specific stuff (weak definition)
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record);
 // This code runs on every tick
 void matrix_scan_keymap(void);
 // This code runs after every layer change
@@ -83,13 +85,6 @@ void shutdown_keymap(void);
 
 // Custom keycodes
 #define XXX     KC_NO
-
-// Define short macros
-#define BB_UNDO LCTL(KC_Z)
-#define BB_REDO LCTL(KC_Y)
-#define BB_COPY LCTL(KC_C)
-#define BB_CUT  LCTL(KC_X)
-#define BB_PSTE LCTL(KC_V)
 
 // Rename mouse keys to 7 letters
 #ifdef MOUSEKEY_ENABLE

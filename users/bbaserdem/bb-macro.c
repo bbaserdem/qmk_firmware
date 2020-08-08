@@ -11,13 +11,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/* PROCESS FILE
+#include "bb-macro.h"
+/* MACRO Definitions
  * This file has my macros/unicodes
  * Hooks for other functionality to inject itself into the process_record
  */
-#include "bb-process.h"
 
-// Unicode definitions
+// Unicode definitions; for single character keys
+//  We mask their definitions if unicode is not enabled
+#ifdef UNICODEMAP_ENABLE
 const uint32_t PROGMEM unicode_map[] = {
     [ELLIPSIS]   = 0x2026,  // …
     [UPC_A_CIRC] = 0x00C2,  // Â
@@ -45,7 +47,6 @@ const uint32_t PROGMEM unicode_map[] = {
     [MATHPI]     = 0x03C0,  // π
     [BITCOIN]    = 0x20BF   // ₿
 };
-
 // Unicode shortcuts for turkish lower-upper case letters
 #define TR_ACIR XP(LOW_A_CIRC, UPC_A_CIRC)
 #define TR_CCED XP(LOW_C_CEDI, UPC_C_CEDI)
@@ -62,55 +63,33 @@ const uint32_t PROGMEM unicode_map[] = {
 #define BB_ANGS X(ANGSTROM)
 #define BB_PI   X(MATHPI)
 #define BB_BITC X(BITCOIN)
+#else
+#define TR_ACIR KC_A
+#define TR_CCED KC_C
+#define TR_GBRE KC_G
+#define TR_ICIR KC_I
+#define TR_I_NO KC_I
+#define TR_IDOT KC_I
+#define TR_ODIA KC_O
+#define TR_SCED KC_S
+#define TR_UCIR KC_U
+#define TR_UDIA KC_U
+#define BB_ELLI KC_NO
+#define BB_PLNK KC_NO
+#define BB_ANGS KC_NO
+#define BB_PI   KC_NO
+#define BB_BITC KC_NO
+#endif
 
-// Weak defines to hook into the main process_record
-__attribute__ ((weak))
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    // Keymap custom keycodes
-    return true;
-}
-__attribute__ ((weak))
-bool process_record_audio(uint16_t keycode, keyrecord_t *record) {
-    // Audio functionality
-    return true;
-}
-__attribute__ ((weak))
-bool process_record_mouse(uint16_t keycode, keyrecord_t *record) {
-    // Extra mouse controller buttons
-    return true;
-}
-__attribute__ ((weak))
-bool process_record_keylight(uint16_t keycode, keyrecord_t *record) {
-    // RGB Perkey light hooks
-    return true;
-}
 
 // Keycodes
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Special macros
+bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // Plain macros
         case BB_PGPK:
             // My public PGP key
             if (record->event.pressed) {
                 SEND_STRING("0B7151C823559DD8A7A04CE36426139E2F4C6CCE");
-            }
-            return false; break;
-        case TR_FLAG:
-            // Turkish flag
-            if (record->event.pressed) {
-                send_unicode_string("🇹🇷");
-            }
-            return false; break;
-        case BB_LENY:
-            // Lenny face
-            if (record->event.pressed) {
-                send_unicode_string("( ͡° ͜ʖ ͡°)");
-            }
-            return false; break;
-        case BB_TABL:
-            // Table flip
-            if (record->event.pressed) {
-                send_unicode_string("┻━┻︵ \\(°□°)/ ︵ ┻━┻");
             }
             return false; break;
         case DBL_ANG:
@@ -137,9 +116,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("{}"SS_TAP(X_LEFT));
             }
             return false; break;
+        // Unicode macros
+        #ifdef UNICODEMAP_ENABLE
+        case TR_FLAG:
+            // Turkish flag
+            if (record->event.pressed) {
+                send_unicode_string("🇹🇷");
+            }
+            return false; break;
+        case BB_LENY:
+            // Lenny face
+            if (record->event.pressed) {
+                send_unicode_string("( ͡° ͜ʖ ͡°)");
+            }
+            return false; break;
+        case BB_TABL:
+            // Table flip
+            if (record->event.pressed) {
+                send_unicode_string("┻━┻︵ \\(°□°)/ ︵ ┻━┻");
+            }
+            return false; break;
+        #endif
     }
-    // Return after running through all individual hooks
-    return process_record_keymap(keycode, record)   &&
-    process_record_audio(keycode, record)           &&
-    process_record_mouse(keycode, record);
+    return true;
 }

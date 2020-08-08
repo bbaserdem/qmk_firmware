@@ -13,6 +13,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
+/* Hooks involving perkey RGB LEDs
+ */
 
 // For custom indicators
 void rgb_matrix_indicators_user(void);
