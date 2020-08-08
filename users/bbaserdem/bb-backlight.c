@@ -14,7 +14,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "sbp-backlight.h"
 /* Replaced functions with noeeprom varieties; I don't need retention across
  * booting.
-*/
+ */
 
 // Backlight LEDs
 void keyboard_post_init_backlight(void) {

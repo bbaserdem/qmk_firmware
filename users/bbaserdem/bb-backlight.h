@@ -13,5 +13,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
+/* Hooks for backlight definitions
+ */
 
 void keyboard_post_init_backlight(void);

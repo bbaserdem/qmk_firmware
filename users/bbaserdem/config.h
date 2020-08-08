@@ -1,7 +1,9 @@
 #pragma once
 
 // Unicode entry mode
-#define UNICODE_SELECTED_MODES UC_LNX
+#ifdef UNICODEMAP_ENABLE
+    #define UNICODE_SELECTED_MODES UC_LNX
+#endif
 
 // Tap dance settings
 #ifdef TAP_DANCE_ENABLE
@@ -9,7 +11,7 @@
     #define TAPPING_TOGGLE 1
 #endif
 
-// RGB light settings
+// Enable RGB LED sleep mode
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
     #define RGB_DISABLE_WHEN_USB_SUSPENDED true
 #endif

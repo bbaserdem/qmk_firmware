@@ -12,8 +12,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "bb-keylight.h"
+/* Code relating to per-key RGB LED stuff
+ */
 
-// These are keyboard, and matrix, specific so they need to be defined there
+// These are keyboard, (and matrix), specific so they need to be defined there
 // BUT these are made to take HSV arguments; so their color is controlled here
 __attribute__ ((weak))
 void keylight_set_left(uint8_t red, uint8_t green, uint8_t blue) { }
@@ -58,7 +60,7 @@ void rgb_matrix_indicators_keylight(void) {
     rgb_matrix_indicators_keymap();
 }
 
-// Hook into shutdown code to make perkey LED's red on shutdown
+// Hook into shutdown code to make all perkey LED's red on hitting reset
 void shutdown_keylight(void) {
     // Flash all the key LED's red on shutdown
     uint16_t timer_start = timer_read();

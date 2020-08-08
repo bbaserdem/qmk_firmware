@@ -73,8 +73,42 @@ __attribute__ ((weak)) void keyboard_post_init_user(void) {
  */
 __attribute__ ((weak)) void eeconfig_init_keymap(void) {}
 void eeconfig_init_user(void) {
-    userspace_config.raw = 0;
-    eeconfig_update_user(userspace_config.raw);
+    // Hook to keymap code
+    eeconfig_init_keymap();
+}
+
+/*------------------------*\
+|*-----PROCESS RECORD-----*|
+\*------------------------*/
+/* Process record: custom keycodes to process here
+ * Allow also the following codes to hook here as well;
+ *  Macro definitions
+ *  Audio hooks
+ *  Mouse keys
+ */
+__attribute__ ((weak))
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+__attribute__ ((weak))
+bool process_record_audio(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+__attribute__ ((weak))
+bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+__attribute__ ((weak))
+bool process_record_mouse(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Return after running through all individual hooks
+    return
+        process_record_keymap(keycode, record)  &&
+        process_record_audio(keycode, record)   &&
+        process_record_macro(keycode, record)   &&
+        process_record_mouse(keycode, record);
 }
 
 /*---------------------*\

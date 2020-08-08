@@ -30,10 +30,9 @@ EXTRAFLAGS += -flto     # Used to make code smaller
 
 # Use the userspace code unless explicitly disabled
 ifndef DISABLE_USERSPACE
-  SRC += bbaserdem.c
   # Add the extra c files for compilation
   SRC += bb-mouse.c
-  SRC += bb-process.c
+  SRC += bb-macro.c
   ifeq ($(strip $(AUDIO_ENABLE)), yes)
     SRC += sbp-audio.c
   endif
@@ -46,4 +45,6 @@ ifndef DISABLE_USERSPACE
   ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
     SRC += sbp-keylight.c
   endif
+  # Userspace code
+  SRC += bbaserdem.c
 endif # DISABLE_USERSPACE

@@ -12,21 +12,33 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "sbp-audio.h"
+/* AUDIO
+ * This contains some audio related stuff.
+ * There is no need to wrap this up with preprocessor commands;
+ * This is only called if audio is enabled
+ */
 
-float tone_game[][2]    = SONG(GAME_ON_SONG);
-float tone_return[][2]  = SONG(PEOPLE_VULTURES);
+float tone_game_intro[][2]  = SONG(GAME_ON_SONG);
+float tone_game_outro[][2]  = SONG(GAME_OFF_SONG);
 global uint8_t bb_game_flag = false;
 
 // Audio playing when layer changes
 uint32_t layer_state_set_audio(uint32_t state) {
     // Get this layer
-    uint8_t current_layer = biton32(state);
+    static bool prev_game = false;
 
-    if (layer_state_cmp(state, _GAME)) {
+    // If entering the game layer; play the intro sound
+    if (layer_state_cmp(state, _GAME) && (!prev_game)) {
         stop_all_notes();
-        PLAY_SONG(GAME_ON_SONG);
+        PLAY_SONG(tone_game_intro);
+        prev_game = true;
     }
-
+    // If exiting the game layer; play the outro sound
+    if ((!layer_state_cmp(state, _GAME)) && prev_layer_is_game) {
+        stop_all_notes();
+        PLAY_SONG(tone_game_outro);
+        prev_layer_is_game = false;
+    }
     return state;
 }
 
