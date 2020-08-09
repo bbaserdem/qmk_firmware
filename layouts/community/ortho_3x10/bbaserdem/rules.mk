@@ -1,0 +1,33 @@
+# This small layout is a macro-pad; does not need userspace
+DISABLE_USERSPACE = yes
+
+# Different from userspace
+BOOTMAGIC_ENABLE = no
+MOUSEKEY_ENABLE = no
+EXTRAKEY_ENABLE = no
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+SLEEP_LED_ENABLE = no
+NKRO_ENABLE = yes
+MIDI_ENABLE = no
+UNICODE_ENABLE = no
+UNICODEMAP_ENABLE = no
+UCIS_ENABLE = no
+BLUETOOTH_ENABLE = no
+AUDIO_ENABLE = no
+FAUXCLICKY_ENABLE = no
+VARIABLE_TRACE = no
+API_SYSEX_ENABLE = no
+KEY_LOCK_ENABLE = no
+SPLIT_KEYBOARD = no
+SPLIT_TRANSPORT = no
+CUSTOM_MATRIX = no
+DEBOUNCE_TYPE = no
+
+# Not in getting started guide
+TAP_DANCE_ENABLE = no
+RGBLIGHT_ENABLE = yes
+BACKLIGHT_ENABLE = yes
+
+# Used to make code smaller
+EXTRAFLAGS += -flto
