@@ -1,26 +1,37 @@
+/*
+Copyright 2019 Batuhan Başerdem <baserdem.batuhan@gmail.com> @bbaserdem
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #pragma once
 
-// BACKLIGHT
-#ifdef BACKLIGHT_ENABLE
-#define BACKLIGHT_BREATHING
-#define BREATHING_PERIOD 5
-#endif // BACKLIGHT_ENABLE
+// Code pertaining to planck rev6
+#if defined(KEYBOARD_planck_rev6) && defined(PLANCK_RGB_DAUGHTER)
+    // Reconfigure the RGB DI Pin
+    #ifdef RGB_DI_PIN
+    #undef RGB_DI_PIN
+    #endif
+    // Change this later
+    #define RGB_DI_PIN A1
+    // Reconfigure number of LEDS
+    #ifdef DRIVER_LED_TOTAL
+    #undef DRIVER_LED_TOTAL
+    #endif
+    #define DRIVER_LED_TOTAL 48
+#endif
 
-// LED strip stuff
-#ifdef RGBLIGHT_ENABLE
-#define RGBLIGHT_HUE_STEP 6
-#define RGBLIGHT_SAT_STEP 12
-#define RGBLIGHT_VAL_STEP 20
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_EFFECT_SNAKE_LENGTH 6
-#define RGBLIGHT_EFFECT_KNIGHT_LENGTH 2
-#define RGBLIGHT_EFFECT_KNIGHT_OFFSET 6
-#define RGBLIGHT_EFFECT_KNIGHT_LED_NUM 6
-#define RGBLIGHT_EFFECT_CHRISTMAS_INTERVAL 2000
-#define RGBLIGHT_EFFECT_CHRISTMAS_STEP 1
-#endif // RGBLIGHT_ENABLE
-
-// Encoder location
-#ifdef KEYBOARD_planck_rev6
-
+// Let's Split Eh! specific
+#ifdef KEYBOARD_lets_split_eh_eh
+    #define RGBLIGHT_LEFT_BEG 0
+    #define RGBLIGHT_LEFT_NUM 6
+    #define RGBLIGHT_RIGHT_BEG 6
+    #define RGBLIGHT_RIGHT_NUM 6
 #endif

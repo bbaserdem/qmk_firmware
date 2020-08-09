@@ -22,6 +22,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         switch (biton32(layer_state)) {
             case _BASE:
                 // Base layer; adjusts volume
+                //  This should correspond to either mute button;
+                //  or music mode toggle if the board has audio
                 if (clockwise) {
                     tap_code(KC_VOLU);
                 } else {
@@ -30,14 +32,25 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _GAME:
                 // Game layer; adjusts volume
+                //  Keypress should correspond to either muting
                 if (clockwise) {
                     tap_code(KC_VOLU);
                 } else {
                     tap_code(KC_VOLD);
                 }
                 break;
+            case _FUNC:
+                // Function layer; scroll vertically
+                //  Keypress should correspond to middle mouse button
+                if (clockwise) {
+                    tap_code(KC_WH_D);
+                } else {
+                    tap_code(KC_WH_U);
+                }
+                break;
             case _NUMB:
-                // Number layer; move accross the line
+                // Number layer; move laterally
+                //  Keypress should correspond to backspace
                 if (clockwise) {
                     tap_code(KC_RGHT);
                 } else {
@@ -46,14 +59,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _SYMB:
                 // Symbol layer; insert space/delete characters
-                if (clockwise) {
-                    tap_code(KC_SPC);
-                } else {
-                    tap_code(KC_BSPC);
-                }
-                break;
-            case _FUNC:
-                // Function layer; move up and down
+                //  Keypress should correspond to enter
                 if (clockwise) {
                     tap_code(KC_DOWN);
                 } else {

@@ -10,19 +10,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# None of my 4x12 boards use backlight
 BACKLIGHT_ENABLE = no
-RGBLIGHT_ENABLE = no
-RGB_MATRIX_ENABLE = no
-AUDIO_ENABLE = no
 
-# Planck light
-ifneq (,$(findstring planck/light,$(KEYBOARD)))
-    AUDIO_ENABLE = yes
-    RGB_MATRIX_ENABLE = yes
-endif
-
-# Planck rev6
+# Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled; fix this
 ifneq (,$(findstring planck/rev6,$(KEYBOARD)))
-    AUDIO_ENABLE = yes
-    RGBLIGHT_ENABLE = yes
+    RGBLIGHT_ENABLE = no
 endif
+
+# If wanted; define PLANCK_RGB_DAUGHTER to compile/flash for that version
+# PLANCK_RGB_DAUGHTER = yes

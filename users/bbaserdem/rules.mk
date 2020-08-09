@@ -14,33 +14,37 @@
 EXTRAFLAGS += -flto     # Used to make code smaller
 
 # These should be enabled in all boards
-EXTRAKEY_ENABLE = yes   # OS signals like volume control
 MOUSEKEY_ENABLE = yes   # Mouse emulation keys
-TAP_DANCE_ENABLE = yes  # Tap dance keys
+EXTRAKEY_ENABLE = yes   # OS signals like volume control
 UNICODEMAP_ENABLE = yes # Used for unicode character emulation
+KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used in general
+TAP_DANCE_ENABLE = yes  # Tap dance keys
 VELOCIKEY_ENABLE = yes  # Modulate speed effects with typing speed
-KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used
 
 # These should be disabled in all boards
-COMMAND_ENABLE = no     # Some bootmagic thing i dont use
 BOOTMAGIC_ENABLE = no   # Access to EEPROM settings, not needed
 CONSOLE_ENABLE = no     # Allows console output with a command
+COMMAND_ENABLE = no     # Some bootmagic thing i dont use
 SLEEP_LED_ENABLE = no   # Breathes LED's when computer is asleep. Untested.
 NKRO_ENABLE = no        # Default is 6KRO which is plenty
+MIDI_ENABLE = no        # Midi driver (untested)
+UNICODE_ENABLE = no 	# We use unicodemap, not unicode
+UCIS_ENABLE = no 	# We use unicodemap, not ucis
 FAUXCLICKY_ENABLE = no  # Emulates clicks using speaker, who would want this?
+VARIABLE_TRACE = no     # Allows debugging variables
 API_SYSEX_ENABLE = no   # Allows OS to send signals.
-BLUETOOTH_ENABLE = no   # I don't use bluetooth
+CUSTOM_MATRIX = no   	# 
+DEBOUNCE_TYPE = no   	# 
 
-# Manually configure these on each keyboard
+# Manually configure these on each keyboard individually
+# BLUETOOTH_ENABLE        # For bluetooth
+# AUDIO_ENABLE            # Audio stuff
 # BACKLIGHT_ENABLE        # Switch LEDs
 # RGBLIGHT_ENABLE         # LED strip
 # RGB_MATRIX_ENABLE       # Per-key RGB LED
-# AUDIO_ENABLE            # Audio stuff
 # ENCODER_ENABLE          # Rotary encoder
-# MIDI_ENABLE = no        # Midi driver (untested)
 
 # Disabling this makes it compile, i dont know why
-# VARIABLE_TRACE = no     # Allows debugging variables
 
 # Userspace code
 SRC += bbaserdem.c

@@ -9,7 +9,12 @@ My userspace code for my various keyboards; available here.
 - [x] Transition to new layers
 - [x] Revamp RGB light codes
 - [x] Fix music mode codes
+- [x] Add rotary encoder support
+- [ ] Converge on final keymap
 - [ ] Transfer code to layout
+- [ ] Document all features more extensibly
+- [ ] Generate json files to be used with Keyboard-Layout-Editor to produce images.
+- [ ] Add OLED support
 
 # Keyboards
 
@@ -18,27 +23,27 @@ A list of my code accross the QMK repo accessible here.
 
 ## Currently Using
 
-* [Planck](../../keyboards/planck/keymaps/bbaserdem): I have 3 plancks;
-  * `rev6`, Office with Zilents
-  * `rev6`, Home use with BOX Navys
+* [Planck](../../layouts/community/ortho_4x12/bbaserdem): I have 3 plancks;
+  * `rev6`, Workstation with Zilents
+  * `rev6`, Homestation with BOX Navy
   * `light`, Choc low Navy
 
-## Built; but not really using
+## Completed builds that are unused
 
-* [Planck](../../keyboards/planck/keymaps/bbaserdem)
-A `rev4` from the past, with 
-* [XD75](../../keyboards/xd75/keymaps/bbaserdem)
-* [Let's Split Eh?](../../keyboards/lets_split_eh/keymaps/default)
-* [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
-* [Gherkin](../../keyboards/gherkin/keymaps/bbaserdem), as a game pad.
+* [XD75](../../layouts/community/ortho_5x15/bbaserdem)
+* [Let's Split Eh?](../../layouts/community/ortho_4x12/bbaserdem)
+* [Gherkin](../../layouts/community/ortho_3x10/bbaserdem), as a game pad.
+* [Infinity Ergodox](../../keyboards/ergodox_infinity/readme.md)
 
 ## Planned builds
 
-* [Corne](../../keyboards/crkbd/)
-Linear switches (either BOX Dark Yellow, or Orange Healios V2)
-I'm planning on adding a trackpad for this, as detailed 
+* [Planck](../../layouts/community/ortho_4x12/bbaserdem)
+Planning on another `rev6`, to use at home use with Gateron Yellow for my server.
+* [Corne](../../layouts/community/split_3x6_3/bbaserdem)
+Linear switches (getting a switch tester to check it out
+I'm planning on adding a trackpad for this, as detailed
 [here](https://github.com/manna-harbour/crkbd/blob/master/trackpoint/readme.org).
-* [Kyria](../../keyboards/kyria/)
+* [Kyria](../../keyboards/kyria/keymaps/bbaserdem)
 Planning on using Choc low burnt orange on this board,
 but possibly can go for tall switches.
 I want to add a
@@ -54,20 +59,27 @@ his group buys.
 Hence can't get my hands on this PCB to rebuild things.
 (No one else should attempt to purchase this; as his website is still up to
 collect funds.)
+Might repair this with a bit of epoxy; as it's just the contact.
+
+# Firmware building
+
+## Archlinux
+
+On archlinux, the package *arm-none-eabi-gcc* is too new.
+To fix; add to the environment `CFLAGS="-Wno-error=deprecated"` to compilation commands.
 
 # Features
 
 My userspace has a lot of shared code between different keyboards.
-These files are prefixed with `sbp-` to differentiate between main repo code.
+These files are prefixed with `bb-` to remove any naming clash.
 
 * [bb-audio](bb-audio.c): Code dealing with audio playback using onboard sound.
 Also contains stuff regarding using the devices as MIDI controllers. (WIP)
 * [bb-backlight](bb-backlight.c): Controls global key single-channel LED stuff.
 * [bb-keylight](bb-keylight.c): Controls per-key RGB LED matrix stuff.
-* [bb-layout](bb-layout.h): My layout packaged for keymap files.
-* [bb-mouse](bb-mouse.c): Contains new key definitions (diagonal navigation)
-* [bb-process](bb-process.c): My custom keycodes; macros, tap dances, etc.
 * [bb-underglow](bb-underglow.c): Controls RGB underglow effects.
+* [bb-process](bb-macro.c): My custom keycodes; macros, tap dances, etc.
+* [bb-rotary](bb-rotary.c): Rotary encoder sutff
 
 ## Current keyboards
 

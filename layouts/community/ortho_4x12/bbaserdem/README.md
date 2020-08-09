@@ -1,19 +1,36 @@
-# Planck Layout
+This file contains my [4x12 ortho](../../../default/ortho_4x12) board layouts
+Check out the [user readme](../../../../users/bbaserdem/README.md) for more info.
 
-My planck layouts.
-Check out [user readme](../../../../users/bbaserdem/README.md) for more info.
+# Planck
 
-Builds fine as of 2019-12-17 (all variants)
+I use a couple [planck](../../../../keyboards/planck/readme.md) keyboards.
 
-# Build
+* Use the [light](../../../../keyboards/planck/light/readme.md) version.
+* Use the [rev6](../../../../keyboards/planck/rev6/readme.md) version.
 
-On archlinux, the package *arm-none-eabi-gcc* is too recent to compile ChibiOS.
-To fix this; add to the environment `CFLAGS="-Wno-error=deprecated"`.
+I have a daughter board that I'm trying to use for perkey leds.
+Both the per-key board LED's and the built in print for underglow LED's
+use the `RGB_MATRIX` code.
+One needs to be disabled in favor of the other.
+I employed a `PLANCK_DAUGHTER_BOARD` variable in `rules.mk`;
+flip it on/off to make a keymap for either.
 
-Get keyboard into reset mode, and then;
+## Status
 
-```
-make planck/rev4:bbaserdem:flash
-CFLAGS="-Wno-error=deprecated" make planck/rev6:bbaserdem:flash
-make planck/light:bbaserdem:flash
-```
+* [x] Layout adapted
+* [ ] Have not tested build yet.
+* [ ] Have not confirmed on board
+
+Build command: `CFLAGS="-Wno-error=deprecated" TBF`
+
+# Let's Split Eh?
+
+I have a [let's split eh?](../../../../keyboards/lets_split_eh/README.md).
+
+## Status
+
+* [x] Layout adapted
+* [ ] Have not tested build yet.
+* [ ] Have not confirmed on board
+
+Build command: `CFLAGS="-Wno-error=deprecated" TBF`
