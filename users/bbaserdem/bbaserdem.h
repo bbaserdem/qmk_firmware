@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "bb-macro.h"
 
 // Layouts: header file for my layouts
-#include "bb-layouts.h"
+#include "bb-layout.h"
 
 // Audio from onboard speakers
 #ifdef AUDIO_ENABLE
