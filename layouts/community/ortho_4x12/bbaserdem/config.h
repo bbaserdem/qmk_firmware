@@ -18,10 +18,9 @@
 #define RGBLIGHT_EFFECT_KNIGHT_LED_NUM 6
 #define RGBLIGHT_EFFECT_CHRISTMAS_INTERVAL 2000
 #define RGBLIGHT_EFFECT_CHRISTMAS_STEP 1
-#ifdef KEYBOARD_planck_rev4
-#define RGB_DI_PIN B2
-#define RGBLED_NUM 12
-#endif // KEYBOARD_planck_rev4
 #endif // RGBLIGHT_ENABLE
 
-#define ENCODER_RESOLUTION 4
+// Encoder location
+#ifdef KEYBOARD_planck_rev6
+
+#endif

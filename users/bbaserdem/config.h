@@ -27,6 +27,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define TAPPING_TOGGLE 1
 #endif
 
+// Encoder settings
+#ifdef ENCODER_ENABLE
+    #define ENCODER_RESOLUTION 4
+#endif
+
+// Backlight settings
+#ifdef BACKLIGHT_ENABLE
+    // Turn on breathing only if audio is not enabled, due to hardware stuff
+    #ifndef AUDIO_ENABLE
+        #define BACKLIGHT_BREATHING
+        #define BREATHING_PERIOD 5
+    #endif
+#endif
+
 // Enable RGB LED sleep mode
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
     #define RGB_DISABLE_WHEN_USB_SUSPENDED true

@@ -27,7 +27,7 @@ __attribute__ ((weak)) void rgb_matrix_indicators_keymap(void) { }
 // Set RGB state depending on layer
 void rgb_matrix_indicators_keylight(void) {
     // Do each layer seperately
-    switch ( biton32(layer_state) ) {
+    switch (biton32(layer_state)) {
         case _GAME:
             keylight_set_left(RGB_PURPLE);
             break;

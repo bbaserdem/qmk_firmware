@@ -33,8 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #include "bb-backlight.h"
 #endif
 // Keycap backlight using rgb LEDs
-#ifdef RGB_MATRIX_ENABLE         
+#ifdef RGB_MATRIX_ENABLE
     #include "bb-keylight.h"
+#endif
+// Rotary encoder
+#ifdef ENCODER_ENABLE  
+    #include "bb-rotary.h"
 #endif
 
 // Function definitions that can be accessed through specific keymaps
