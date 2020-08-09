@@ -47,40 +47,7 @@ const uint32_t PROGMEM unicode_map[] = {
     [MATHPI]     = 0x03C0,  // π
     [BITCOIN]    = 0x20BF   // ₿
 };
-// Unicode shortcuts for turkish lower-upper case letters
-#define TR_ACIR XP(LOW_A_CIRC, UPC_A_CIRC)
-#define TR_CCED XP(LOW_C_CEDI, UPC_C_CEDI)
-#define TR_GBRE XP(LOW_G_BREV, LOW_G_BREV)
-#define TR_ICIR XP(LOW_I_CIRC, LOW_I_CIRC)
-#define TR_I_NO XP(LOW_I_DOTL, LOW_I_DOTL)
-#define TR_IDOT XP(LOW_I_DOTT, LOW_I_DOTT)
-#define TR_ODIA XP(LOW_O_DIAE, LOW_O_DIAE)
-#define TR_SCED XP(LOW_S_CEDI, LOW_S_CEDI)
-#define TR_UCIR XP(LOW_U_CIRC, LOW_U_CIRC)
-#define TR_UDIA XP(LOW_U_DIAE, LOW_U_DIAE)
-#define BB_ELLI X(ELLIPSIS)
-#define BB_PLNK X(PLANCK_CON)
-#define BB_ANGS X(ANGSTROM)
-#define BB_PI   X(MATHPI)
-#define BB_BITC X(BITCOIN)
-#else
-#define TR_ACIR KC_A
-#define TR_CCED KC_C
-#define TR_GBRE KC_G
-#define TR_ICIR KC_I
-#define TR_I_NO KC_I
-#define TR_IDOT KC_I
-#define TR_ODIA KC_O
-#define TR_SCED KC_S
-#define TR_UCIR KC_U
-#define TR_UDIA KC_U
-#define BB_ELLI KC_NO
-#define BB_PLNK KC_NO
-#define BB_ANGS KC_NO
-#define BB_PI   KC_NO
-#define BB_BITC KC_NO
 #endif
-
 
 // Keycodes
 bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
@@ -104,13 +71,13 @@ bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("()"SS_TAP(X_LEFT));
             }
             return false; break;
-        case DBL_SQR:
+        case DBL_BRC:
             // Double square brackets
             if (record->event.pressed) {
                 SEND_STRING("[]"SS_TAP(X_LEFT));
             }
             return false; break;
-        case DBL_BRC:
+        case DBL_CBR:
             // Double curly brackets
             if (record->event.pressed) {
                 SEND_STRING("{}"SS_TAP(X_LEFT));

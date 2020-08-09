@@ -5,10 +5,11 @@ My userspace code for my various keyboards; available here.
 # Todo
 
 - [x] Merge tapdance, macro and unicode into process.
-- [ ] Fix general naming and clean the code
-- [ ] Transition to new layers
-- [ ] Revamp RGB light codes
-- [ ] Fix music mode codes
+- [x] Fix general naming and clean the code
+- [x] Transition to new layers
+- [x] Revamp RGB light codes
+- [x] Fix music mode codes
+- [ ] Transfer code to layout
 
 # Keyboards
 
@@ -29,7 +30,7 @@ A `rev4` from the past, with
 * [XD75](../../keyboards/xd75/keymaps/bbaserdem)
 * [Let's Split Eh?](../../keyboards/lets_split_eh/keymaps/default)
 * [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
-* [Gherkin](../../keyboards/gherkin/keymaps/bbaserdem)
+* [Gherkin](../../keyboards/gherkin/keymaps/bbaserdem), as a game pad.
 
 ## Planned builds
 

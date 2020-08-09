@@ -81,7 +81,6 @@ void eeconfig_init_user(void) {
  * Allow also the following codes to hook here as well;
  *  Macro definitions
  *  Audio hooks
- *  Mouse keys
  */
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
@@ -95,17 +94,12 @@ __attribute__ ((weak))
 bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
-__attribute__ ((weak))
-bool process_record_mouse(uint16_t keycode, keyrecord_t *record) {
-    return true;
-}
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Return after running through all individual hooks
     return
         process_record_keymap(keycode, record)  &&
         process_record_audio(keycode, record)   &&
-        process_record_macro(keycode, record)   &&
-        process_record_mouse(keycode, record);
+        process_record_macro(keycode, record);
 }
 
 /*---------------------*\
