@@ -31,23 +31,23 @@ void rgb_matrix_indicators_keylight(void) {
         case _GAME:
             keylight_set_left(RGB_PURPLE);
             break;
+        case _FUNC:
+            keylight_set_left(RGB_GOLD);
+            break;
         case _NUMB:
             keylight_set_left(RGB_TEAL);
             break;
         case _SYMB:
             keylight_set_left(RGB_PINK);
             break;
-        case _FUNC:
-            keylight_set_left(RGB_GOLD);
-            break;
-        case _NAVG:
+        case _NAVI:
             keylight_set_right(RGB_SPRINGGREEN);
-            break;
-        case _MOUS:
-            keylight_set_right(RGB_AZURE);
             break;
         case _MEDI:
             keylight_set_right(RGB_CORAL);
+            break;
+        case _MOUS:
+            keylight_set_right(RGB_AZURE);
             break;
         case _MUSI:
             rgb_matrix_set_color_all(RGB_ORANGE);
@@ -64,6 +64,7 @@ void rgb_matrix_indicators_keylight(void) {
 void shutdown_keylight(void) {
     // Flash all the key LED's red on shutdown
     uint16_t timer_start = timer_read();
-    rgb_matrix_set_color_all( 0xFF, 0x00, 0x00 );
+    rgb_matrix_set_color_all(RGB_RED);
+    // Delay until this registers
     while(timer_elapsed(timer_start) < 250) {wait_ms(1);}
 }

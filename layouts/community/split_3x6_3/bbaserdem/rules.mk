@@ -10,8 +10,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# XD75RE specific stuff
-ifneq (,$(findstring xd75,$(KEYBOARD)))
+# Corne keyboard
+ifneq (,$(findstring crkbd/rev1,$(KEYBOARD)))
     RGBLIGHT_ENABLE = no
-    BACKLIGHT_ENABLE = yes
 endif

@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Tap dance settings
 #ifdef TAP_DANCE_ENABLE
+    #define TAPPING_FORCE_HOLD
+    #define PERMISSIVE_HOLD
     #define TAPPING_TERM 300
     #define TAPPING_TOGGLE 1
 #endif

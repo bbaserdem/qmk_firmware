@@ -95,10 +95,13 @@ enum userspace_layers {
 #define ___1___ _______
 #define ___2___ _______,_______
 #define ___3___ _______,_______,_______
+#define ___4___ _______,_______,_______,_______
 #define ___5___ _______,_______,_______,_______,_______
 #define ___6___ _______,_______,_______,_______,_______,_______
 #define xxx1xxx KC_NO
+#define xxx2xxx KC_NO,  KC_NO
 #define xxx3xxx KC_NO,  KC_NO,  KC_NO
+#define xxx4xxx KC_NO,  KC_NO,  KC_NO,  KC_NO
 #define xxx5xxx KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO
 #define xxx6xxx KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO
 #define xxx1xxx KC_NO
@@ -319,5 +322,6 @@ enum userspace_layers {
 #endif
 #define _MUS_4_ MU_REC, MU_STOP,MU_PLAY,MU_MOD
 #define _MU_01_ MU_MASK
+#define _MU_03_ MU_MASK,MU_MASK,MU_MASK
 #define _MU_06_ MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK
 #define _MU_12_ MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK,MU_MASK

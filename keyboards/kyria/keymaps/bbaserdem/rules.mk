@@ -10,8 +10,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# XD75RE specific stuff
-ifneq (,$(findstring xd75,$(KEYBOARD)))
-    RGBLIGHT_ENABLE = no
-    BACKLIGHT_ENABLE = yes
+# Kyria hardware
+ifneq (,$(findstring kyria/rev1,$(KEYBOARD)))
+    OLED_DRIVER_ENABLE = yes   # Enables the use of OLED displays
+    ENCODER_ENABLE = yes       # Enables the use of one or more encoders
+    RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
 endif

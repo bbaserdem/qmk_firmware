@@ -46,15 +46,30 @@ uint32_t layer_state_set_audio(uint32_t state) {
 bool process_record_audio(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MU_TOG:
-            if (record->event.pressed) {
-                // On press, exit music mode if enabled
+            if (!record->event.pressed) {
+                // On release, exit music mode if enabled
                 if (layer_state_cmp(state, _MUSI)) {
-                    layer_off(_MU);
+                    layer_off(_MUSI);
                 // If not enabled; turn off all layers and load music layer
                 } else {
                     layer_clear();
                     layer_on(_MUSI);
                 }
+            }
+            return true;
+            break;
+        case MU_ON:
+            if (!record->event.pressed) {
+                // On release, enter music mode
+                layer_clear();
+                layer_on(_MUSI);
+            }
+            return true;
+            break;
+        case MU_OFF:
+            if (!record->event.pressed) {
+                // On release, exit music mode
+                layer_off(_MUSI);
             }
             return true;
             break;
