@@ -30,48 +30,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL1_1_,_BL1_5_,                _BR1_5_,_BR1_1_,
         _BL2_1_,_BL2_5_,                _BR2_5_,_BR2_1_,
         _BL3_1_,_BL3_5_,xxx2xxx,xxx2xxx,_BR3_5_,_BR3_1_,
-        KC_MUTE,_BL4_3_,KC_NO,  KC_NO,  _BR4_3_,encoder
+        KC_MUTE,_BL4_3_,KC_NO,  KC_NO,  _BR4_3_,KC_BTN2
+    ),
+    [_CHAR] = LAYOUT(
+        XXXXXXX,_CL1_5_,                _CR1_5_,XXXXXXX,
+        XXXXXXX,_CL2_5_,                _CR2_5_,XXXXXXX,
+        XXXXXXX,_CL3_5_,xxx2xxx,xxx2xxx,_CR3_5_,XXXXXXX,
+        _______,_CL4_3_,KC_NO,  KC_NO,  _CR4_3_,_______
     ),
     [_GAME] = LAYOUT(
         _GA1_1_,_GA1_5_,                ___5___,___1___,
         _GA2_1_,_GA2_5_,                ___5___,___1___,
         _GA3_1_,_GA3_5_,xxx2xxx,xxx2xxx,___5___,___1___,
-        encoder,_GA4_3_,KC_NO,  KC_NO,  ___3___,encoder
+        KC_MUTE,_GA4_3_,KC_NO,  KC_NO,  ___3___,KC_UP
     ),
     [_FUNC] = LAYOUT(
         ___1___,_FU1_5_,                ___5___,___1___,
         ___1___,_FU2_5_,                ___5___,___1___,
         ___1___,_FU3_5_,xxx2xxx,xxx2xxx,___5___,___1___,
-        encoder,_FU4_3_,KC_NO,  KC_NO,  ___3___,encoder
+        KC_BTN2,_FU4_3_,KC_NO,  KC_NO,  ___3___,_______
     ),
     [_NUMB] = LAYOUT(
         ___1___,_NU1_5_,                ___5___,___1___,
         ___1___,_NU2_5_,                ___5___,___1___,
         ___1___,_NU3_5_,xxx2xxx,xxx2xxx,___5___,___1___,
-        encoder,_NU4_3_,KC_NO,  KC_NO,  ___3___,encoder
+        KC_BSPC,_NU4_3_,KC_NO,  KC_NO,  ___3___,KC_ENT
     ),
     [_SYMB] = LAYOUT(
         ___1___,_SY1_5_,                ___5___,___1___,
         ___1___,_SY2_5_,                ___5___,___1___,
         ___1___,_SY3_5_,xxx2xxx,xxx2xxx,___5___,___1___,
-        encoder,_SY4_3_,KC_NO,  KC_NO,  ___3___,encoder
+        KC_BSPC,_SY4_3_,KC_NO,  KC_NO,  ___3___,KC_DEL
     ),
     [_NAVI] = LAYOUT(
         ___1___,___5___,                _NA1_5_,___1___,
         ___1___,___5___,                _NA2_5_,___1___,
         ___1___,___5___,xxx2xxx,xxx2xxx,_NA3_5_,___1___,
-        encoder,___3___,KC_NO,  KC_NO,  _NA4_3_,encoder
+        KC_BTN1,___3___,KC_NO,  KC_NO,  _NA4_3_,KC_BTN3
     ),
     [_MEDI] = LAYOUT(
         ___1___,___5___,                _ME1_5_,___1___,
         ___1___,___5___,                _ME2_5_,___1___,
         ___1___,___5___,xxx2xxx,xxx2xxx,_ME3_5_,___1___,
-        encoder,___3___,KC_NO,  KC_NO,  _ME4_3_,encoder
+        RGB_TOG,___3___,KC_NO,  KC_NO,  _ME4_3_,RGB_M_R	
     ),
     [_MOUS] = LAYOUT(
         ___1___,___5___,                _MO1_5_,___1___,
         ___1___,___5___,                _MO2_5_,___1___,
         ___1___,___5___,xxx2xxx,xxx2xxx,_MO3_5_,___1___,
-        encoder,___3___,KC_NO,  KC_NO,  _MO4_3_,encoder
+        KC_BTN3,___3___,KC_NO,  KC_NO,  _MO4_3_,KC_BTN4
     )
 };

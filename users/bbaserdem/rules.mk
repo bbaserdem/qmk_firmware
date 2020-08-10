@@ -18,7 +18,7 @@ MOUSEKEY_ENABLE = yes   # Mouse emulation keys
 EXTRAKEY_ENABLE = yes   # OS signals like volume control
 UNICODEMAP_ENABLE = yes # Used for unicode character emulation
 KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used in general
-TAP_DANCE_ENABLE = yes  # Tap dance keys
+TAP_DANCE_ENABLE = no  	# Tap dance keys; i don't use tap dance but I use tap-hold
 VELOCIKEY_ENABLE = yes  # Modulate speed effects with typing speed
 
 # These should be disabled in all boards
@@ -33,8 +33,6 @@ UCIS_ENABLE = no 	# We use unicodemap, not ucis
 FAUXCLICKY_ENABLE = no  # Emulates clicks using speaker, who would want this?
 VARIABLE_TRACE = no     # Allows debugging variables
 API_SYSEX_ENABLE = no   # Allows OS to send signals.
-CUSTOM_MATRIX = no   	# 
-DEBOUNCE_TYPE = no   	# 
 
 # Manually configure these on each keyboard individually
 # BLUETOOTH_ENABLE        # For bluetooth
@@ -54,25 +52,25 @@ SRC += bb-macro.c
 
 # Audio code
 ifeq ($(strip $(AUDIO_ENABLE)), yes)
-SRC += sbp-audio.c
+SRC += bb-audio.c
 endif
 
 # Rotary encoder stuff
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
-SRC += sbp-rotary.c
+SRC += bb-rotary.c
 endif
 
 # Backlight code
 ifeq ($(strip $(BACKLIGHT_ENABLE)), yes)
-SRC += sbp-backlight.c
+SRC += bb-backlight.c
 endif
 
 # RGB LED Underglow code
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
-SRC += sbp-underglow.c
+SRC += bb-underglow.c
 endif
 
 # RGB LED (Perkey) code
 ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
-SRC += sbp-keylight.c
+SRC += bb-keylight.c
 endif

@@ -184,7 +184,7 @@ void suspend_wakeup_init_user(void) {
     suspend_wakeup_init_keymap();
     // RGB matrix sleep hook
     #ifdef RGB_MATRIX_ENABLE
-    suspend_wakeup_initkeylight();
+    suspend_wakeup_init_keylight();
     #endif
 }
 

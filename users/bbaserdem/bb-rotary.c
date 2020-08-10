@@ -32,7 +32,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _GAME:
                 // Game layer; adjusts volume
-                //  Keypress should correspond to either muting
+                //  Keypress should correspond to muting
                 if (clockwise) {
                     tap_code(KC_VOLU);
                 } else {
@@ -58,8 +58,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 break;
             case _SYMB:
-                // Symbol layer; insert space/delete characters
-                //  Keypress should correspond to enter
+                // Symbol layer; move vertically
+                //  Keypress should correspond to backspace
                 if (clockwise) {
                     tap_code(KC_DOWN);
                 } else {
@@ -68,6 +68,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _NAVI:
                 // Navigation layer; move pointer up/down
+                //  Keypress should correspond to leftclick
                 if (clockwise) {
                     tap_code(KC_MS_D);
                 } else {
@@ -76,6 +77,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _MEDI:
                 // Media layer; increase/decrease rgb brightness
+                //  Keypress should toggle RGB light
                 if (clockwise) {
                     tap_code(RGB_VAI);
                 } else {
@@ -84,6 +86,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _MOUS:
                 // Mouse layer; move pointer left/right
+                //  Keypress should correspond to rightclick
                 if (clockwise) {
                     tap_code(KC_MS_R);
                 } else {
@@ -110,9 +113,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         // Second encoder
         switch (biton32(layer_state)) {
             case _BASE:
-                // Base layer; adjusts volume
-                //  This should correspond to either mute button;
-                //  or music mode toggle if the board has audio
+                // Base layer; scroll up and down using mousekey emulation
+                //  Should correspond to middle mouse click
                 if (clockwise) {
                     tap_code(KC_VOLU);
                 } else {
@@ -120,26 +122,26 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 break;
             case _GAME:
-                // Game layer; adjusts volume
-                //  Keypress should correspond to either muting
+                // Game layer; lateral movement
+                //  Keypress should be forward arrow
                 if (clockwise) {
-                    tap_code(KC_VOLU);
+                    tap_code(KC_RGHT);
                 } else {
-                    tap_code(KC_VOLD);
+                    tap_code(KC_LEFT);
                 }
                 break;
             case _FUNC:
-                // Function layer; scroll vertically
-                //  Keypress should correspond to middle mouse button
+                // Function layer; scroll laterally
+                //  Keypress should not correspond
                 if (clockwise) {
-                    tap_code(KC_WH_D);
+                    tap_code(KC_WH_R);
                 } else {
-                    tap_code(KC_WH_U);
+                    tap_code(KC_WH_L);
                 }
                 break;
             case _NUMB:
-                // Number layer; move laterally
-                //  Keypress should correspond to backspace
+                // Number layer; move vertically
+                //  Keypress should correspond to enter
                 if (clockwise) {
                     tap_code(KC_RGHT);
                 } else {
@@ -148,39 +150,43 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
             case _SYMB:
                 // Symbol layer; insert space/delete characters
-                //  Keypress should correspond to enter
+                //  Keypress should correspond to delete
                 if (clockwise) {
-                    tap_code(KC_DOWN);
+                    tap_code(KC_SPC);
                 } else {
-                    tap_code(KC_UP);
+                    tap_code(KC_BSPC);
                 }
                 break;
             case _NAVI:
-                // Navigation layer; move pointer up/down
-                if (clockwise) {
-                    tap_code(KC_MS_D);
-                } else {
-                    tap_code(KC_MS_U);
-                }
-                break;
-            case _MEDI:
-                // Media layer; increase/decrease rgb brightness
-                if (clockwise) {
-                    tap_code(RGB_VAI);
-                } else {
-                    tap_code(RGB_VAD);
-                }
-                break;
-            case _MOUS:
-                // Mouse layer; move pointer left/right
+                // Navigation layer; move pointer left/right
+                //  press should be rightclick
                 if (clockwise) {
                     tap_code(KC_MS_R);
                 } else {
                     tap_code(KC_MS_L);
                 }
                 break;
+            case _MEDI:
+                // Media layer; change RGB mode
+                //  Press should default RGB to rainbow
+                if (clockwise) {
+                    tap_code(RGB_MOD);
+                } else {
+                    tap_code(RGB_RMOD);
+                }
+                break;
+            case _MOUS:
+                // Mouse layer; move pointer up/down
+                //  Press should give some mouse button
+                if (clockwise) {
+                    tap_code(KC_MS_U);
+                } else {
+                    tap_code(KC_MS_D);
+                }
+                break;
             case _MUSI:
-                // Audio layer; increase/decrease playback speed
+                // Audio layer; increase/decrease playback volume???
+                //  on press; should change music mode
                 if (clockwise) {
                     tap_code(MU_FAST);
                 } else {

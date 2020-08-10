@@ -30,13 +30,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL1_1_,_BL1_5_,_BR1_5_,_BR1_1_,
         _BL2_1_,_BL2_5_,_BR2_5_,_BR2_1_,
         _BL3_1_,_BL3_5_,_BR3_5_,_BR3_1_,
-        _BL4_3_,_BR4_3_
+                _BL4_3_,_BR4_3_
+    ),
+    [_CHAR] = LAYOUT_split_3x6_3(
+        XXXXXXX,_CL1_5_,_CR1_5_,XXXXXXX,
+        XXXXXXX,_CL2_5_,_CR2_5_,XXXXXXX,
+        XXXXXXX,_CL3_5_,_CR3_5_,XXXXXXX,
+                _CL4_3_,_CR4_3_
     ),
     [_GAME] = LAYOUT_split_3x6_3(
         _GA1_1_,_GA1_5_,___6___,
         _GA2_1_,_GA2_5_,___6___,
         _GA3_1_,_GA3_5_,___6___,
-        _GA4_3_,___3___
+                _GA4_3_,___3___
     ),
     [_FUNC] = LAYOUT_split_3x6_3(
         xxx1xxx,_FU1_5_,___6___,

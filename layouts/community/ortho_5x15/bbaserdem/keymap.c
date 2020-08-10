@@ -22,6 +22,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL3_1_,_BL3_5_,KC_P1,  KC_P2,  KC_P3,  _BR3_5_,_BR3_1_,
         BL_STEP,XXXXXXX,KC_LEFT,KC_RGHT,_BL4_3_,KC_P0,  _BL4_3_,KC_DOWN,KC_UP,  MU_ON,  BL_TOGG
     ),
+    [_CHAR] = LAYOUT_ortho_5x15_wrapper(
+        xxx6xxx,xxx3xxx,xxx6xxx,
+        XXXXXXX,_CL1_5_,xxx3xxx,_CR1_5_,XXXXXXX,
+        XXXXXXX,_CL1_5_,xxx3xxx,_CR1_5_,XXXXXXX,
+        XXXXXXX,_CL1_5_,xxx3xxx,_CR1_5_,XXXXXXX,
+        ___4___,_CL4_3_,XXXXXXX,_CL4_3_,___4___
+    ),
     [_GAME] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
         _GA1_1_,_GA1_5_,___3___,___6___,
@@ -83,7 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // XD75RE: Use as layer indicator
 #ifdef KEYBOARD_planck_light
 layer_state_t layer_state_set_xd75re(layer_state_t state) {
-    if (layer_state_cmp(state, _FUNC)) {
+    if (layer_state_cmp(state, _CHAR)) {
+        capslock_led_on();
+        gp103_led_on();
+        gp100_led_on();
+    } else if (layer_state_cmp(state, _FUNC)) {
         capslock_led_off();
         gp103_led_off();
         gp100_led_on();
@@ -118,7 +129,7 @@ layer_state_t layer_state_set_xd75re(layer_state_t state) {
 
 layer_state_t layer_state_set_keymap(layer_state_t state) {
     // XD75RE layer indicator
-    #ifdef KEYBOARD_planck_light
+    #ifdef KEYBOARD_xd75
     layer_state_set_xd75re(state);
     #endif
 };

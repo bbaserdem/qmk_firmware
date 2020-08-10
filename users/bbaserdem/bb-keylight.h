@@ -20,3 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void rgb_matrix_indicators_user(void);
 // Hook into shutdown code
 void shutdown_keylight(void);
+void suspend_wakeup_init_keylight(void);
+void suspend_power_down_keylight(void);
+// These should be defined worst case on this file
+void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue);
+void keylight_set_left(uint8_t red, uint8_t green, uint8_t blue);

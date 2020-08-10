@@ -21,13 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define UNICODE_SELECTED_MODES UC_LNX
 #endif
 
-// Tap dance settings
-#ifdef TAP_DANCE_ENABLE
-    #define TAPPING_FORCE_HOLD
-    #define PERMISSIVE_HOLD
-    #define TAPPING_TERM 300
-    #define TAPPING_TOGGLE 1
-#endif
+// Tap-hold settings
+#define TAPPING_TERM 300
+#define PERMISSIVE_HOLD
+#define TAPPING_FORCE_HOLD
 
 // Encoder settings
 #ifdef ENCODER_ENABLE

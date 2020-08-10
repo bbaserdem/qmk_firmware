@@ -18,9 +18,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base layer
     [_BASE] = LAYOUT_ortho_4x12_wrapper(
         _BL1_5_,_BL1_1_,_BR1_1_,_BR1_5_,
-        _BL2_5_,_BL2_1_,_BR1_2_,_BR2_5_,
-        _BL3_5_,_BL3_1_,_BR1_3_,_BR3_5_,
+        _BL2_5_,_BL2_1_,_BR2_1_,_BR2_5_,
+        _BL3_5_,_BL3_1_,_BR3_1_,_BR3_5_,
         MU_ON,  KC_LEFT,KC_RGHT,_BL4_3_,_BR4_3_,KC_DOWN,KC_UP,  RGB_TOG
+    ),
+    // Extra characters overlay
+    [_CHAR] = LAYOUT_ortho_4x12_wrapper(
+        _CL1_5_,xxx2xxx,_CR1_5_,
+        _CL2_5_,xxx2xxx,_CR2_5_,
+        _CL3_5_,xxx2xxx,_CR3_5_,
+        ___3___,_CL4_3_,_CR4_3_,___3___
     ),
     // Game layer: left_half
     [_GAME] = LAYOUT_ortho_4x12_wrapper(
@@ -48,40 +55,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _SY1_5_,xxx1xxx,___6___,
         _SY2_5_,xxx1xxx,___6___,
         _SY3_5_,xxx1xxx,___6___,
-        KC_ENT, ___2___,_SY4_3_,___6___
+        KC_BSPC,___2___,_SY4_3_,___6___
     ),
     // Navigation layer: right_half
     [_NAVI] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_NA1_5_,
         ___6___,xxx1xxx,_NA2_5_,
         ___6___,xxx1xxx,_NA3_5_,
-        ___6___,_NA4_3_,___3___
+        KC_BTN1,___5___,_NA4_3_,___3___
     ),
     // Media layer: right_half
     [_MEDI] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_ME1_5_,
         ___6___,xxx1xxx,_ME2_5_,
         ___6___,xxx1xxx,_ME3_5_,
-        ___6___,_ME4_3_,___3___
+        RGB_TOG,___5___,_ME4_3_,___3___
     ),
     // Mouse layer: right_half
     [_MOUS] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_MO1_5_,
         ___6___,xxx1xxx,_MO2_5_,
         ___6___,xxx1xxx,_MO3_5_,
-        ___6___,_MO4_3_,___3___
+        KC_BTN3,___5___,_MO4_3_,___3___
     ),
     // Music layer: everything
     [_MUSI] = LAYOUT_ortho_4x12_wrapper(
         _MU_12_,_MU_12_,_MU_12_,
-        MU_OFF, _MUS_4_,_MU_01_,_MU_12_)
+        MU_OFF, _MUS_4_,_MU_01_,_MU_06_)
 };
 
-/*---PLANCK (light) configuration
+// RGB Matrix configuration
+#ifdef RGB_MATRIX_ENABLE
+/* planck/light
  * This is left-right for planck light indicator light
  *  - The LED 42 is for spacebar specifically, leave it out of the matrix
+ *  - This is how it looks like
+ * ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
+ * │00│01│02│03│04│05│06│07│08│09│10│11│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │12│13│14│15│16│17│18│19│20│21│22│23│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │24│25│26│27│28│29│30│31│32│33│34│35│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │36│37│38│39│40│41│43│44│45│46│47│48│
+ * └──┴──┴──┴──┴──┴─042─┴──┴──┴──┴──┴──┘
  */
-#ifdef KEYBOARD_planck_light
+#if defined(KEYBOARD_planck_light)
 int board_left[24] = {
      0,  1,  2,  3,  4,  5,
     12, 13, 14, 15, 16, 17,
@@ -109,11 +128,20 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
  * Rev6 has RGB matrix to the bottom LED footprints
  * I will add a daughter board here using the same code.
  */
-#ifdef KEYBOARD_planck_rev6
-// Seperate daughter board version, and the regular underglow LED matrix
-#ifdef PLANCK_RGB_DAUGHTER
-// This block is for the RGB daughter PCB addition
-// We need to redefine the LED config
+#if defined(KEYBOARD_planck_rev6) && defined(PLANCK_RGB_DAUGHTER) && defined(RGB_MATRIX_ENABLE)
+/* This block is for the RGB daughter PCB addition
+ * We need to redefine the LED config
+ * Breakdown of the daughter board layout;
+ * ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
+ * │35│36│37│38│39│40│41│42│43│44│45│46│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │23│24│25│26│27│28│29│30│31│32│33│34│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │12│13│14│15│16│17│18│19│20│21│22│47│
+ * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
+ * │00│01│02│03│04│05│06│07│08│09│10│11│
+ * └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
+ */
 led_config_t g_led_config = {
     {   // Key Matrix to LED Index
         {35, 36, 37, 38, 39, 40}, // R1: Left
@@ -167,15 +195,19 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
         rgb_matrix_set_color(board_right[i], red, green, blue);
     }
 }
-#else
-// This block is for the default underglow RGB matrix code
-// Breakdown of led locations
-// /------------\
-// | 6  5  4  3 |
-// |            |
-// |     0      |
-// | 7  8  1  2 |
-// \------------/
+#endif
+
+
+#if defined(KEYBOARD_planck_rev6) && !defined(PLANCK_RGB_DAUGHTER) && defined(RGB_MATRIX_ENABLE)
+/* This block is for the default underglow RGB matrix code
+ * Breakdown of led locations
+ * ┌────────────┐
+ * │ 6  5  4  3 │
+ * │            │
+ * │     0      │
+ * │ 7  8  1  2 │
+ * └────────────┘
+ */
 int board_left[4] = {6, 5, 7, 8};
 int board_right[4] = {4, 3, 1, 2};
 // Sided color-setting
@@ -190,4 +222,4 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
     }
 }
 #endif
-#endif
+#endif // RGB_MATRIX_ENABLE

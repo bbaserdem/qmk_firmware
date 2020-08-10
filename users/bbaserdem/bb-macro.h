@@ -13,7 +13,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "bbaserdem.h"
-#include "sendstring_dvorak.h"
 /* This header file contains definitons regarding custom keycodes.
  * - Both regular and unicode macros are dealt with in this file
  */
@@ -57,7 +56,7 @@ enum userspace_custom_keycodes {
 #endif
 
 // Unicodemap implementation
-#ifndef UNICODEMAP_ENABLE
+#ifdef UNICODEMAP_ENABLE
 enum userspace_unicodemap {
     UPC_A_CIRC,
     UPC_C_CEDI,
@@ -83,6 +82,54 @@ enum userspace_unicodemap {
     PLANCK_CON,
     ANGSTROM,
     MATHPI,
-    BITCOIN
+    BITCOIN,
+    UPC_ALPHA,
+    UPC_BETA,
+    UPC_GAMMA,
+    UPC_DELTA,
+    UPC_EPSILON,
+    UPC_ZETA,
+    UPC_ETA,
+    UPC_THETA,
+    UPC_IOTA,
+    UPC_KAPPA,
+    UPC_LAMBDA,
+    UPC_MU,
+    UPC_NU,
+    UPC_XI,
+    UPC_OMICRON,
+    UPC_PI,
+    UPC_RHO,
+    UPC_SIGMA,
+    UPC_TAU,
+    UPC_UPSILON,
+    UPC_PHI,
+    UPC_CHI,
+    UPC_PSI,
+    UPC_OMEGA,
+    LOW_ALPHA,
+    LOW_BETA,
+    LOW_GAMMA,
+    LOW_DELTA,
+    LOW_EPSILON,
+    LOW_ZETA,
+    LOW_ETA,
+    LOW_THETA,
+    LOW_IOTA,
+    LOW_KAPPA,
+    LOW_LAMBDA,
+    LOW_MU,
+    LOW_NU,
+    LOW_XI,
+    LOW_OMICRON,
+    LOW_PI,
+    LOW_RHO,
+    LOW_SIGMA,
+    LOW_TAU,
+    LOW_UPSILON,
+    LOW_PHI,
+    LOW_CHI,
+    LOW_PSI,
+    LOW_OMEGA,
 };
-#else
+#endif

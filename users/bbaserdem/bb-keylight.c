@@ -28,32 +28,35 @@ __attribute__ ((weak)) void rgb_matrix_indicators_keymap(void) { }
 void rgb_matrix_indicators_keylight(void) {
     // Do each layer seperately
     switch (biton32(layer_state)) {
+        case _CHAR:
+            rgb_matrix_set_color_all(RGB_CHARTREUSE);
+            break;
         case _GAME:
             keylight_set_left(RGB_PURPLE);
             break;
         case _FUNC:
-            keylight_set_left(RGB_GOLD);
+            keylight_set_left(RGB_CORAL);
             break;
         case _NUMB:
-            keylight_set_left(RGB_TEAL);
+            keylight_set_left(RGB_AZURE);
             break;
         case _SYMB:
-            keylight_set_left(RGB_PINK);
+            keylight_set_left(RGB_TURQUOISE);
             break;
         case _NAVI:
-            keylight_set_right(RGB_SPRINGGREEN);
+            keylight_set_right(RGB_GOLD);
             break;
         case _MEDI:
-            keylight_set_right(RGB_CORAL);
+            keylight_set_right(RGB_TEAL);
             break;
         case _MOUS:
-            keylight_set_right(RGB_AZURE);
+            keylight_set_right(RGB_SPRINGGREEN);
             break;
         case _MUSI:
-            rgb_matrix_set_color_all(RGB_ORANGE);
+            rgb_matrix_set_color_all(RGB_MAGENTA);
             break;
         case _MIDI:
-            rgb_matrix_set_color_all(RGB_TURQUOISE);
+            rgb_matrix_set_color_all(RGB_GOLDENROD);
             break;
     }
     // Load keymap hooks
@@ -67,4 +70,12 @@ void shutdown_keylight(void) {
     rgb_matrix_set_color_all(RGB_RED);
     // Delay until this registers
     while(timer_elapsed(timer_start) < 250) {wait_ms(1);}
+}
+
+// Hook into suspend code
+void suspend_power_down_keylight(void) {
+    rgb_matrix_set_suspend_state(true);
+}
+void suspend_wakeup_init_keylight(void) {
+    rgb_matrix_set_suspend_state(false);
 }

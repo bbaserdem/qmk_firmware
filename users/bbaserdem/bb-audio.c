@@ -11,16 +11,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "sbp-audio.h"
+#include "bb-audio.h"
 /* AUDIO
  * This contains some audio related stuff.
  * There is no need to wrap this up with preprocessor commands;
  * This is only called if audio is enabled
  */
 
+/*
 float tone_game_intro[][2]  = SONG(GAME_ON_SONG);
 float tone_game_outro[][2]  = SONG(GAME_OFF_SONG);
-global uint8_t bb_game_flag = false;
+*/
+float tone_game_intro[][2]  = SONG(STARTUP_SOUND);
+float tone_game_outro[][2]  = SONG(STARTUP_SOUND);
 
 // Audio playing when layer changes
 uint32_t layer_state_set_audio(uint32_t state) {
@@ -34,10 +37,10 @@ uint32_t layer_state_set_audio(uint32_t state) {
         prev_game = true;
     }
     // If exiting the game layer; play the outro sound
-    if ((!layer_state_cmp(state, _GAME)) && prev_layer_is_game) {
+    if ((!layer_state_cmp(state, _GAME)) && prev_game) {
         stop_all_notes();
         PLAY_SONG(tone_game_outro);
-        prev_layer_is_game = false;
+        prev_game = false;
     }
     return state;
 }
@@ -48,7 +51,7 @@ bool process_record_audio(uint16_t keycode, keyrecord_t *record) {
         case MU_TOG:
             if (!record->event.pressed) {
                 // On release, exit music mode if enabled
-                if (layer_state_cmp(state, _MUSI)) {
+                if (layer_state_is(_MUSI)) {
                     layer_off(_MUSI);
                 // If not enabled; turn off all layers and load music layer
                 } else {

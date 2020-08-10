@@ -70,13 +70,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     E__NOTE(_DS4), E__NOTE(_DS4), E__NOTE(_DS4), E__NOTE(_D4),
 
 // Define the song selections here
+/*
 #define STARTUP_SONG    SONG(HOROLOGY)
 #define GOODBYE_SONG    SONG(PEOPLE_VULTURES)
 #define MUSIC_ON_SONG   SONG(NONAGON_INFINITY)
 #define MUSIC_OFF_SONG  SONG(WAH_WAH)
 #define GAME_ON_SONG    SONG(BIG_FIG_WASP)
 #define GAME_OFF_SONG   SONG(POLYGONDWANALAND)
-
+*/
 // Hook to layer change effects
 layer_state_t layer_state_set_audio(layer_state_t state);
 
