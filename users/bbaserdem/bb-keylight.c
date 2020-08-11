@@ -15,8 +15,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Code relating to per-key RGB LED stuff
  */
 
-// These are keyboard, (and matrix), specific so they need to be defined there
-// BUT these are made to take HSV arguments; so their color is controlled here
+// These are matrix specific so they need to be defined in the keymap code.
+// BUT these are made to take RGB arguments so the color choice is central
 __attribute__ ((weak))
 void keylight_set_left(uint8_t red, uint8_t green, uint8_t blue) { }
 __attribute__ ((weak))
@@ -27,7 +27,7 @@ __attribute__ ((weak)) void rgb_matrix_indicators_keymap(void) { }
 // Set RGB state depending on layer
 void rgb_matrix_indicators_keylight(void) {
     // Do each layer seperately
-    switch (biton32(layer_state)) {
+    switch (get_highest_layer(layer_state)) {
         case _CHAR:
             rgb_matrix_set_color_all(RGB_CHARTREUSE);
             break;

@@ -10,8 +10,9 @@ My userspace code for my various keyboards; available here.
 - [x] Revamp RGB light codes
 - [x] Fix music mode codes
 - [x] Add rotary encoder support
-- [ ] Converge on final keymap
-- [ ] Transfer code to layout
+- [x] Converge on final keymap
+- [x] Transfer code to layout
+- [ ] Remove biton32 function from encoder
 - [ ] Document all features more extensibly
 - [ ] Generate json files to be used with Keyboard-Layout-Editor to produce images.
 - [ ] Add OLED support

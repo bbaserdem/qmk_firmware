@@ -11,7 +11,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "sbp-rotary.h"
+#include "bb-rotary.h"
 /* ROTARY ENCODER
  * This contains my general rotary encoder code
  * It is layer adaptive
@@ -19,8 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         // First encoder
-        switch (biton32(layer_state)) {
+        switch (get_highest_layer(layer_state)) {
             case _BASE:
+            case _CHAR:
                 // Base layer; adjusts volume
                 //  This should correspond to either mute button;
                 //  or music mode toggle if the board has audio
@@ -42,11 +43,13 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             case _FUNC:
                 // Function layer; scroll vertically
                 //  Keypress should correspond to middle mouse button
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_WH_D);
                 } else {
                     tap_code(KC_WH_U);
                 }
+                #endif
                 break;
             case _NUMB:
                 // Number layer; move laterally
@@ -69,37 +72,53 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             case _NAVI:
                 // Navigation layer; move pointer up/down
                 //  Keypress should correspond to leftclick
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_MS_D);
                 } else {
                     tap_code(KC_MS_U);
                 }
+                #endif
                 break;
             case _MEDI:
                 // Media layer; increase/decrease rgb brightness
                 //  Keypress should toggle RGB light
                 if (clockwise) {
-                    tap_code(RGB_VAI);
+                    #ifdef RGB_MATRIX_ENABLE
+                    rgb_matrix_increase_val();
+                    #endif
+                    #ifdef RGBLIGHT_ENABLE
+                    rgblight_increase_noeeprom();
+                    #endif
                 } else {
-                    tap_code(RGB_VAD);
+                    #ifdef RGB_MATRIX_ENABLE
+                    rgb_matrix_decrease_val();
+                    #endif
+                    #ifdef RGBLIGHT_ENABLE
+                    rgblight_decrease_noeeprom();
+                    #endif
                 }
                 break;
             case _MOUS:
                 // Mouse layer; move pointer left/right
                 //  Keypress should correspond to rightclick
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_MS_R);
                 } else {
                     tap_code(KC_MS_L);
                 }
+                #endif
                 break;
             case _MUSI:
                 // Audio layer; increase/decrease playback speed
+                #ifdef AUDIO_ENABLE
                 if (clockwise) {
                     tap_code(MU_FAST);
                 } else {
                     tap_code(MU_SLOW);
                 }
+                #endif
                 break;
             case _MIDI:
                 if (clockwise) {
@@ -111,8 +130,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
         // Second encoder
-        switch (biton32(layer_state)) {
+        switch (get_highest_layer(layer_state)) {
             case _BASE:
+            case _CHAR:
                 // Base layer; scroll up and down using mousekey emulation
                 //  Should correspond to middle mouse click
                 if (clockwise) {
@@ -133,11 +153,13 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             case _FUNC:
                 // Function layer; scroll laterally
                 //  Keypress should not correspond
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_WH_R);
                 } else {
                     tap_code(KC_WH_L);
                 }
+                #endif
                 break;
             case _NUMB:
                 // Number layer; move vertically
@@ -160,38 +182,54 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             case _NAVI:
                 // Navigation layer; move pointer left/right
                 //  press should be rightclick
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_MS_R);
                 } else {
                     tap_code(KC_MS_L);
                 }
+                #endif
                 break;
             case _MEDI:
                 // Media layer; change RGB mode
                 //  Press should default RGB to rainbow
                 if (clockwise) {
-                    tap_code(RGB_MOD);
+                    #ifdef RGB_MATRIX_ENABLE
+                    rgb_matrix_step();
+                    #endif
+                    #ifdef RGBLIGHT_ENABLE
+                    rgblight_step_noeeprom();
+                    #endif
                 } else {
-                    tap_code(RGB_RMOD);
+                    #ifdef RGB_MATRIX_ENABLE
+                    rgb_matrix_step_reverse();
+                    #endif
+                    #ifdef RGBLIGHT_ENABLE
+                    rgblight_step_reverse_noeeprom();
+                    #endif
                 }
                 break;
             case _MOUS:
                 // Mouse layer; move pointer up/down
                 //  Press should give some mouse button
+                #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
                     tap_code(KC_MS_U);
                 } else {
                     tap_code(KC_MS_D);
                 }
+                #endif
                 break;
             case _MUSI:
                 // Audio layer; increase/decrease playback volume???
                 //  on press; should change music mode
+                #ifdef AUDIO_ENABLE
                 if (clockwise) {
                     tap_code(MU_FAST);
                 } else {
                     tap_code(MU_SLOW);
                 }
+                #endif
                 break;
             case _MIDI:
                 if (clockwise) {
