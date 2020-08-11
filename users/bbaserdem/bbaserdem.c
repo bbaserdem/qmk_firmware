@@ -191,16 +191,15 @@ void suspend_wakeup_init_user(void) {
 /*------------------*\
 |*-----SHUTDOWN-----*|
 \*------------------*/
-/* Shutdown stuff here; I don't know what this is useful for.
- * Probably works when the keyboard is put on boot mode
+/* Shutdown stuff here; for when entering bootmode.
  */
 __attribute__ ((weak)) void shutdown_keymap (void) { }
 void shutdown_user(void) {
-    // Make the LED's red on shutdown
+    // Underglow LED hook on boot
     #ifdef RGBLIGHT_ENABLE
     shutdown_underglow();
     #endif
-    // Flash all the key LED's red on shutdown
+    // Perkey led hook on boot
     #ifdef RGB_MATRIX_ENABLE
     shutdown_keylight();
     #endif
