@@ -18,12 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * This is only called if audio is enabled
  */
 
-/*
-float tone_game_intro[][2]  = SONG(GAME_ON_SONG);
-float tone_game_outro[][2]  = SONG(GAME_OFF_SONG);
-*/
-float tone_game_intro[][2]  = SONG(STARTUP_SOUND);
-float tone_game_outro[][2]  = SONG(STARTUP_SOUND);
+float tone_game_intro[][2]  = GAME_ON_SONG;
+float tone_game_outro[][2]  = GAME_OFF_SONG;
 
 // Audio playing when layer changes
 uint32_t layer_state_set_audio(uint32_t state) {
