@@ -71,6 +71,6 @@ SRC += bb-underglow.c
 endif
 
 # RGB LED (Perkey) code
-ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
+ifneq (,$(strip $(RGB_MATRIX_ENABLE)))
 SRC += bb-keylight.c
 endif

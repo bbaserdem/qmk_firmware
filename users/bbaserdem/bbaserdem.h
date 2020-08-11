@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 // Language imports
 #include "keymap_dvorak.h"
-#include "sendstring_dvorak.h"
+//#include <sendstring_dvorak.h>
 /* Besides loading libraries and definitions, this file has my layout defs
  * LAYOUTS:
  *  This file has a couple layouts I use; so that the general changes can be
