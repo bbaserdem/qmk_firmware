@@ -46,66 +46,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Audio definitions
 #ifdef AUDIO_ENABLE
-/* Title:            People Vultures
- * Author/Composer:  King Gizzard & the Lizard Wizard
- */
-#define PEOPLE_VULTURES \
-    H__NOTE(_A3), H__NOTE(_G3), E__NOTE(_G3), QD_NOTE(_AS3),H__NOTE(_A3), \
-    H__NOTE(_C4), H__NOTE(_D4), H__NOTE(_AS3),H__NOTE(_A3),
-
-/* Title:            Wah Wah
- * Author/Composer:  King Gizzard & the Lizard Wizard
- */
-#define WAH_WAH \
-    HD_NOTE(_B2), HD_NOTE(_D3), H__NOTE(_E3), H__NOTE(_FS3), \
-    HD_NOTE(_B2), HD_NOTE(_D3), H__NOTE(_E3), H__NOTE(_FS3), \
-    E__NOTE(_A3), QD_NOTE(_B3), HD_NOTE(_A3), H__NOTE(_GS3),H__NOTE(_A3), \
-    HD_NOTE(_B3), HD_NOTE(_A3), H__NOTE(_GS3),H__NOTE(_A3),
-
-/* Title:            Big Fig Wasp
- * Author/Composer:  King Gizzard & the Lizard Wizard
- */
-#define BIG_FIG_WASP \
-    Q__NOTE(_E3), Q__NOTE(_G3), Q__NOTE(_A3), Q__NOTE(_B3), \
-    Q__NOTE(_E3), Q__NOTE(_G3), Q__NOTE(_A3), Q__NOTE(_B3), \
-    Q__NOTE(_E3), Q__NOTE(_G3), Q__NOTE(_A3), Q__NOTE(_B3), \
-    Q__NOTE(_E3), Q__NOTE(_D4), Q__NOTE(_B3), Q__NOTE(_A3),
-
-/* Title:            Horology
- * Author/Composer:  King Gizzard & the Lizard Wizard
- */
-#define HOROLOGY \
-    Q__NOTE(_D4), Q__NOTE(_D3), Q__NOTE(_F4), Q__NOTE(_D3), Q__NOTE(_G4), Q__NOTE(_A4), Q__NOTE(_D3), \
-    Q__NOTE(_D4), Q__NOTE(_D3), Q__NOTE(_F4), Q__NOTE(_D3), Q__NOTE(_C5), Q__NOTE(_A4), Q__NOTE(_D3), \
-    Q__NOTE(_F4), Q__NOTE(_D3), Q__NOTE(_G4), Q__NOTE(_A4), Q__NOTE(_D3), Q__NOTE(_D4), Q__NOTE(_D3), \
-    Q__NOTE(_F4), Q__NOTE(_D3), Q__NOTE(_G4), Q__NOTE(_F4), Q__NOTE(_D3),
-
-/* Title:            Polygondwanaland
- * Author/Composer:  King Gizzard & the Lizard Wizard
- * Licence:          GPL
- */
-#define POLYGONDWANALAND \
-    HD_NOTE(_A2), H__NOTE(_D3), HD_NOTE(_C3), H__NOTE(_D3), \
-    HD_NOTE(_G3), H__NOTE(_A3), HD_NOTE(_E3), H__NOTE(_D3),
-
-/* Title:            Nonanon Infinity
- * Author/Composer:  King Gizzard & the Lizard Wizard
- */
-#define NONAGON_INFINITY \
-    Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), \
-    Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), \
-    Q__NOTE(_A3), Q__NOTE(_A3), Q__NOTE(_B3), Q__NOTE(_B3), H__NOTE(_REST), \
-    Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), \
-    Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), Q__NOTE(_B3), \
-    Q__NOTE(_DS4),Q__NOTE(_DS4),Q__NOTE(_DS4),Q__NOTE(_D4),
-
-// Define songs
-#define STARTUP_SONG    SONG(HOROLOGY)
-#define GOODBYE_SONG    SONG(PEOPLE_VULTURES)
-#define MUSIC_ON_SONG   SONG(NONAGON_INFINITY)
-#define MUSIC_OFF_SONG  SONG(WAH_WAH)
-#define GAME_ON_SONG    SONG(BIG_FIG_WASP)
-#define GAME_OFF_SONG   SONG(POLYGONDWANALAND)
+    // Define songs
+    #define STARTUP_SONG    SONG(HOROLOGY)
+    #define GOODBYE_SONG    SONG(PEOPLE_VULTURES)
+    #define MUSIC_ON_SONG   SONG(NONAGON_INFINITY)
+    #define MUSIC_OFF_SONG  SONG(WAH_WAH)
+    #define GAME_ON_SONG    SONG(BIG_FIG_WASP)
+    #define GAME_OFF_SONG   SONG(POLYGONDWANALAND)
 #endif
 
 // For underglow light
