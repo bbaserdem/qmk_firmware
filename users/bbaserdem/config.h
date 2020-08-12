@@ -22,8 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // Tap-hold settings
-#define TAPPING_TERM 300
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 200
 
 // Encoder settings
 #ifdef ENCODER_ENABLE
@@ -46,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Audio definitions
 #ifdef AUDIO_ENABLE
+    #include <bb-audio.h>
     // Define songs
     #define STARTUP_SONG    SONG(HOROLOGY)
     #define GOODBYE_SONG    SONG(PEOPLE_VULTURES)

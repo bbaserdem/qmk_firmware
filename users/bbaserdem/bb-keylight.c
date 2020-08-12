@@ -35,28 +35,28 @@ void rgb_matrix_indicators_user(void) {
             keylight_set_left(RGB_PURPLE);
             break;
         case _FUNC:
-            keylight_set_left(RGB_CORAL);
+            keylight_set_left(RGB_MAGENTA);
             break;
         case _NUMB:
-            keylight_set_left(RGB_AZURE);
+            keylight_set_left(RGB_CYAN);
             break;
         case _SYMB:
-            keylight_set_left(RGB_TURQUOISE);
+            keylight_set_left(RGB_GOLDENROD);
             break;
         case _NAVI:
-            keylight_set_right(RGB_GOLD);
+            keylight_set_right(RGB_RED);
             break;
         case _MEDI:
             keylight_set_right(RGB_TEAL);
             break;
         case _MOUS:
-            keylight_set_right(RGB_SPRINGGREEN);
+            keylight_set_right(RGB_GREEN);
             break;
         case _MUSI:
-            rgb_matrix_set_color_all(RGB_MAGENTA);
+            rgb_matrix_set_color_all(RGB_CORAL);
             break;
         case _MIDI:
-            rgb_matrix_set_color_all(RGB_GOLDENROD);
+            rgb_matrix_set_color_all(RGB_BLUE);
             break;
     }
     // Load keymap hooks
@@ -67,7 +67,7 @@ void rgb_matrix_indicators_user(void) {
 void shutdown_keylight(void) {
     // Flash all the key LED's red on shutdown
     uint16_t timer_start = timer_read();
-    rgb_matrix_set_color_all(RGB_RED);
+    rgb_matrix_set_color_all(RGB_CORAL);
     // Delay until this registers
     while(timer_elapsed(timer_start) < 250) {wait_ms(1);}
 }

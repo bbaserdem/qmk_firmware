@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSPC,___2___,_NU4_3_,___6___
     ),
     // Symbol layer: left_half
-    [_NUMB] = LAYOUT_ortho_4x12_wrapper(
+    [_SYMB] = LAYOUT_ortho_4x12_wrapper(
         _SY1_5_,xxx1xxx,___6___,
         _SY2_5_,xxx1xxx,___6___,
         _SY3_5_,xxx1xxx,___6___,

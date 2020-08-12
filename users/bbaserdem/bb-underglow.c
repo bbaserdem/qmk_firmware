@@ -21,50 +21,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const rgblight_segment_t PROGMEM bb_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 0, HSV_WHITE}
 );
+
+// Left-hand layers
 // Gaming layer is purple
 const rgblight_segment_t PROGMEM bb_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_PURPLE}
 );
-
-// Left-hand layers
-// Function layer is gold
+// Function layer is magenta
 const rgblight_segment_t PROGMEM bb_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_GOLD}
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_MAGENTA}
 );
-// Number layer is teal
+// Number layer is cyan
 const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_TEAL}
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_CYAN}
 );
-// Symbol layer is pink
+// Symbol layer is yellow
 const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_PINK}
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_GOLDENROD}
 );
 
-// Navigation layer is green (spring)
+// Navigation layer is red
 const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_SPRINGGREEN}
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_RED}
 );
-// Media layer is red (coral)
+// Media layer is teal
 const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_CORAL}
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_TEAL}
 );
-// Pointer layer is blue (azure)
+// Pointer layer is green
 const rgblight_segment_t PROGMEM bb_mous_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_AZURE}
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_GREEN}
 );
 
 // Full-keyboard layers
-// Music playback layer is orange
-const rgblight_segment_t PROGMEM bb_musi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, RGB_ORANGE}
+// Character overlay is chartereuse
+const rgblight_segment_t PROGMEM bb_char_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_CHARTEREUSE}
 );
-// Midi device layer is turquiose
+// Music playback layer is coral
+const rgblight_segment_t PROGMEM bb_musi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM, HSV_CORAL}
+);
+// Midi device layer is blue
 const rgblight_segment_t PROGMEM bb_midi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, RGB_TURQUOISE}
+    {0, RGBLED_NUM, HSV_BLUE}
 );
 
 const rgblight_segment_t* const PROGMEM bb_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     bb_base_layer,
+    bb_char_layer,
     bb_game_layer,
     bb_func_layer,
     bb_numb_layer,
