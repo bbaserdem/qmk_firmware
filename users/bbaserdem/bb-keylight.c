@@ -25,7 +25,7 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) { }
 // Allow hooking into the RGB matrix indications using keymap code
 __attribute__ ((weak)) void rgb_matrix_indicators_keymap(void) { }
 // Set RGB state depending on layer
-void rgb_matrix_indicators_keylight(void) {
+void rgb_matrix_indicators_user(void) {
     // Do each layer seperately
     switch (get_highest_layer(layer_state)) {
         case _CHAR:

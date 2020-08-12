@@ -14,7 +14,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #include QMK_KEYBOARD_H
 // Language imports
-#include "keymap_dvorak.h"
 //#include <sendstring_dvorak.h>
 /* Besides loading libraries and definitions, this file has my layout defs
  * LAYOUTS:
@@ -178,6 +177,26 @@ enum userspace_layers {
 #define BB_BITC KC_NO
 #endif
 
+// MOD-tap definitions
+#define GUI_A   MT(MOD_LGUI, KC_A)
+#define ALT_S   MT(MOD_LALT, KC_S)
+#define CTRL_D  MT(MOD_LCTL, KC_D)
+#define SHIFT_F MT(MOD_LSFT, KC_F)
+#define ALTGR_X MT(MOD_RALT, KC_X)
+#define GUI_SCL MT(MOD_RGUI, KC_SCLN)
+#define ALT_L   MT(MOD_LALT, KC_L)
+#define CTRL_K  MT(MOD_LCTL, KC_K)
+#define SHIFT_J MT(MOD_LSFT, KC_J)
+#define ALTGR_D MT(MOD_RALT, KC_DOT)
+#define NAV_ESC LT(_NAVI, KC_ESC)
+#define MED_SPC LT(_MEDI, KC_SPC)
+#define MOU_TAB LT(_MOUS, KC_TAB)
+#define FUN_DEL LT(_FUNC, KC_DEL)
+#define NUM_BSP LT(_NUMB, KC_BSPC)
+#define SYM_ENT LT(_SYMB, KC_ENT)
+#define BB_CHAR OSL(_CHAR)
+#define BB_GAME TG(_GAME)
+
 /* Base layout; Using DVORAK
  * ┌─────┬─────┬─────┬─────┬─────┐             ┌─────┬─────┬─────┬─────┬─────┐
  * │ ' " │ , < │ . > │  P  │  Y  │ ` ~     / ? │  F  │  G  │  C  │  R  │  L  │
@@ -190,21 +209,21 @@ enum userspace_layers {
  *                   └─Nav─┴─Med─┴─Pnt─┘ └─Sym─┴─Num─┴─Fun─┘
  * The thing about this layout is that these will fit most boards I have.
  */
-#define _BL1_5_ DV_QUOT,DV_COMM,DV_DOT, DV_P,   DV_Y
-#define _BR1_5_ DV_F,   DV_G,   DV_C,   DV_R,   DV_L
-#define _BL2_5_ MT(MOD_LGUI, DV_A), MT(MOD_LALT, DV_O), MT(MOD_LCTL, DV_E), MT(MOD_LSFT, DV_U), DV_I
-#define _BR2_5_ DV_D, MT(MOD_RSFT, DV_H), MT(MOD_RCTL, DV_T), MT(MOD_LALT, DV_N), MT(MOD_RGUI, DV_S)
-#define _BL3_5_ DV_SCLN, MT(MOD_RALT, DV_Q),   DV_J,   DV_K,   DV_X
-#define _BR3_5_ DV_B,   DV_M,   DV_W, MT(MOD_RALT, DV_V),   DV_Z
-#define _BL4_3_ LT(_NAVI, KC_ESC ), LT(_MEDI, KC_SPC ), LT(_MOUS, KC_TAB )
-#define _BR4_3_ LT(_SYMB, KC_ENT ), LT(_NUMB, KC_BSPC), LT(_FUNC, KC_DEL )
+#define _BL1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
+#define _BR1_5_ KC_Y,   KC_U,   KC_I,   KC_O,   KC_P
+#define _BL2_5_ GUI_A,  ALT_S,  CTRL_D, SHIFT_F,KC_G
+#define _BR2_5_ KC_H,   SHIFT_J,CTRL_K, ALT_L,  GUI_SCL
+#define _BL3_5_ KC_Z,   ALTGR_X,KC_C,   KC_V,   KC_B
+#define _BR3_5_ KC_N,   KC_M,   KC_COMM,ALTGR_D,KC_SLSH
+#define _BL4_3_ NAV_ESC,MED_SPC,MOU_TAB
+#define _BR4_3_ SYM_ENT,NUM_BSP,FUN_DEL
 // The extra line for the 6th (or 0th) row
-#define _BL1_1_ DV_GRV
-#define _BR1_1_ DV_SLSH
-#define _BL2_1_ DV_BSLS
-#define _BR2_1_ DV_MINS
+#define _BL1_1_ KC_GRV
+#define _BR1_1_ KC_LBRC
+#define _BL2_1_ KC_BSLS
+#define _BR2_1_ KC_QUOT
 #define _BL3_1_ KC_NUBS
-#define _BR3_1_ DV_EQL
+#define _BR3_1_ KC_RBRC
 
 /*
  * ┌─────┬─────┬─────┬─────┬─────┐             ┌─────┬─────┬─────┬─────┬─────┐
@@ -240,7 +259,7 @@ enum userspace_layers {
  */
 #define _GA1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
 #define _GA1_1_ KC_GRV
-#define _GA2_5_ DV_A,   DV_S,   DV_D,   DV_F,   DV_G
+#define _GA2_5_ KC_A,   KC_S,   KC_D,   KC_F,   KC_G
 #define _GA2_1_ KC_TAB
 #define _GA3_5_ KC_Z,   KC_X,   KC_C,   KC_V,   KC_B
 #define _GA3_1_ KC_LSFT
@@ -252,14 +271,14 @@ enum userspace_layers {
  * ├─────┼─────┼─────┼─────┼─────┤
  * │CpsLk│ F04 │ F05 │ F06 │ F11 │
  * ├─────┼─────┼─────┼─────┼─────┤
- * │Break│ F01 │ F02 │ F03 │ F12 │
+ * │GameL│ F01 │ F02 │ F03 │ F12 │
  * └─────┴─────┴─────┼─────┼─────┼─────┐
  *                   │ Esc │Space│ Tab │
  *                   └─────┴─────┴─────┘
  */
 #define _FU1_5_ KC_PSCR,KC_F7,  KC_F8,  KC_F9,  KC_F10
 #define _FU2_5_ KC_CAPS,KC_F4,  KC_F5,  KC_F6,  KC_F11
-#define _FU3_5_ KC_BRK, KC_F1,  KC_F2,  KC_F3,  KC_F12
+#define _FU3_5_ BB_GAME,KC_F1,  KC_F2,  KC_F3,  KC_F12
 #define _FU4_3_ KC_ESC, KC_SPC, KC_TAB
 
 /* Numbers layer
@@ -273,10 +292,10 @@ enum userspace_layers {
  *                   │  0  │  [  │  ]  │
  *                   └─────┴─────┴─────┘
  */
-#define _NU1_5_ DV_GRV, DV_7,   DV_8,   DV_9,   DV_0
-#define _NU2_5_ _______,DV_4,   DV_5,   DV_6,   DBL_BRC
-#define _NU3_5_ xxx1xxx,DV_1,   DV_2,   DV_3,   DBL_PAR
-#define _NU4_3_ DV_0,   DV_LBRC,DV_RBRC
+#define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
+#define _NU2_5_ _______,KC_4,   KC_5,   KC_6,   DBL_BRC
+#define _NU3_5_ BB_PGPK,KC_1,   KC_2,   KC_3,   DBL_PAR
+#define _NU4_3_ KC_0,   KC_LBRC,KC_RBRC
 
 /* Symbols layer
  * ┌─────┬─────┬─────┬─────┬─────┐
@@ -289,10 +308,10 @@ enum userspace_layers {
  *                   │  )  │  {  │  }  │
  *                   └─────┴─────┴─────┘
  */
-#define _SY1_5_ DV_TILD,DV_AMPR,DV_ASTR,DV_LPRN,DV_RPRN
-#define _SY2_5_ XXXXXXX,DV_DLR, DV_PERC,DV_CIRC,DBL_CBR
-#define _SY3_5_ BB_ELLI,DV_EXLM,DV_AT,  DV_HASH,DBL_ANG
-#define _SY4_3_ DV_RPRN,DV_LCBR,DV_RCBR
+#define _SY1_5_ KC_TILD,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN
+#define _SY2_5_ BB_CHAR,KC_DLR, KC_PERC,KC_CIRC,DBL_CBR
+#define _SY3_5_ BB_ELLI,KC_EXLM,KC_AT,  KC_HASH,DBL_ANG
+#define _SY4_3_ KC_RPRN,KC_MINS,KC_EQL
 
 /* Navigation layer
  *       ┌─────┬─────┬─────┬─────┬─────┐
@@ -338,7 +357,7 @@ enum userspace_layers {
  * └─────┴─────┴─────┘
  */
 #define _MO1_5_ KC_ACL0,XXXXXXX,KC_BTN4,KC_BTN5,RESET
-#define _MO2_5_ KC_ACL1,KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT
+#define _MO2_5_ KC_ACL1,KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R
 #define _MO3_5_ KC_ACL2,KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R
 #define _MO4_3_ KC_BTN1,KC_BTN2,KC_BTN3
 

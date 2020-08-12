@@ -12,7 +12,9 @@ My userspace code for my various keyboards; available here.
 - [x] Add rotary encoder support
 - [x] Converge on final keymap
 - [x] Transfer code to layout
-- [ ] Remove biton32 function from encoder
+- [x] Remove biton32 function from encoder
+- [ ] Find a way to move audio code to it's own file (from config.h)
+- [x] Fix RGB matrix layer switch.
 - [ ] Document all features more extensibly
 - [ ] Generate json files to be used with Keyboard-Layout-Editor to produce images.
 - [ ] Add OLED support
