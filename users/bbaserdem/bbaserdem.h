@@ -13,13 +13,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include QMK_KEYBOARD_H
-// Language imports
-//#include <sendstring_dvorak.h>
+
 /* Besides loading libraries and definitions, this file has my layout defs
  * LAYOUTS:
  *  This file has a couple layouts I use; so that the general changes can be
  *  propagated by only editing this file.
  */
+
 // Macros to use, this has base level code so not affected by enabled features
 #include "bb-macro.h"
 // Audio from onboard speakers
@@ -121,16 +121,16 @@ enum userspace_layers {
 
 // Unicode keys
 #ifdef UNICODEMAP_ENABLE
-#define TR_ACIR XP(LOW_A_CIRC, UPC_A_CIRC)
-#define TR_CCED XP(LOW_C_CEDI, UPC_C_CEDI)
-#define TR_GBRE XP(LOW_G_BREV, LOW_G_BREV)
-#define TR_ICIR XP(LOW_I_CIRC, LOW_I_CIRC)
-#define TR_I_NO XP(LOW_I_DOTL, LOW_I_DOTL)
-#define TR_IDOT XP(LOW_I_DOTT, LOW_I_DOTT)
-#define TR_ODIA XP(LOW_O_DIAE, LOW_O_DIAE)
-#define TR_SCED XP(LOW_S_CEDI, LOW_S_CEDI)
-#define TR_UCIR XP(LOW_U_CIRC, LOW_U_CIRC)
-#define TR_UDIA XP(LOW_U_DIAE, LOW_U_DIAE)
+#define TR_ACIR XP(LOW_A_CIRC, UPC_A_CIRC )
+#define TR_CCED XP(LOW_C_CEDI, UPC_C_CEDI )
+#define TR_GBRE XP(LOW_G_BREV, LOW_G_BREV )
+#define TR_ICIR XP(LOW_I_CIRC, LOW_I_CIRC )
+#define TR_I_NO XP(LOW_I_DOTL, LOW_I_DOTL )
+#define TR_IDOT XP(LOW_I_DOTT, LOW_I_DOTT )
+#define TR_ODIA XP(LOW_O_DIAE, LOW_O_DIAE )
+#define TR_SCED XP(LOW_S_CEDI, LOW_S_CEDI )
+#define TR_UCIR XP(LOW_U_CIRC, LOW_U_CIRC )
+#define TR_UDIA XP(LOW_U_DIAE, LOW_U_DIAE )
 #define GR_ALP  XP(LOW_ALPHA,  UPC_ALPHA  )
 #define GR_BET  XP(LOW_BETA,   UPC_BETA   )
 #define GR_GAM  XP(LOW_GAMMA,  UPC_GAMMA  )
@@ -170,10 +170,33 @@ enum userspace_layers {
 #define TR_SCED KC_S
 #define TR_UCIR KC_U
 #define TR_UDIA KC_U
+#define GR_ALP  KC_NO
+#define GR_BET  KC_NO
+#define GR_GAM  KC_NO
+#define GR_DEL  KC_NO
+#define GR_EPS  KC_NO
+#define GR_ZET  KC_NO
+#define GR_ETA  KC_NO
+#define GR_THE  KC_NO
+#define GR_IOT  KC_NO
+#define GR_KAP  KC_NO
+#define GR_LAM  KC_NO
+#define GR_MU   KC_NO
+#define GR_NU   KC_NO
+#define GR_XI   KC_NO
+#define GR_OMI  KC_NO
+#define GR_PI   KC_NO
+#define GR_RHO  KC_NO
+#define GR_SIG  KC_NO
+#define GR_TAU  KC_NO
+#define GR_UPS  KC_NO
+#define GR_PHI  KC_NO
+#define GR_CHI  KC_NO
+#define GR_PSI  KC_NO
+#define GR_OME  KC_NO
 #define BB_ELLI KC_NO
 #define BB_PLNK KC_NO
 #define BB_ANGS KC_NO
-#define BB_PI   KC_NO
 #define BB_BITC KC_NO
 #endif
 

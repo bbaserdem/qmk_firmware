@@ -12,6 +12,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "bbaserdem.h"
+// Language imports
+#include <sendstring_dvorak.h>
 
 /*---------------------------*\
 |*-----KEYBOARD PRE INIT-----*|
@@ -36,7 +38,9 @@ void matrix_init_user (void) {
     // Fix beginning base layer, in case some other firmware was flashed
     set_single_persistent_default_layer(_BASE);
     // Unicode mode
+    #ifdef UNICODEMAP_ENABLE
     set_unicode_input_mode(UC_LNX);
+    #endif
     // Keymap specific things
     matrix_init_keymap();
 }

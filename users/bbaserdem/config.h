@@ -12,6 +12,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
+
 /* CONFIG
  * Common hardware configuration accross my boards
  */
@@ -23,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Tap-hold settings
 #define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT
 
 // Encoder settings
 #ifdef ENCODER_ENABLE
@@ -45,14 +47,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Audio definitions
 #ifdef AUDIO_ENABLE
-    #include <bb-audio.h>
-    // Define songs
+    // Make findable songs as defaults
+    #ifdef HOROLOGY
     #define STARTUP_SONG    SONG(HOROLOGY)
+    #endif
+    #ifdef PEOPLE_VULTURES
     #define GOODBYE_SONG    SONG(PEOPLE_VULTURES)
+    #endif
+    #ifdef NONAGON_INFINITY
     #define MUSIC_ON_SONG   SONG(NONAGON_INFINITY)
+    #endif
+    #ifdef WAH_WAH
     #define MUSIC_OFF_SONG  SONG(WAH_WAH)
+    #endif
+    // Audio code expects these to be defined
+    #ifdef BIG_FIG_WASP
     #define GAME_ON_SONG    SONG(BIG_FIG_WASP)
+    #else
+    #define GAME_ON_SONG    SONG(USSR_ANTHEM)
+    #endif
+    #ifdef POLYGONDWANALAND
     #define GAME_OFF_SONG   SONG(POLYGONDWANALAND)
+    #else
+    #define GAME_OFF_SONG   SONG(NOCTURNE_OP_9_NO_1)
+    #endif
 #endif
 
 // For underglow light
@@ -99,6 +117,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define DISABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
     #define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
     #define DISABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-    #define DISABLE_RGB_MATRIX
 #endif
-
