@@ -20,6 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Unicode entry mode
 #ifdef UNICODEMAP_ENABLE
     #define UNICODE_SELECTED_MODES UC_LNX
+    // Adapt the unicode entry mode to dvorak
+    #ifdef UNICODE_KEY_LNX
+    #undef UNICODE_KEY_LNX
+    #endif
+    #define UNICODE_KEY_LNX LCTL(LSFT(KC_G))
 #endif
 
 // Tap-hold settings

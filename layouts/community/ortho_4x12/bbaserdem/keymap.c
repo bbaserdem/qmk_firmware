@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL1_5_,_BL1_1_,_BR1_1_,_BR1_5_,
         _BL2_5_,_BL2_1_,_BR2_1_,_BR2_5_,
         _BL3_5_,_BL3_1_,_BR3_1_,_BR3_5_,
-        MU_ON,  KC_LEFT,KC_RGHT,_BL4_3_,_BR4_3_,KC_DOWN,KC_UP,  RGB_TOG
+        BB_SND, KC_LEFT,KC_RGHT,_BL4_3_,_BR4_3_,KC_DOWN,KC_UP,  RGB_TOG
     ),
     // Extra characters overlay
     [_CHAR] = LAYOUT_ortho_4x12_wrapper(
@@ -125,13 +125,13 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
 #endif
 
 /*---PLANCK (rev6) configuration
- * Rev6 has RGB matrix to the bottom LED footprints
- * I will add a daughter board here using the same code.
  */
-#if defined(KEYBOARD_planck_rev6) && defined(PLANCK_RGB_DAUGHTER) && defined(RGB_MATRIX_ENABLE)
-/* This block is for the RGB daughter PCB addition
- * We need to redefine the LED config
- * Breakdown of the daughter board layout;
+#elif defined(KEYBOARD_planck_rev6)
+/* Rev6 has RGB matrix to the bottom LED footprints
+ * But I had a daughter board printed; and am going to be setting that up
+ * The vanilla config is at the bottom
+ * For now; we need to redefine the LED configuration
+ * Breakdown of the daughter board layout that I used
  * ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
  * │35│36│37│38│39│40│41│42│43│44│45│46│
  * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤
@@ -197,17 +197,17 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
 }
 #endif
 
+// End of code for the RGB_MATRIX setup
+#endif
 
+/* This is for original planck led locations
 #if defined(KEYBOARD_planck_rev6) && !defined(PLANCK_RGB_DAUGHTER) && defined(RGB_MATRIX_ENABLE)
-/* This block is for the default underglow RGB matrix code
- * Breakdown of led locations
- * ┌────────────┐
- * │ 6  5  4  3 │
- * │            │
- * │     0      │
- * │ 7  8  1  2 │
- * └────────────┘
- */
+// ┌────────────┐
+// │ 6  5  4  3 │
+// │            │
+// │     0      │
+// │ 7  8  1  2 │
+// └────────────┘
 int board_left[4] = {6, 5, 7, 8};
 int board_right[4] = {4, 3, 1, 2};
 // Sided color-setting
@@ -222,4 +222,4 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
     }
 }
 #endif
-#endif // RGB_MATRIX_ENABLE
+*/

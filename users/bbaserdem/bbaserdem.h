@@ -119,6 +119,25 @@ enum userspace_layers {
 #define BB_CUT     LCTL(KC_X)
 #define BB_PSTE    LCTL(KC_V)
 
+// Audio keys
+#ifdef AUDIO_ENABLE
+#define MU_REC  KC_LCTL
+#define MU_STOP KC_LALT
+#define MU_PLAY KC_LGUI
+#define MU_FAST KC_UP
+#define MU_SLOW KC_DOWN
+#define MU_MASK KC_A
+#define BB_SND  MU_ON
+#else
+#define MU_REC  KC_NO
+#define MU_STOP KC_NO
+#define MU_PLAY KC_NO
+#define MU_FAST KC_NO
+#define MU_SLOW KC_NO
+#define MU_MASK KC_NO
+#define BB_SND  KC_MUTE
+#endif
+
 // Unicode keys
 #ifdef UNICODEMAP_ENABLE
 #define TR_ACIR XP(LOW_A_CIRC, UPC_A_CIRC )
@@ -217,6 +236,8 @@ enum userspace_layers {
 #define FUN_DEL LT(_FUNC, KC_DEL)
 #define NUM_BSP LT(_NUMB, KC_BSPC)
 #define SYM_ENT LT(_SYMB, KC_ENT)
+
+// Layer switches
 #define BB_CHAR OSL(_CHAR)
 #define BB_GAME TG(_GAME)
 
@@ -395,22 +416,6 @@ enum userspace_layers {
  * │Off│Rec│Stp│Ply│Mod│   │   │   │   │   │   │   │
  * └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
  */
-// Rename music keys for readability
-#ifdef AUDIO_ENABLE
-#define MU_REC  KC_LCTL
-#define MU_STOP KC_LALT
-#define MU_PLAY KC_LGUI
-#define MU_FAST KC_UP
-#define MU_SLOW KC_DOWN
-#define MU_MASK KC_A
-#else
-#define MU_REC  KC_NO
-#define MU_STOP KC_NO
-#define MU_PLAY KC_NO
-#define MU_FAST KC_NO
-#define MU_SLOW KC_NO
-#define MU_MASK KC_NO
-#endif
 #define _MUS_4_ MU_REC, MU_STOP,MU_PLAY,MU_MOD
 #define _MU_01_ MU_MASK
 #define _MU_03_ MU_MASK,MU_MASK,MU_MASK

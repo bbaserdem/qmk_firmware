@@ -17,6 +17,3 @@ BACKLIGHT_ENABLE = no
 ifneq (,$(findstring planck/rev6,$(KEYBOARD)))
     RGBLIGHT_ENABLE = no
 endif
-
-# If wanted; define PLANCK_RGB_DAUGHTER to compile/flash for that version
-# PLANCK_RGB_DAUGHTER = yes

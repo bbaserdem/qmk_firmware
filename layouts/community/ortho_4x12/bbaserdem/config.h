@@ -14,7 +14,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // Code pertaining to planck rev6
-#if defined(KEYBOARD_planck_rev6) && defined(PLANCK_RGB_DAUGHTER)
+#if defined(KEYBOARD_planck_rev6)
+    /*
     // Reconfigure the RGB DI Pin
     #ifdef RGB_DI_PIN
     #undef RGB_DI_PIN
@@ -26,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #undef DRIVER_LED_TOTAL
     #endif
     #define DRIVER_LED_TOTAL 48
+    */
 #endif
 
 // Let's Split Eh! specific
@@ -34,4 +36,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_LEFT_NUM 6
     #define RGBLIGHT_RIGHT_BEG 6
     #define RGBLIGHT_RIGHT_NUM 6
+#endif
+
+// JJ40 specific
+#ifdef KEYBOARD_jj40
+    #define RGBLIGHT_LEFT_BEG 0
+    #define RGBLIGHT_LEFT_NUM 2
+    #define RGBLIGHT_RIGHT_BEG 3
+    #define RGBLIGHT_RIGHT_NUM 2
 #endif
