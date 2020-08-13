@@ -35,12 +35,6 @@ __attribute__ ((weak)) void keyboard_pre_init_user(void) {
  */
 __attribute__ ((weak)) void matrix_init_keymap(void) {}
 void matrix_init_user (void) {
-    // Fix beginning base layer, in case some other firmware was flashed
-    set_single_persistent_default_layer(_BASE);
-    // Unicode mode
-    #ifdef UNICODEMAP_ENABLE
-    set_unicode_input_mode(UC_LNX);
-    #endif
     // Keymap specific things
     matrix_init_keymap();
 }
@@ -53,6 +47,9 @@ void matrix_init_user (void) {
  */
 __attribute__ ((weak)) void keyboard_post_init_keymap(void) {}
 __attribute__ ((weak)) void keyboard_post_init_user(void) {
+    // Fix beginning base layer, in case some other firmware was flashed
+    //  set_single_persistent_default_layer(_BASE);
+    
     // Backlight LED
     #ifdef BACKLIGHT_ENABLE
     keyboard_post_init_backlight();
@@ -61,6 +58,11 @@ __attribute__ ((weak)) void keyboard_post_init_user(void) {
     // RGB underglow
     #ifdef RGBLIGHT_ENABLE
     keyboard_post_init_underglow();
+    #endif
+
+    // Unicode mode
+    #ifdef UNICODEMAP_ENABLE
+    set_unicode_input_mode(UC_LNX);
     #endif
 
     // Keymap specific stuff
