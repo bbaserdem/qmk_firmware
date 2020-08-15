@@ -15,19 +15,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Code pertaining to planck rev6
 #if defined(KEYBOARD_planck_rev6)
-    /*
-    // Reconfigure the RGB DI Pin
-    #ifdef RGB_DI_PIN
-    #undef RGB_DI_PIN
+    // RGB Matrix with daughter board
+
+    #ifdef RGB_MATRIX_ENABLE
+        /*
+        // Reconfigure the RGB DI Pin
+        #ifdef RGB_DI_PIN
+        #undef RGB_DI_PIN
+        #endif
+        // Change this later
+        #define RGB_DI_PIN A1
+        // Reconfigure number of LEDS
+        #ifdef DRIVER_LED_TOTAL
+        #undef DRIVER_LED_TOTAL
+        #endif
+        #define DRIVER_LED_TOTAL 48
+        //*/
     #endif
-    // Change this later
-    #define RGB_DI_PIN A1
-    // Reconfigure number of LEDS
-    #ifdef DRIVER_LED_TOTAL
-    #undef DRIVER_LED_TOTAL
+    // RGB Underglow with on-board SMD footprints
+    #ifdef RGBLIGHT_ENABLE
+        // This is for original planck led locations
+        // ┌────────────┐
+        // │ 6  5  4  3 │
+        // │            │
+        // │     0      │
+        // │ 7  8  1  2 │
+        // └────────────┘
+        #define RGBLIGHT_LEFT_BEG 5
+        #define RGBLIGHT_LEFT_NUM 4
+        #define RGBLIGHT_RIGHT_BEG 1
+        #define RGBLIGHT_RIGHT_NUM 4
     #endif
-    #define DRIVER_LED_TOTAL 48
-    */
 #endif
 
 // Let's Split Eh! specific
@@ -39,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // JJ40 specific
-#ifdef KEYBOARD_jj40
+#ifdef KEYBOARD_planck_rev6
     #define RGBLIGHT_LEFT_BEG 0
     #define RGBLIGHT_LEFT_NUM 2
     #define RGBLIGHT_RIGHT_BEG 3

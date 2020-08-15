@@ -13,7 +13,9 @@
 # None of my 4x12 boards use backlight
 BACKLIGHT_ENABLE = no
 
-# Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled; fix this
+# Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled;
+#  if RGBLIGHT is set to 
 ifneq (,$(findstring planck/rev6,$(KEYBOARD)))
     RGBLIGHT_ENABLE = no
+    unset RGB_MATRIX_ENABLE = no
 endif

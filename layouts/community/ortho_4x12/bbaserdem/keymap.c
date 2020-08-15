@@ -86,8 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // RGB Matrix configuration
 #ifdef RGB_MATRIX_ENABLE
-/* planck/light
- * This is left-right for planck light indicator light
+
+// Planck:Light
+#if defined(KEYBOARD_planck_light)
+/* This is left-right for planck light indicator light
  *  - The LED 42 is for spacebar specifically, leave it out of the matrix
  *  - This is how it looks like
  * ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
@@ -100,7 +102,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * │36│37│38│39│40│41│43│44│45│46│47│48│
  * └──┴──┴──┴──┴──┴─042─┴──┴──┴──┴──┴──┘
  */
-#if defined(KEYBOARD_planck_light)
 int board_left[24] = {
      0,  1,  2,  3,  4,  5,
     12, 13, 14, 15, 16, 17,
@@ -122,10 +123,8 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
         rgb_matrix_set_color(board_right[i], red, green, blue);
     }
 }
-#endif
 
-/*---PLANCK (rev6) configuration
- */
+// planck:rev6
 #elif defined(KEYBOARD_planck_rev6)
 /* Rev6 has RGB matrix to the bottom LED footprints
  * But I had a daughter board printed; and am going to be setting that up
@@ -142,6 +141,7 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
  * │00│01│02│03│04│05│06│07│08│09│10│11│
  * └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
  */
+/*
 led_config_t g_led_config = {
     {   // Key Matrix to LED Index
         {35, 36, 37, 38, 39, 40}, // R1: Left
@@ -195,31 +195,9 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
         rgb_matrix_set_color(board_right[i], red, green, blue);
     }
 }
+*/
+// End of differentiations
 #endif
 
 // End of code for the RGB_MATRIX setup
 #endif
-
-/* This is for original planck led locations
-#if defined(KEYBOARD_planck_rev6) && !defined(PLANCK_RGB_DAUGHTER) && defined(RGB_MATRIX_ENABLE)
-// ┌────────────┐
-// │ 6  5  4  3 │
-// │            │
-// │     0      │
-// │ 7  8  1  2 │
-// └────────────┘
-int board_left[4] = {6, 5, 7, 8};
-int board_right[4] = {4, 3, 1, 2};
-// Sided color-setting
-void keylight_set_left(uint8_t red, uint8_t green, uint8_t blue) {
-    for (int i = 0; i < 4; i++) {
-        rgb_matrix_set_color(board_left[i], red, green, blue);
-    }
-}
-void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
-    for (int i = 0; i < 4; i++) {
-        rgb_matrix_set_color(board_right[i], red, green, blue);
-    }
-}
-#endif
-*/
