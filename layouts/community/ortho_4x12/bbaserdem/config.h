@@ -15,10 +15,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Code pertaining to planck rev6
 #if defined(KEYBOARD_planck_rev6)
-    // RGB Matrix with daughter board
-
+    // Daughter board related utilities
     #ifdef RGB_MATRIX_ENABLE
-        /*
         // Reconfigure the RGB DI Pin
         #ifdef RGB_DI_PIN
         #undef RGB_DI_PIN
@@ -30,10 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         #undef DRIVER_LED_TOTAL
         #endif
         #define DRIVER_LED_TOTAL 48
-        //*/
-    #endif
-    // RGB Underglow with on-board SMD footprints
-    #ifdef RGBLIGHT_ENABLE
+    #elif RGBLIGHT_ENABLE
+        // RGB Underglow with on-board SMD footprints
         // This is for original planck led locations
         // ┌────────────┐
         // │ 6  5  4  3 │
@@ -41,25 +37,70 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         // │     0      │
         // │ 7  8  1  2 │
         // └────────────┘
-        #define RGBLIGHT_LEFT_BEG 5
-        #define RGBLIGHT_LEFT_NUM 4
+        #ifdef RGBLIGHT_RIGHT_BEG
+        #undef RGBLIGHT_RIGHT_BEG
+        #endif
         #define RGBLIGHT_RIGHT_BEG 1
+
+        #ifdef RGBLIGHT_RIGHT_NUM
+        #undef RGBLIGHT_RIGHT_NUM
+        #endif
         #define RGBLIGHT_RIGHT_NUM 4
+
+        #ifdef RGBLIGHT_LEFT_BEG
+        #undef RGBLIGHT_LEFT_BEG
+        #endif
+        #define RGBLIGHT_LEFT_BEG 5
+
+        #ifdef RGBLIGHT_LEFT_NUM
+        #undef RGBLIGHT_LEFT_NUM
+        #endif
+        #define RGBLIGHT_LEFT_NUM 4
     #endif
 #endif
 
 // Let's Split Eh! specific
 #ifdef KEYBOARD_lets_split_eh_eh
+    #ifdef RGBLIGHT_LEFT_BEG
+    #undef RGBLIGHT_LEFT_BEG
+    #endif
     #define RGBLIGHT_LEFT_BEG 0
+
+    #ifdef RGBLIGHT_LEFT_NUM
+    #undef RGBLIGHT_LEFT_NUM
+    #endif
     #define RGBLIGHT_LEFT_NUM 6
+
+    #ifdef RGBLIGHT_RIGHT_BEG
+    #undef RGBLIGHT_RIGHT_BEG
+    #endif
     #define RGBLIGHT_RIGHT_BEG 6
+
+    #ifdef RGBLIGHT_RIGHT_NUM
+    #undef RGBLIGHT_RIGHT_NUM
+    #endif
     #define RGBLIGHT_RIGHT_NUM 6
 #endif
 
 // JJ40 specific
-#ifdef KEYBOARD_planck_rev6
+#ifdef KEYBOARD_jj40
+    #ifdef RGBLIGHT_LEFT_BEG
+    #undef RGBLIGHT_LEFT_BEG
+    #endif
     #define RGBLIGHT_LEFT_BEG 0
+
+    #ifdef RGBLIGHT_LEFT_NUM
+    #undef RGBLIGHT_LEFT_NUM
+    #endif
     #define RGBLIGHT_LEFT_NUM 2
+
+    #ifdef RGBLIGHT_RIGHT_BEG
+    #undef RGBLIGHT_RIGHT_BEG
+    #endif
     #define RGBLIGHT_RIGHT_BEG 3
+
+    #ifdef RGBLIGHT_RIGHT_NUM
+    #undef RGBLIGHT_RIGHT_NUM
+    #endif
     #define RGBLIGHT_RIGHT_NUM 2
 #endif

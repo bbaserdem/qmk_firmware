@@ -28,35 +28,32 @@ __attribute__ ((weak)) void rgb_matrix_indicators_keymap(void) { }
 void rgb_matrix_indicators_user(void) {
     // Do each layer seperately
     switch (get_highest_layer(layer_state)) {
+        case _GAME:
+            keylight_set_left(RGB_TURQUOISE);
+            break;
         case _CHAR:
             rgb_matrix_set_color_all(RGB_CHARTREUSE);
             break;
-        case _GAME:
-            keylight_set_left(RGB_PURPLE);
-            break;
-        case _FUNC:
-            keylight_set_left(RGB_MAGENTA);
-            break;
-        case _NUMB:
-            keylight_set_left(RGB_CYAN);
-            break;
-        case _SYMB:
-            keylight_set_left(RGB_GOLDENROD);
-            break;
         case _NAVI:
-            keylight_set_right(RGB_RED);
-            break;
-        case _MEDI:
-            keylight_set_right(RGB_TEAL);
-            break;
-        case _MOUS:
             keylight_set_right(RGB_GREEN);
             break;
-        case _MUSI:
-            rgb_matrix_set_color_all(RGB_CORAL);
+        case _NUMB:
+            keylight_set_rightt(RGB_CYAN);
             break;
-        case _MIDI:
-            rgb_matrix_set_color_all(RGB_BLUE);
+        case _SYMB:
+            keylight_set_right(RGB_PURPLE);
+            break;
+        case _MOUS:
+            keylight_set_left(RGB_YELLOW);
+            break;
+        case _MEDI:
+            keylight_set_left(RGB_CORAL);
+            break;
+        case _FUNC:
+            keylight_set_left(RGB_RED);
+            break;
+        case _MUSI:
+            rgb_matrix_set_color_all(RGB_MAGENTA);
             break;
     }
     // Load keymap hooks

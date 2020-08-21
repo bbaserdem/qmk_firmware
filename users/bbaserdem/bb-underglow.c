@@ -21,69 +21,70 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const rgblight_segment_t PROGMEM bb_base_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 0, HSV_WHITE}
 );
-
-// Left-hand layers
-// Gaming layer is purple
+// Gaming layer is turquoise
 const rgblight_segment_t PROGMEM bb_game_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_PURPLE}
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_TURQUOISE}
 );
-// Function layer is magenta
-const rgblight_segment_t PROGMEM bb_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_MAGENTA}
-);
-// Number layer is cyan
-const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_CYAN}
-);
-// Symbol layer is yellow
-const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_GOLDENROD}
-);
-
-// Navigation layer is red
-const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_RED}
-);
-// Media layer is teal
-const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_TEAL}
-);
-// Pointer layer is green
-const rgblight_segment_t PROGMEM bb_mous_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_GREEN}
-);
-
-// Full-keyboard layers
 // Character overlay is chartereuse
 const rgblight_segment_t PROGMEM bb_char_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_CHARTEREUSE}
+    {0, RGBLED_NUM, HSV_CHARTREUSE}
 );
-// Music playback layer is coral
+
+// Right-hand layers
+
+// Navigation layer is green
+const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_GREEN}
+);
+// Number layer is blue
+const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_CYAN}
+);
+// Symbol layer is purple
+const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_PURPLE}
+);
+
+// Left-hand layers
+
+// Pointer layer is yellow
+const rgblight_segment_t PROGMEM bb_mous_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_YELLOW}
+);
+// Media layer is orange
+const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, 30, 255, 255 
+    }
+);
+// Function layer is red
+const rgblight_segment_t PROGMEM bb_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_RED}
+);
+
+// Music playback layer is magenta
 const rgblight_segment_t PROGMEM bb_musi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_CORAL}
-);
-// Midi device layer is blue
-const rgblight_segment_t PROGMEM bb_midi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_BLUE}
+    {0, RGBLED_NUM, HSV_MAGENTA}
 );
 
 const rgblight_segment_t* const PROGMEM bb_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     bb_base_layer,
     bb_char_layer,
     bb_game_layer,
-    bb_func_layer,
+    bb_navi_layer,
     bb_numb_layer,
     bb_symb_layer,
-    bb_navi_layer,
-    bb_medi_layer,
     bb_mous_layer,
-    bb_musi_layer,
-    bb_midi_layer
+    bb_medi_layer,
+    bb_func_layer,
+    bb_musi_layer
 );
 
 // Enable the LED switching layers
 void keyboard_post_init_underglow(void) {
     rgblight_layers = bb_rgb_layers;
+    // Default rgb mode is rainbow swirl; set this
+    rgblight_sethsv_noeeprom(100, 255, 255);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 0);
 }
 
 // Set RGBLIGHT state depending on layer
@@ -91,14 +92,14 @@ layer_state_t layer_state_set_underglow(layer_state_t state) {
     // Activate layers if on that region
     rgblight_set_layer_state(_BASE, layer_state_cmp(state, _BASE));
     rgblight_set_layer_state(_GAME, layer_state_cmp(state, _GAME));
-    rgblight_set_layer_state(_FUNC, layer_state_cmp(state, _FUNC));
+    rgblight_set_layer_state(_CHAR, layer_state_cmp(state, _CHAR));
+    rgblight_set_layer_state(_NAVI, layer_state_cmp(state, _NAVI));
     rgblight_set_layer_state(_NUMB, layer_state_cmp(state, _NUMB));
     rgblight_set_layer_state(_SYMB, layer_state_cmp(state, _SYMB));
-    rgblight_set_layer_state(_NAVI, layer_state_cmp(state, _NAVI));
-    rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
     rgblight_set_layer_state(_MOUS, layer_state_cmp(state, _MOUS));
+    rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
+    rgblight_set_layer_state(_FUNC, layer_state_cmp(state, _FUNC));
     rgblight_set_layer_state(_MUSI, layer_state_cmp(state, _MUSI));
-    rgblight_set_layer_state(_MIDI, layer_state_cmp(state, _MIDI));
     // Return so other stuff can be done
     return state;
 }
@@ -107,6 +108,6 @@ layer_state_t layer_state_set_underglow(layer_state_t state) {
 void shutdown_underglow(void) {
     // Make the LED's red on shutdown
     rgblight_enable_noeeprom();
-    rgblight_mode_noeeprom(1);
-    rgblight_setrgb(RGB_RED);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+    rgblight_sethsv(HSV_PINK);
 }

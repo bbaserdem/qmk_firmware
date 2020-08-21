@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL1_5_,_BL1_1_,_BR1_1_,_BR1_5_,
         _BL2_5_,_BL2_1_,_BR2_1_,_BR2_5_,
         _BL3_5_,_BL3_1_,_BR3_1_,_BR3_5_,
-        BB_SND, KC_LEFT,KC_RGHT,_BL4_3_,_BR4_3_,KC_DOWN,KC_UP,  RGB_TOG
+        BB_SND, KC_DOWN,KC_UP,  _BL4_3_,_BR4_3_,KC_LEFT,KC_RGHT,RGB_TOG
     ),
     // Extra characters overlay
     [_CHAR] = LAYOUT_ortho_4x12_wrapper(
@@ -36,27 +36,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _GA3_5_,_GA3_1_,___6___,
         KC_MUTE,___2___,_GA4_3_,___6___
     ),
-    // Function layer: left_half
-    [_FUNC] = LAYOUT_ortho_4x12_wrapper(
-        _FU1_5_,xxx1xxx,___6___,
-        _FU2_5_,xxx1xxx,___6___,
-        _FU3_5_,xxx1xxx,___6___,
-        KC_BTN2,___2___,_FU4_3_,___6___
-    ),
-    // Number layer: left_half
-    [_NUMB] = LAYOUT_ortho_4x12_wrapper(
-        _NU1_5_,xxx1xxx,___6___,
-        _NU2_5_,xxx1xxx,___6___,
-        _NU3_5_,xxx1xxx,___6___,
-        KC_BSPC,___2___,_NU4_3_,___6___
-    ),
-    // Symbol layer: left_half
-    [_SYMB] = LAYOUT_ortho_4x12_wrapper(
-        _SY1_5_,xxx1xxx,___6___,
-        _SY2_5_,xxx1xxx,___6___,
-        _SY3_5_,xxx1xxx,___6___,
-        KC_BSPC,___2___,_SY4_3_,___6___
-    ),
     // Navigation layer: right_half
     [_NAVI] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_NA1_5_,
@@ -64,30 +43,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___6___,xxx1xxx,_NA3_5_,
         KC_BTN1,___5___,_NA4_3_,___3___
     ),
-    // Media layer: right_half
-    [_MEDI] = LAYOUT_ortho_4x12_wrapper(
-        ___6___,xxx1xxx,_ME1_5_,
-        ___6___,xxx1xxx,_ME2_5_,
-        ___6___,xxx1xxx,_ME3_5_,
-        RGB_TOG,___5___,_ME4_3_,___3___
+    // Number layer: right_half
+    [_NUMB] = LAYOUT_ortho_4x12_wrapper(
+        ___6___,xxx1xxx,_NU1_5_,
+        ___6___,xxx1xxx,_NU2_5_,
+        ___6___,xxx1xxx,_NU3_5_,
+        KC_BSPC,___5___,_NU4_3_,___3___
     ),
-    // Mouse layer: right_half
+    // Symbol layer: right_half
+    [_SYMB] = LAYOUT_ortho_4x12_wrapper(
+        ___6___,xxx1xxx,_SY1_5_,
+        ___6___,xxx1xxx,_SY2_5_,
+        ___6___,xxx1xxx,_SY3_5_,
+        KC_BSPC,___5___,_SY4_3_,___3___
+    ),
+    // Mouse layer: left_half
     [_MOUS] = LAYOUT_ortho_4x12_wrapper(
-        ___6___,xxx1xxx,_MO1_5_,
-        ___6___,xxx1xxx,_MO2_5_,
-        ___6___,xxx1xxx,_MO3_5_,
-        KC_BTN3,___5___,_MO4_3_,___3___
+        _MO1_5_,xxx1xxx,___6___,
+        _MO2_5_,xxx1xxx,___6___,
+        _MO3_5_,xxx1xxx,___6___,
+        KC_BTN3,___2___,_MO4_3_,___6___
+    ),
+    // Media layer: left_half
+    [_MEDI] = LAYOUT_ortho_4x12_wrapper(
+        _ME1_5_,xxx1xxx,___6___,
+        _ME2_5_,xxx1xxx,___6___,
+        _ME3_5_,xxx1xxx,___6___,
+        RGB_TOG,___2___,_ME4_3_,___6___
+    ),
+    // Function layer: left_half
+    [_FUNC] = LAYOUT_ortho_4x12_wrapper(
+        _FU1_5_,xxx1xxx,___6___,
+        _FU2_5_,xxx1xxx,___6___,
+        _FU3_5_,xxx1xxx,___6___,
+        KC_BTN2,___2___,_FU4_3_,___6___
     ),
     // Music layer: everything
     [_MUSI] = LAYOUT_ortho_4x12_wrapper(
         _MU_12_,_MU_12_,_MU_12_,
-        MU_OFF, _MUS_4_,_MU_01_,_MU_06_)
+        MU_OFF,_MU_02_,_MUL_3_,_MUR_3_,_MU_02_,RGB_TOG)
 };
 
 // RGB Matrix configuration
 #ifdef RGB_MATRIX_ENABLE
 
-// Planck:Light
+// planck:Light
 #if defined(KEYBOARD_planck_light)
 /* This is left-right for planck light indicator light
  *  - The LED 42 is for spacebar specifically, leave it out of the matrix
@@ -141,7 +141,6 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
  * │00│01│02│03│04│05│06│07│08│09│10│11│
  * └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
  */
-/*
 led_config_t g_led_config = {
     {   // Key Matrix to LED Index
         {35, 36, 37, 38, 39, 40}, // R1: Left
@@ -195,7 +194,6 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
         rgb_matrix_set_color(board_right[i], red, green, blue);
     }
 }
-*/
 // End of differentiations
 #endif
 

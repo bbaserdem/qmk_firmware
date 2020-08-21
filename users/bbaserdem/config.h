@@ -88,19 +88,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     // Enable layer switching code
     #define RGBLIGHT_LAYERS
     #define RGBLIGHT_MAX_LAYERS 10
-    // If these are not defined; just default to entire board for layer switch
-    #ifndef RGBUNDERGLOW_LEFT_BEG
-        #define RGBLIGHT_LEFT_BEG 0
-    #endif
-    #ifndef RGBUNDERGLOW_LEFT_NUM
-        #define RGBLIGHT_LEFT_NUM RGBLED_NUM
-    #endif
-    #ifndef RGBUNDERGLOW_RIGHT_BEG
-        #define RGBLIGHT_RIGHT_BEG 0
-    #endif
-    #ifndef RGBUNDERGLOW_RIGHT_NUM
-        #define RGBLIGHT_RIGHT_NUM RGBLED_NUM
-    #endif
+    #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
+    // If these are not defined; just default to entire board for layer 
+    #define RGBLIGHT_LEFT_BEG 0
+    #define RGBLIGHT_LEFT_NUM RGBLED_NUM
+    #define RGBLIGHT_RIGHT_BEG 0
+    #define RGBLIGHT_RIGHT_NUM RGBLED_NUM
 #endif
 
 // For perkey leds

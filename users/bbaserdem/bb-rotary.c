@@ -40,14 +40,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_VOLD);
                 }
                 break;
-            case _FUNC:
-                // Function layer; scroll vertically
-                //  Keypress should correspond to middle mouse button
+            case _NAVI:
+                // Navigation layer; move pointer up/down
+                //  Keypress should correspond to leftclick
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_WH_D);
+                    tap_code(KC_MS_D);
                 } else {
-                    tap_code(KC_WH_U);
+                    tap_code(KC_MS_U);
                 }
                 #endif
                 break;
@@ -69,14 +69,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_UP);
                 }
                 break;
-            case _NAVI:
-                // Navigation layer; move pointer up/down
-                //  Keypress should correspond to leftclick
+            case _MOUS:
+                // Mouse layer; move pointer left/right
+                //  Keypress should correspond to rightclick
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_MS_D);
+                    tap_code(KC_MS_R);
                 } else {
-                    tap_code(KC_MS_U);
+                    tap_code(KC_MS_L);
                 }
                 #endif
                 break;
@@ -88,25 +88,25 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     rgb_matrix_increase_val();
                     #endif
                     #ifdef RGBLIGHT_ENABLE
-                    rgblight_increase_noeeprom();
+                    rgblight_increase_val_noeeprom();
                     #endif
                 } else {
                     #ifdef RGB_MATRIX_ENABLE
-                    rgb_matrix_decrease_val();
+                    rgb_matrix_decrease_val_noeeprom();
                     #endif
                     #ifdef RGBLIGHT_ENABLE
-                    rgblight_decrease_noeeprom();
+                    rgblight_decrease_val_noeeprom();
                     #endif
                 }
                 break;
-            case _MOUS:
-                // Mouse layer; move pointer left/right
-                //  Keypress should correspond to rightclick
+            case _FUNC:
+                // Function layer; scroll vertically
+                //  Keypress should correspond to middle mouse button
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_MS_R);
+                    tap_code(KC_WH_D);
                 } else {
-                    tap_code(KC_MS_L);
+                    tap_code(KC_WH_U);
                 }
                 #endif
                 break;
@@ -119,13 +119,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(MU_SLOW);
                 }
                 #endif
-                break;
-            case _MIDI:
-                if (clockwise) {
-                    tap_code(KC_NO);
-                } else {
-                    tap_code(KC_NO);
-                }
                 break;
         }
     } else if (index == 1) {
@@ -150,14 +143,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_LEFT);
                 }
                 break;
-            case _FUNC:
-                // Function layer; scroll laterally
-                //  Keypress should not correspond
+            case _NAVI:
+                // Navigation layer; move pointer left/right
+                //  press should be rightclick
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_WH_R);
+                    tap_code(KC_MS_R);
                 } else {
-                    tap_code(KC_WH_L);
+                    tap_code(KC_MS_L);
                 }
                 #endif
                 break;
@@ -179,14 +172,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_BSPC);
                 }
                 break;
-            case _NAVI:
-                // Navigation layer; move pointer left/right
-                //  press should be rightclick
+            case _MOUS:
+                // Mouse layer; move pointer up/down
+                //  Press should give some mouse button
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_MS_R);
+                    tap_code(KC_MS_U);
                 } else {
-                    tap_code(KC_MS_L);
+                    tap_code(KC_MS_D);
                 }
                 #endif
                 break;
@@ -209,14 +202,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     #endif
                 }
                 break;
-            case _MOUS:
-                // Mouse layer; move pointer up/down
-                //  Press should give some mouse button
+            case _FUNC:
+                // Function layer; scroll laterally
+                //  Keypress should not correspond
                 #ifdef MOUSEKEY_ENABLE
                 if (clockwise) {
-                    tap_code(KC_MS_U);
+                    tap_code(KC_WH_R);
                 } else {
-                    tap_code(KC_MS_D);
+                    tap_code(KC_WH_L);
                 }
                 #endif
                 break;
@@ -230,13 +223,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(MU_SLOW);
                 }
                 #endif
-                break;
-            case _MIDI:
-                if (clockwise) {
-                    tap_code(KC_NO);
-                } else {
-                    tap_code(KC_NO);
-                }
                 break;
         }
     }

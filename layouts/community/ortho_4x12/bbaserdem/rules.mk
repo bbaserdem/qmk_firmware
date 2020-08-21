@@ -13,9 +13,10 @@
 # None of my 4x12 boards use backlight
 BACKLIGHT_ENABLE = no
 
-# Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled;
-#  if RGBLIGHT is set to 
+# Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled
+# RGBLIGHT should be enabled for a board with the underglow leds
+# RGB_MATRIX_ENABLE should be set to WS2812 for the daughter board
 ifneq (,$(findstring planck/rev6,$(KEYBOARD)))
-    RGBLIGHT_ENABLE = no
-    unset RGB_MATRIX_ENABLE = no
+    RGBLIGHT_ENABLE = yes
+    RGB_MATRIX_ENABLE = no
 endif
