@@ -38,7 +38,7 @@ void rgb_matrix_indicators_user(void) {
             keylight_set_right(RGB_GREEN);
             break;
         case _NUMB:
-            keylight_set_rightt(RGB_CYAN);
+            keylight_set_right(RGB_CYAN);
             break;
         case _SYMB:
             keylight_set_right(RGB_PURPLE);

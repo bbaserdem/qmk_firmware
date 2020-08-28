@@ -12,6 +12,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
+#ifndef __arm__
+    #undef  NOTE_REST
+    #define NOTE_REST 1.00f
+#endif
 
 /* Title:            People Vultures
  * Author/Composer:  King Gizzard & the Lizard Wizard

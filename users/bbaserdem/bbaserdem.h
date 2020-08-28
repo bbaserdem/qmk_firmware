@@ -128,7 +128,7 @@ enum userspace_layers {
 #define MU_MASK KC_A
 #define BB_SND  MU_ON
 #ifdef TAP_DANCE_ENABLE
-#define MU_TEMP ACTION_TAP_DANCE_DOUBLE(MU_SLOW, MU_FAST)
+#define MU_TEMP TD(TD_AUDIO_TEMPO)
 #else
 #define MU_TEMP KC_DOWN
 #endif
@@ -361,7 +361,7 @@ enum userspace_layers {
  */
 #define _SY1_5_ KC_DQUO,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN
 #define _SY2_5_ KC_UNDS,KC_DLR, KC_PERC,KC_CIRC,KC_PLUS
-#define _SY3_5_ KC_LCBR,KC_EXLM,KC_AT,  KC_HASH,KC_LCBR
+#define _SY3_5_ KC_LCBR,KC_EXLM,KC_AT,  KC_HASH,KC_RCBR
 #define _SY4_3_ LSFT(KC_NUBS),KC_PIPE,KC_TILD
 
 /* Mouse layer

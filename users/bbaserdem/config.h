@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #ifdef UNICODE_KEY_LNX
     #undef UNICODE_KEY_LNX
     #endif
-    #define UNICODE_KEY_LNX LCTL(LSFT(KC_G))
+    #define UNICODE_KEY_LNX LCTL(LSFT(KC_F))
 #endif
 
 // Tap-hold settings

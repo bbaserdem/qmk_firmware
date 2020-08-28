@@ -18,7 +18,7 @@ MOUSEKEY_ENABLE = yes   # Mouse emulation keys
 EXTRAKEY_ENABLE = yes   # OS signals like volume control
 UNICODEMAP_ENABLE = yes # Used for unicode character emulation
 KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used in general
-TAP_DANCE_ENABLE = no  	# Tap dance keys; i don't use tap dance but I use tap-hold
+TAP_DANCE_ENABLE = yes 	# Tap dance keys; i don't use tap dance but I use tap-hold
 VELOCIKEY_ENABLE = no   # Modulate speed effects with typing speed
 
 # These should be disabled in all boards

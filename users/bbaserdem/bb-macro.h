@@ -133,3 +133,14 @@ enum userspace_unicodemap {
     LOW_OMEGA,
 };
 #endif
+
+// Tap dance definition
+#ifdef TAP_DANCE_ENABLE
+
+// Tap dance stuff
+enum {
+    #ifdef AUDIO_ENABLE
+    TD_AUDIO_TEMPO,
+    #endif
+};
+#endif
