@@ -4,17 +4,8 @@ My userspace code for my various keyboards; available here.
 
 # Todo
 
-- [x] Merge tapdance, macro and unicode into process.
-- [x] Fix general naming and clean the code
-- [x] Transition to new layers
-- [x] Revamp RGB light codes
-- [x] Fix music mode codes
-- [x] Add rotary encoder support
-- [x] Converge on final keymap
-- [x] Transfer code to layout
-- [x] Remove biton32 function from encoder
-- [x] Find a way to move audio code to it's own file (from config.h)
-- [x] Fix RGB matrix layer switch.
+- [ ] Redo the number and symbol layer
+- [ ] Centralize color definitions for RGB
 - [ ] Document all features more extensibly
 - [ ] Generate json files to be used with Keyboard-Layout-Editor to produce images.
 - [ ] Add OLED support
@@ -24,19 +15,144 @@ My userspace code for my various keyboards; available here.
 A list of my code accross the QMK repo accessible here.
 (I will sell my built-but-not-using ones.)
 
-## Currently Using
+## Builds
 
-* [Planck](../../layouts/community/ortho_4x12/bbaserdem): I have 3 plancks;
-  * `rev6`, Workstation with Zilents
-  * `rev6`, Homestation with BOX Navy
-  * `light`, Choc low Navy
+These are my keyboard builds and info, it allows me to plan out my builds. 
 
-## Completed builds that are unused
+### Planck WORK
 
-* [XD75](../../layouts/community/ortho_5x15/bbaserdem)
-* [Let's Split Eh?](../../layouts/community/ortho_4x12/bbaserdem)
-* [Gherkin](../../layouts/community/ortho_3x10/bbaserdem), as a game pad.
-* [Infinity Ergodox](../../keyboards/ergodox_infinity/readme.md)
+* Board: planck/rev6
+* Switches: Zilent
+* Case: Planck Hi-Pro Bottom Case: Glossy White
+* Plate: Stainless steel with shiny finish (LaserBoost) 
+* Keycaps: Pudding PBT Doubleshot Keycap Set
+* Artisan: B.O.B StoneuCarved Lotus Artisan Keycap
+* Artisan: Teamwolf 304 Stainless Steel Transparent Metal Keycaps
+
+I use this at the workplace to not bother coworkers; focus on silence.
+Once the daughterboard is complete; this is gonna get it.
+
+### Planck HOME
+
+* Board: planck/rev6
+* Switches: Crystal BOX Jade
+* Case: Planck Hi-Pro Bottom Case (MOD version): Matte Black
+* Plate: Copper with shiny finish (LaserBoost) 
+* Keycaps: Buger TH01 XDA Dye-Subbed PBT
+* Artisan: Sparkle Loft Reactor Artisan Keycap
+
+I use this at home.
+Has all the extra pinouts exposed to play arounh with.
+Once the daughterboard is complete; this is gonna get it.
+
+### Planck SERVER
+
+* Board: planck/rev6
+* Switches: Crystal BOX Navy
+* Case: Clear Acrylic Top and Bottow, with Frosted Acrylic Diffuser (Smashing Acrylics)
+* Keycaps: Datamancer Tall Deco Typewriter Keycaps
+* Artisan: Hammer Fidget Spinner Artisan Keycap
+
+I'm using this while I'm in between boards; but very usable.
+Long term plan is to use this for the server.
+The case was initially designed for planck rev4;
+I'm replacing the PCB with my first round rev6 since my rev4 one was derelict
+due to repeated desolderings.
+
+### Planck CARRY
+
+* Board: planck/light
+* Switches: Choc Low Jade
+* Case: Stock Planck light case
+* Keycaps: Blanck MKB
+
+I carry this around; and is one of my favourite boards.
+Found a better keycap profile for these as well.
+
+### XD75RE
+
+* Board: xd75
+* Switches: Zealios 67g + Silencios
+* Case: Npkc 60% Wooden Case (Rosewood)
+* Keycaps: Massdrop x MITO XDA Godspeed
+* Artisan: Hammer Fidget Spinner Artisan Keycap
+* Artisan: Waffle Key Studio Rosette (Sunset)
+
+My first work board; that is not seing any use due to being big.
+
+### Gherkin PAD
+
+* Board: 40percentclub/gherkin
+* Case: Acrylic Case (Smashing Acrylics)
+* Controller: Pro Micro 
+* Switches: Gateron Yellows
+* Keycaps: Random (Replace with blanck XDA)
+
+The point of this is to act like a game/macro pad.
+Other than that; i just use this for bragging points.
+I have been planning on using my Proton C to turn into a MIDI controller.
+
+### Let's Split Eh?
+
+* Board: lets_split_eh/eh
+* Case: Acrylic Case (Smashing Acrylics)
+* Switches: Novelkeys BOX Royals 
+* Keycaps: G20 Semiotics
+
+I built this; but then I realized that I really don't enjoy ortholinear split.
+
+### Infinity Ergodox
+
+* Board: ergodox_infinity
+* Case: Datamancer Wooden case
+* Switches: Kailh Speed Gold
+* Keycaps: G20 Semiotics
+
+I don't like Infinity Ergodox.
+I got lucky with this drop;
+but should sell this soon cause really not seeing myself ever using this.
+Lucky me got the case for free due to (then) Massdrop shipping errors.
+
+### Corne
+
+* Board: crkbd/rev1
+* Case: IMK Corne Case Space Black
+* Switches: Healios V2
+* Keycaps: ???
+
+Want to add a trackpad to this board for mouse control.
+Will join the drop for this case when it comes out.
+Going to be lubing these switches.
+
+### Corne THEORYBOARD
+
+* Board: crkbd/rev1
+* Case: ???
+* Switches: Choc Low Burnt Orange
+* Keycaps: ???
+
+Want to use this to test and design using a joystick as a mouse controller.
+Has the 6th column broken off.
+
+### Kyria
+
+* Board: kyria/rev1
+* Case: ??? 
+* Switches: Gateron Ink Silent Black
+* Keycaps: Oblotzky SA Oblivion
+
+Want to add a joystick to this board for mouse control.
+Have not decided on a case design for this.
+
+### Big Switch
+
+* Board: bigseries/1key
+* Case: WoodKeys (KNOWN SCAMMER: DO NOT RECOMMEND)
+* Switches: Big Series Pale Blue
+* Keycaps: Default
+
+Got this before being scammed out of 200$ by Cole Markham: owner of WoodKeys;
+The usb port got torn off; so gonna need to fix it sometime.
 
 ## Planned builds
 
