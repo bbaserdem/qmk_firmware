@@ -20,14 +20,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #endif
 
     #ifdef RGBLIGHT_ENABLE
-    #define RGBLIGHT_ANIMATIONS
-    #define RGBLIGHT_HUE_STEP 8
-    #define RGBLIGHT_SAT_STEP 8
-    #define RGBLIGHT_VAL_STEP 8
+        #ifdef RGBLIGHT_LEFT_BEG
+        #undef RGBLIGHT_LEFT_BEG
+        #endif
+        #define RGBLIGHT_LEFT_BEG 0
+
+        #ifdef RGBLIGHT_LEFT_NUM
+        #undef RGBLIGHT_LEFT_NUM
+        #endif
+        #define RGBLIGHT_LEFT_NUM 10
+
+        #ifdef RGBLIGHT_RIGHT_BEG
+        #undef RGBLIGHT_RIGHT_BEG
+        #endif
+        #define RGBLIGHT_RIGHT_BEG 10
+
+        #ifdef RGBLIGHT_RIGHT_NUM
+        #undef RGBLIGHT_RIGHT_NUM
+        #endif
+        #define RGBLIGHT_RIGHT_NUM 10
     #endif
 
     // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
     // #define SPLIT_USB_DETECT
     // #define NO_USB_STARTUP_CHECK
 #endif
-

@@ -43,14 +43,14 @@ void rgb_matrix_indicators_user(void) {
         case _SYMB:
             keylight_set_right(RGB_PURPLE);
             break;
-        case _MOUS:
-            keylight_set_left(RGB_YELLOW);
-            break;
         case _MEDI:
             keylight_set_left(RGB_CORAL);
             break;
         case _FUNC:
             keylight_set_left(RGB_RED);
+            break;
+        case _MOUS:
+            keylight_set_left(RGB_YELLOW);
             break;
         case _MUSI:
             rgb_matrix_set_color_all(RGB_MAGENTA);

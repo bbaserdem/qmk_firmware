@@ -69,17 +69,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_UP);
                 }
                 break;
-            case _MOUS:
-                // Mouse layer; move pointer left/right
-                //  Keypress should correspond to rightclick
-                #ifdef MOUSEKEY_ENABLE
-                if (clockwise) {
-                    tap_code(KC_MS_R);
-                } else {
-                    tap_code(KC_MS_L);
-                }
-                #endif
-                break;
             case _MEDI:
                 // Media layer; increase/decrease rgb brightness
                 //  Keypress should toggle RGB light
@@ -107,6 +96,17 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_WH_D);
                 } else {
                     tap_code(KC_WH_U);
+                }
+                #endif
+                break;
+            case _MOUS:
+                // Mouse layer; move pointer left/right
+                //  Keypress should correspond to rightclick
+                #ifdef MOUSEKEY_ENABLE
+                if (clockwise) {
+                    tap_code(KC_MS_R);
+                } else {
+                    tap_code(KC_MS_L);
                 }
                 #endif
                 break;
@@ -172,17 +172,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_BSPC);
                 }
                 break;
-            case _MOUS:
-                // Mouse layer; move pointer up/down
-                //  Press should give some mouse button
-                #ifdef MOUSEKEY_ENABLE
-                if (clockwise) {
-                    tap_code(KC_MS_U);
-                } else {
-                    tap_code(KC_MS_D);
-                }
-                #endif
-                break;
             case _MEDI:
                 // Media layer; change RGB mode
                 //  Press should default RGB to rainbow
@@ -210,6 +199,17 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code(KC_WH_R);
                 } else {
                     tap_code(KC_WH_L);
+                }
+                #endif
+                break;
+            case _MOUS:
+                // Mouse layer; move pointer up/down
+                //  Press should give some mouse button
+                #ifdef MOUSEKEY_ENABLE
+                if (clockwise) {
+                    tap_code(KC_MS_U);
+                } else {
+                    tap_code(KC_MS_D);
                 }
                 #endif
                 break;

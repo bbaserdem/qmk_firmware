@@ -73,9 +73,9 @@ const rgblight_segment_t* const PROGMEM bb_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     bb_navi_layer,
     bb_numb_layer,
     bb_symb_layer,
-    bb_mous_layer,
     bb_medi_layer,
     bb_func_layer,
+    bb_mous_layer,
     bb_musi_layer
 );
 
@@ -96,9 +96,9 @@ layer_state_t layer_state_set_underglow(layer_state_t state) {
     rgblight_set_layer_state(_NAVI, layer_state_cmp(state, _NAVI));
     rgblight_set_layer_state(_NUMB, layer_state_cmp(state, _NUMB));
     rgblight_set_layer_state(_SYMB, layer_state_cmp(state, _SYMB));
-    rgblight_set_layer_state(_MOUS, layer_state_cmp(state, _MOUS));
     rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
     rgblight_set_layer_state(_FUNC, layer_state_cmp(state, _FUNC));
+    rgblight_set_layer_state(_MOUS, layer_state_cmp(state, _MOUS));
     rgblight_set_layer_state(_MUSI, layer_state_cmp(state, _MUSI));
     // Return so other stuff can be done
     return state;

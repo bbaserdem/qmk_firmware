@@ -76,9 +76,9 @@ enum userspace_layers {
     _NAVI,      // R3: Navigation layer
     _NUMB,      // R2: Numbers layer
     _SYMB,      // R1: Symbols layer
-    _MOUS,      // L1: Mouse keys layer
-    _MEDI,      // L2: Media layer
-    _FUNC,      // L3: Function keys layer
+    _MEDI,      // L1: Media layer
+    _FUNC,      // L2: Function keys layer
+    _MOUS,      // L3: Mouse keys layer
     _MUSI       // Music overlay
 };
 
@@ -238,11 +238,11 @@ enum userspace_layers {
 
 // Layer switches
 #define NAV_TAB LT(_NAVI, KC_TAB )
-#define NUM_SPC LT(_NUMB, KC_SPC )
+#define NUM_ENT LT(_NUMB, KC_ENT )
 #define SYM_ESC LT(_SYMB, KC_ESC )
-#define MOU_DEL LT(_MOUS, KC_DEL )
-#define MED_ENT LT(_MEDI, KC_ENT )
-#define FUN_BSP LT(_FUNC, KC_BSPC)
+#define MED_DEL LT(_MEDI, KC_DEL )
+#define FUN_SPC LT(_FUNC, KC_SPC )
+#define MOUBSP LT(_MOUS, KC_BSPC)
 
 // Layer switches
 #define BB_CHAR OSL(_CHAR)
@@ -256,8 +256,8 @@ enum userspace_layers {
  * ├─Gui─┼─Alt─┼─Ctr─┼─Sft─┼─────┤             ├─────┼─Sft─┼─Ctr─┼─Alt─┼─Gui─┤
  * │ ; : │  Q  │  J  │  K  │  X  │ ` ~     < > │  B  │  M  │  W  │  V  │  Z  │
  * └─────┴AltGr┴─────┼─────┼─────┼─────┐ ┌─────┼─────┼─────┼─────┴AltGr┴─────┘
- *                   │ Tab │Space│ Esc │ │ Del │ Ent │BkSpc│
- *                   └─Nav─┴─Num─┴─Sym─┘ └─Mou─┴─Med─┴─Fun─┘
+ *                   │ Tab │Enter│ Esc │ │ Del │Space│BkSpc│
+ *                   └─Nav─┴─Num─┴─Sym─┘ └─Med─┴─Fun─┴─Mou─┘
  * The thing about this layout is that these will fit most boards I have.
  */
 #define _BL1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
@@ -266,8 +266,8 @@ enum userspace_layers {
 #define _BR2_5_ KC_H,   SHIFT_J,CTRL_K, ALT_L,  GUI_SCL
 #define _BL3_5_ KC_Z,   ALTGR_X,KC_C,   KC_V,   KC_B
 #define _BR3_5_ KC_N,   KC_M,   KC_COMM,ALTGR_D,KC_SLSH
-#define _BL4_3_ NAV_TAB,NUM_SPC,SYM_ESC
-#define _BR4_3_ MOU_DEL,MED_ENT,FUN_BSP
+#define _BL4_3_ NAV_TAB,NUM_ENT,SYM_ESC
+#define _BR4_3_ MED_DEL,FUN_SPC,MOU_BSP
 // The extra line for the 6th (or 0th) row
 #define _BL1_1_ KC_LBRC
 #define _BR1_1_ KC_RBRC
@@ -284,7 +284,7 @@ enum userspace_layers {
  * ├─────┼─────┼─────┼─────┼─────┤             ├─────┼─────┼─────┼─────┼─────┤
  * │  ₿  │  θ  │  ℏ  │  κ  │  ξ  │             │  β  │  μ  │  ω  │  Å  │  ζ  │
  * └─────┴─────┴─────┼─────┼─────┼─────┐ ┌─────┼─────┼─────┼─────┴─────┴─────┘
- *                   │ Shf │ ... │     │ │     │     │ Shf │
+ *                   │ Shf │ ... │ GPG │ │     │     │ Shf │
  *                   └─────┴─────┴─────┘ └─────┴─────┴─────┘
  * Extra characters layer
  */
@@ -294,8 +294,8 @@ enum userspace_layers {
 #define _CR2_5_ GR_DEL, GR_ETA, GR_TAU, GR_NU,  GR_SIG
 #define _CL3_5_ BB_BITC,GR_THE, BB_PLNK,GR_KAP, GR_XI
 #define _CR3_5_ GR_BET, GR_MU,  GR_OME, BB_ANGS,GR_ZET
-#define _CL4_3_ XXXXXXX,XXXXXXX,KC_LSFT
-#define _CR4_3_ KC_RSFT,BB_ELLI,XXXXXXX
+#define _CL4_3_ KC_RSFT,BB_ELLI,BB_PGPK
+#define _CR4_3_ XXXXXXX,XXXXXXX,KC_LSFT
 
 /* Game layer; just assume dvorak here
  * ┌─────┬─────┬─────┬─────┬─────┐
@@ -305,7 +305,7 @@ enum userspace_layers {
  * ├─────┼─────┼─────┼─────┼─────┤
  * │  Z  │  X  │  C  │  V  │  B  │Shift
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │ Esc │Space│Enter│
+ *                   │Space│Enter│ Esc │
  *                   └─────┴─────┴─────┘
  */
 #define _GA1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
@@ -314,105 +314,105 @@ enum userspace_layers {
 #define _GA2_1_ KC_TAB
 #define _GA3_5_ KC_Z,   KC_X,   KC_C,   KC_V,   KC_B
 #define _GA3_1_ KC_LSFT
-#define _GA4_3_ KC_ESC, KC_SPC, KC_ENT
+#define _GA4_3_ KC_SPC, KC_ENT, KC_ESC
 
 /* Navigation layer
  *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │Redo │Undo │Yank │ Cut │Paste│
+ *       │Redo │Paste│Yank │ Cut │PrScr│
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │CpsLk│  <  │  v  │  ^  │  >  │
+ *       │Undo │  <  │  v  │  ^  │  >  │
  *       ├─────┼─────┼─────┼─────┼─────┤
  *       │ Ins │Home │PgDwn│PgUp │ End │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
- * │ Del │Enter│Bkspc│
+ * │ Del │Space│Bkspc│
  * └─────┴─────┴─────┘
  */
-#define _NA1_5_ BB_REDO,BB_UNDO,BB_YANK,BB_CUT, BB_PSTE
-#define _NA2_5_ KC_CAPS,KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT
+#define _NA1_5_ BB_REDO,BB_PSTE,BB_YANK,BB_CUT, KC_PSCR
+#define _NA2_5_ BB_UNDO,KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT
 #define _NA3_5_ KC_INS, KC_HOME,KC_PGDN,KC_PGUP,KC_END
-#define _NA4_3_ KC_DEL, KC_ENT, KC_BSPC
+#define _NA4_3_ KC_DEL, KC_SPC, KC_BSPC
 
 /* Numbers layer (in DVORAK)
  *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │  -  │  7  │  8  │  9  │  0  │
+ *       │ ` ~ │ 7 & │ 8 * │ 9 ( │ 0 ) │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │  [  │  4  │  5  │  6  │  ]  │
+ *       │ \ | │ 4 $ │ 5 % │ 6 ^ │ - _ │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │  /  │  1  │  2  │  3  │  =  │
+ *       │ / ? │ 1 ! │ 2 @ │ 3 # │ = + │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
- * │  <  │  \  │  `  │
+ * │ Del │Space│Bkspc│
  * └─────┴─────┴─────┘
  */
-#define _NU1_5_ KC_QUOT,KC_7,   KC_8,   KC_9,   KC_0
-#define _NU2_5_ KC_MINS,KC_4,   KC_5,   KC_6,   KC_EQL
+#define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
+#define _NU2_5_ KC_BSLS,KC_4,   KC_5,   KC_6,   KC_QUOT
 #define _NU3_5_ KC_LBRC,KC_1,   KC_2,   KC_3,   KC_RBRC
-#define _NU4_3_ KC_NUBS,KC_BSLS,KC_GRV
+#define _NU4_3_ KC_DEL, KC_SPC, KC_BSPC
 
 /* Symbols layer (in DVORAK)
  *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │  _  │  &  │  *  │  (  │  )  │
+ *       │CharL│  /  │  =  │  ?  │  +  │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │  {  │  $  │  %  │  ^  │  }  │
+ *       │CpsLk│  (  │  )  │  <  │  >  │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │  ?  │  !  │  @  │  #  │  +  │
+ *       │     │  [  │  ]  │  {  │  }  │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
  * │  >  │  |  │  ~  │
  * └─────┴─────┴─────┘
  */
-#define _SY1_5_ KC_DQUO,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN
-#define _SY2_5_ KC_UNDS,KC_DLR, KC_PERC,KC_CIRC,KC_PLUS
-#define _SY3_5_ KC_LCBR,KC_EXLM,KC_AT,  KC_HASH,KC_RCBR
-#define _SY4_3_ LSFT(KC_NUBS),KC_PIPE,KC_TILD
-
-/* Mouse layer
- * ┌─────┬─────┬─────┬─────┬─────┐
- * │RESET│Eprom│ Sp1 │ Bt5 │ Sp3 │
- * ├─────┼─────┼─────┼─────┼─────┤
- * │ Bt4 │ |<| │ |v| │ |^| │ |>| │
- * ├─────┼─────┼─────┼─────┼─────┤
- * │ Bt5 │ <<< │ vvv │ ^^^ │ >>> │
- * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │Right│ Mid │ Lft │
- *                   └─────┴─────┴─────┘
- */
-#define _MO1_5_ RESET,  EEP_RST,KC_ACL0,KC_ACL1,KC_ACL2
-#define _MO2_5_ KC_BTN4,KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R
-#define _MO3_5_ KC_BTN5,KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R
-#define _MO4_3_ KC_BTN1,KC_BTN2,KC_BTN3
+#define _SY1_5_ BB_CHAR,KC_LBRC,KC_RBRC,KC_LCBR,KC_RCBR
+#define _SY2_5_ KC_CAPS,KC_LPRN,KC_RPRN,KC_NUBS,LSFT(KC_NUBS)
+#define _SY3_5_ XXXXXXX,KC_MINS,KC_EQL ,KC_UNDS,KC_PLUS
+#define _SY4_3_ _______,_______,_______
 
 /* Media layer
  * ┌─────┬─────┬─────┬─────┬─────┐
  * │ Tog │ Mod │ Hue │ Sat │ Bri │ RGB
  * ├─────┼─────┼─────┼─────┼─────┤
- * │ Mut │Prev.│VolDn│VolUp│Next │
+ * │Prev.│VolDn│VolUp│Next │ Mut │
  * ├─────┼─────┼─────┼─────┼─────┤
  * │ Tog │Brth.│ Val │RgbSp│Veloc│ Led
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │Stop │ Tog │Music│
+ *                   │Sink │ Tog │Music│
  *                   └─────┴─────┴─────┘
  */
 #define _ME1_5_ RGB_TOG,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI
-#define _ME2_5_ KC_MUTE,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT
+#define _ME2_5_ KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,KC_MUTE
 #define _ME3_5_ BL_TOGG,BL_BRTG,BL_STEP,RGB_SPD,VLK_TOG
-#define _ME4_3_ KC_MSTP,KC_MPLY,MU_TOG
+#define _ME4_3_ KC_F13, KC_MPLY,MU_TOG
 
 /* Function layer
  * ┌─────┬─────┬─────┬─────┬─────┐
- * │PrScr│ F07 │ F08 │ F09 │ F10 │
+ * │ F01 │ F02 │ F03 │ F04 │RESET│
  * ├─────┼─────┼─────┼─────┼─────┤
- * │ Gpg │ F04 │ F05 │ F06 │ F11 │
+ * │ F05 │ F06 │ F07 │ F08 │EEPRM│
  * ├─────┼─────┼─────┼─────┼─────┤
- * │GameL│ F01 │ F02 │ F03 │ F12 │
+ * │ F09 │ F10 │ F11 │ F12 │GameL│
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │ Tab │Space│ Esc │
+ *                   │ Tab │Enter│ Esc │
  *                   └─────┴─────┴─────┘
  */
-#define _FU1_5_ KC_PSCR,KC_F7,  KC_F8,  KC_F9,  KC_F10
-#define _FU2_5_ BB_PGPK,KC_F4,  KC_F5,  KC_F6,  KC_F11
-#define _FU3_5_ BB_GAME,KC_F1,  KC_F2,  KC_F3,  KC_F12
-#define _FU4_3_ KC_TAB, KC_SPC, KC_ESC
+#define _FU1_5_ KC_F1,  KC_F2,  KC_F3,  KC_F4,  RESET
+#define _FU2_5_ KC_F5,  KC_F6,  KC_F7,  KC_F8,  EEP_RST
+#define _FU3_5_ KC_F9,  KC_F10, KC_F11, KC_F12, BB_GAME
+#define _FU4_3_ KC_TAB, KC_ENT, KC_ESC
 
-/* Music layer: This is rotary encoder thing
+/* Mouse layer
+ * ┌─────┬─────┬─────┬─────┬─────┐
+ * │Slow │Right│ Mid │ Lft │Fast │
+ * ├─────┼─────┼─────┼─────┼─────┤
+ * │ |<| │ |v| │ |^| │ |>| │ Bt4 │
+ * ├─────┼─────┼─────┼─────┼─────┤
+ * │ <<< │ vvv │ ^^^ │ >>> │ Bt5 │
+ * └─────┴─────┴─────┼─────┼─────┼─────┐
+ *                   │ Tab │Enter│ Esc │
+ *                   └─────┴─────┴─────┘
+ */
+#define _MO1_5_ KC_ACL0,KC_BTN1,KC_BTN2,KC_BTN3,KC_ACL2
+#define _MO2_5_ KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,KC_BTN4
+#define _MO3_5_ KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,KC_BTN5
+#define _MO4_3_ KC_TAB, KC_ENT, KC_ESC
+
+/* Music layer
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
  * │   │   │   │   │   │   │   │   │   │   │   │   │
  * ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤

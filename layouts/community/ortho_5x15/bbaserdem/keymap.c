@@ -57,13 +57,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         xxx1xxx,_SY3_5_,___3___,___6___,
         ___4___,_SY4_3_,___1___,___3___,___4___
     ),
-    [_NAVI] = LAYOUT_ortho_5x15_wrapper(
-        ___6___,___3___,___6___,
-        ___6___,___3___,_FU1_5_,xxx1xxx,
-        ___6___,___3___,_FU2_5_,xxx1xxx,
-        ___6___,___3___,_FU3_5_,xxx1xxx,
-        ___4___,___3___,___1___,_FU4_3_,___4___
-    ),
     [_MEDI] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
         ___6___,___3___,_ME1_5_,xxx1xxx,
@@ -78,6 +71,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___6___,___3___,_MO3_5_,xxx1xxx,
         ___4___,___3___,___1___,_MO4_3_,___4___
     ),
+    [_NAVI] = LAYOUT_ortho_5x15_wrapper(
+        ___6___,___3___,___6___,
+        ___6___,___3___,_FU1_5_,xxx1xxx,
+        ___6___,___3___,_FU2_5_,xxx1xxx,
+        ___6___,___3___,_FU3_5_,xxx1xxx,
+        ___4___,___3___,___1___,_FU4_3_,___4___
+    ),
     [_MUSI] = LAYOUT_ortho_5x15_wrapper(
         _MU_06_,_MU_03_,_MU_06_,
         _MU_06_,_MU_03_,_MU_06_,
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // XD75RE: Use as layer indicator
-#ifdef KEYBOARD_planck_light
+#ifdef KEYBOARD_xd75
 layer_state_t layer_state_set_xd75re(layer_state_t state) {
     if (layer_state_cmp(state, _CHAR)) {
         capslock_led_on();

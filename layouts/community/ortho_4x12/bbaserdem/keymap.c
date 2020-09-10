@@ -57,13 +57,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___6___,xxx1xxx,_SY3_5_,
         KC_BSPC,___5___,_SY4_3_,___3___
     ),
-    // Mouse layer: left_half
-    [_MOUS] = LAYOUT_ortho_4x12_wrapper(
-        _MO1_5_,xxx1xxx,___6___,
-        _MO2_5_,xxx1xxx,___6___,
-        _MO3_5_,xxx1xxx,___6___,
-        KC_BTN3,___2___,_MO4_3_,___6___
-    ),
     // Media layer: left_half
     [_MEDI] = LAYOUT_ortho_4x12_wrapper(
         _ME1_5_,xxx1xxx,___6___,
@@ -77,6 +70,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _FU2_5_,xxx1xxx,___6___,
         _FU3_5_,xxx1xxx,___6___,
         KC_BTN2,___2___,_FU4_3_,___6___
+    ),
+    // Mouse layer: left_half
+    [_MOUS] = LAYOUT_ortho_4x12_wrapper(
+        _MO1_5_,xxx1xxx,___6___,
+        _MO2_5_,xxx1xxx,___6___,
+        _MO3_5_,xxx1xxx,___6___,
+        KC_BTN3,___2___,_MO4_3_,___6___
     ),
     // Music layer: everything
     [_MUSI] = LAYOUT_ortho_4x12_wrapper(
