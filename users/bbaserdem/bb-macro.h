@@ -142,5 +142,6 @@ enum {
     #ifdef AUDIO_ENABLE
     TD_AUDIO_TEMPO,
     #endif
+    TD_BIGSWITCH,
 };
 #endif

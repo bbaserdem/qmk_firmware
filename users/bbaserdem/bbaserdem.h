@@ -242,11 +242,12 @@ enum userspace_layers {
 #define SYM_ESC LT(_SYMB, KC_ESC )
 #define MED_DEL LT(_MEDI, KC_DEL )
 #define FUN_SPC LT(_FUNC, KC_SPC )
-#define MOUBSP LT(_MOUS, KC_BSPC)
+#define MOU_BSP LT(_MOUS, KC_BSPC)
 
 // Layer switches
 #define BB_CHAR OSL(_CHAR)
 #define BB_GAME TG(_GAME)
+#define BB_BIGS TD(TD_BIGSWITCH)
 
 /* Base layout; (shown in DVORAK)
  * ┌─────┬─────┬─────┬─────┬─────┐             ┌─────┬─────┬─────┬─────┬─────┐
