@@ -21,63 +21,114 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ├───┼───┼───┼───┼───┼───┤         ├───┼───┼───┼───┼───┼───┤
  * │< >│ J │ Ö │ V │ C │ Ç │         │ Z │ S │ B │. :│, ;│ W │
  * └───┴───┴───┴───┼───┼───┼───┐ ┌───┼───┼───┼───┴───┴───┴───┘
- *                 │Esc│Spc│Tab│ │Ent│Bsp│Del│
+ *                 │Tab│Ent│Esc│ │Del│Spc│Bsp│
  *                 └───┴───┴───┘ └───┴───┴───┘
  */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT_split_3x6_3(
+    [_BASE] = LAYOUT_split_3x6_3_wrapper(
         _BL1_1_,_BL1_5_,_BR1_5_,_BR1_1_,
         _BL2_1_,_BL2_5_,_BR2_5_,_BR2_1_,
         _BL3_1_,_BL3_5_,_BR3_5_,_BR3_1_,
                 _BL4_3_,_BR4_3_
     ),
-    [_CHAR] = LAYOUT_split_3x6_3(
+    [_CHAR] = LAYOUT_split_3x6_3_wrapper(
         XXXXXXX,_CL1_5_,_CR1_5_,XXXXXXX,
         XXXXXXX,_CL2_5_,_CR2_5_,XXXXXXX,
         XXXXXXX,_CL3_5_,_CR3_5_,XXXXXXX,
                 _CL4_3_,_CR4_3_
     ),
-    [_GAME] = LAYOUT_split_3x6_3(
+    [_GAME] = LAYOUT_split_3x6_3_wrapper(
         _GA1_1_,_GA1_5_,___6___,
         _GA2_1_,_GA2_5_,___6___,
         _GA3_1_,_GA3_5_,___6___,
                 _GA4_3_,___3___
     ),
-    [_FUNC] = LAYOUT_split_3x6_3(
+    [_NAVI] = LAYOUT_split_3x6_3_wrapper(
+        ___6___,_NA1_5_,xxx1xxx,
+        ___6___,_NA2_5_,xxx1xxx,
+        ___6___,_NA3_5_,xxx1xxx,
+        ___3___,_NA4_3_
+    ),
+    [_NUMB] = LAYOUT_split_3x6_3_wrapper(
+        ___6___,_NU1_5_,xxx1xxx,
+        ___6___,_NU2_5_,xxx1xxx,
+        ___6___,_NU3_5_,xxx1xxx,
+        ___3___,_NU4_3_
+    ),
+    [_SYMB] = LAYOUT_split_3x6_3_wrapper(
+        ___6___,_SY1_5_,xxx1xxx,
+        ___6___,_SY2_5_,xxx1xxx,
+        ___6___,_SY3_5_,xxx1xxx,
+        ___3___,_SY4_3_
+    ),
+    [_MEDI] = LAYOUT_split_3x6_3_wrapper(
+        xxx1xxx,_ME1_5_,___6___,
+        xxx1xxx,_ME2_5_,___6___,
+        xxx1xxx,_ME3_5_,___6___,
+        _ME4_3_,___3___
+    ),
+    [_FUNC] = LAYOUT_split_3x6_3_wrapper(
         xxx1xxx,_FU1_5_,___6___,
         xxx1xxx,_FU2_5_,___6___,
         xxx1xxx,_FU3_5_,___6___,
         _FU4_3_,___3___
     ),
-    [_NUMB] = LAYOUT_split_3x6_3(
-        xxx1xxx,_NU1_5_,___6___,
-        xxx1xxx,_NU2_5_,___6___,
-        xxx1xxx,_NU3_5_,___6___,
-        _NU4_3_,___3___
+    [_MOUS] = LAYOUT_split_3x6_3_wrapper(
+        xxx1xxx,_MO1_5_,___6___,
+        xxx1xxx,_MO2_5_,___6___,
+        xxx1xxx,_MO3_5_,___6___,
+        _MO4_3_,___3___
     ),
-    [_SYMB] = LAYOUT_split_3x6_3(
-        xxx1xxx,_SY1_5_,___6___,
-        xxx1xxx,_SY2_5_,___6___,
-        xxx1xxx,_SY3_5_,___6___,
-        _SY4_3_,___3___
-    ),
-    [_MEDI] = LAYOUT_split_3x6_3(
-        ___6___,_ME1_5_,xxx1xxx,
-        ___6___,_ME2_5_,xxx1xxx,
-        ___6___,_ME3_5_,xxx1xxx,
-        ___3___,_ME4_3_
-    ),
-    [_MOUS] = LAYOUT_split_3x6_3(
-        ___6___,_MO1_5_,xxx1xxx,
-        ___6___,_MO2_5_,xxx1xxx,
-        ___6___,_MO3_5_,xxx1xxx,
-        ___3___,_MO4_3_
-    ),
-    [_NAVI] = LAYOUT_split_3x6_3(
-        ___6___,_NA1_5_,xxx1xxx,
-        ___6___,_NA2_5_,xxx1xxx,
-        ___6___,_NA3_5_,xxx1xxx,
-        ___3___,_NA4_3_
+    [_MUSI] = LAYOUT_split_3x6_3_wrapper(
+        _MU_12_,_MU_12_,_MU_12_,
+        _MUL_3_,_MUR_3_
     )
 };
+
+// RGB Matrix configuration
+#ifdef RGB_MATRIX_ENABLE
+
+// crkbd
+#if defined(KEYBOARD_crkbd_rev1)
+/* This is left-right for planck light indicator light
+ *  - The LED 42 is for spacebar specifically, leave it out of the matrix
+ *  - This is how it looks like
+ * ┌──┬──┬──┬──┬──┬──┐      ┌──┬──┬──┬──┬──┬──┐
+ * │24│23│18│17│10│09│      │36│37│44│45│50│51│
+ * ├──┼02┼──┼01┼──┼00┤      ├27┼──┼28┼──┼29┼──┤
+ * │25│22│19│16│11│08│      │35│38│43│46│49│52│
+ * ├──┼03┼──┼04┼──┼05┤      ├32┼──┼31┼──┼30┼──┤
+ * │26│21│20│15│12│07│      │34│39│42│47│48│53│
+ * └──┴──┴──┴──┼──┼──┼──┐┌──┼──┼──┼──┴──┴──┴──┘
+ *             │14│13│06││33│40│41│
+ *             └──┴──┴──┘└──┴──┴──┘
+ */
+int board_left[27] = {
+     0,  1,  2,  3,  4,  5,
+     6,  7,  8,  9, 10, 11,
+    12, 13, 14, 15, 16, 17,
+    18, 19, 20, 21, 22, 23,
+    24, 25, 26};
+int board_right[27] = {
+    27, 28, 29, 30, 31, 32,
+    33, 34, 35, 36, 37, 38,
+    39, 40, 41, 42, 43, 44,
+    45, 46, 47, 48, 49, 50,
+    51, 52, 53};
+// Sided color-setting
+void keylight_set_left(uint8_t red, uint8_t green, uint8_t blue) {
+    for (int i = 0; i < 27; i++) {
+        rgb_matrix_set_color(board_left[i], red, green, blue);
+    }
+}
+void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
+    for (int i = 0; i < 27; i++) {
+        rgb_matrix_set_color(board_right[i], red, green, blue);
+    }
+}
+// End of differentiations
+#endif
+
+// End of code for the RGB_MATRIX setup
+#endif

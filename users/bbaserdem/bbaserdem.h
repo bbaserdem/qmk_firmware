@@ -88,10 +88,12 @@ enum userspace_layers {
 
 // These defines allow multiple multi-parameter definitions to expand
 // for these boards
-#define LAYOUT_ortho_4x12_wrapper(...)      LAYOUT_ortho_4x12(__VA_ARGS__)
-#define LAYOUT_ortho_5x15_wrapper(...)      LAYOUT_ortho_5x15(__VA_ARGS__)
-#define LAYOUT_ortho_3x10_wrapper(...)      LAYOUT_ortho_3x10(__VA_ARGS__)
-#define LAYOUT_split_3x6_3_wrapper(...)     LAYOUT_split_3x6_3(__VA_ARGS__)
+#define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
+#define LAYOUT_ortho_4x12_wrapper(...)  LAYOUT_ortho_4x12(__VA_ARGS__)
+#define LAYOUT_ortho_5x15_wrapper(...)  LAYOUT_ortho_5x15(__VA_ARGS__)
+#define LAYOUT_ortho_3x10_wrapper(...)  LAYOUT_ortho_3x10(__VA_ARGS__)
+#define LAYOUT_split_3x6_3_wrapper(...) LAYOUT_split_3x6_3(__VA_ARGS__)
+#define LAYOUT_split_3x5_3_wrapper(...) LAYOUT_split_3x5_3(__VA_ARGS__)
 
 // Masks
 #define ___1___ _______
