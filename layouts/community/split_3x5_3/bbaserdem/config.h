@@ -13,6 +13,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+// Split definition; use the following to flash;
+//  pro-micro:      avrdude-split-left/right
+//  elite-c:        dfu-split-left/right
+#define EE_HANDS
+
 #ifdef KEYBOARD_crkbd_rev1
     // Corne overrides
 #endif

@@ -26,62 +26,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT_split_3x6_3(
+    [_BASE] = LAYOUT_split_3x5_3_wrapper(
         _BL1_5_,_BR1_5_,
         _BL2_5_,_BR2_5_,
         _BL3_5_,_BR3_5_,
                 _BL4_3_,_BR4_3_
     ),
-    [_CHAR] = LAYOUT_split_3x6_3(
+    [_CHAR] = LAYOUT_split_3x5_3_wrapper(
         _CL1_5_,_CR1_5_,
         _CL2_5_,_CR2_5_,
         _CL3_5_,_CR3_5_,
                 _CL4_3_,_CR4_3_
     ),
-    [_GAME] = LAYOUT_split_3x6_3(
+    [_GAME] = LAYOUT_split_3x5_3_wrapper(
         _GA1_5_,___5___,
         _GA2_5_,___5___,
         _GA3_5_,___5___,
                 _GA4_3_,___3___
     ),
-    [_NAVI] = LAYOUT_split_3x6_3(
+    [_NAVI] = LAYOUT_split_3x5_3_wrapper(
         ___5___,_NA1_5_,
         ___5___,_NA2_5_,
         ___5___,_NA3_5_,
         ___3___,_NA4_3_
     ),
-    [_NUMB] = LAYOUT_split_3x6_3(
+    [_NUMB] = LAYOUT_split_3x5_3_wrapper(
         ___5___,_NU1_5_,
         ___5___,_NU2_5_,
         ___5___,_NU3_5_,
         ___3___,_NU4_3_
     ),
-    [_SYMB] = LAYOUT_split_3x6_3(
+    [_SYMB] = LAYOUT_split_3x5_3_wrapper(
         ___5___,_SY1_5_,
         ___5___,_SY2_5_,
         ___5___,_SY3_5_,
         ___3___,_SY4_3_
     ),
-    [_MEDI] = LAYOUT_split_3x6_3(
+    [_MEDI] = LAYOUT_split_3x5_3_wrapper(
         _ME1_5_,___5___,
         _ME2_5_,___5___,
         _ME3_5_,___5___,
         _ME4_3_,___3___
     ),
-    [_FUNC] = LAYOUT_split_3x6_3(
+    [_FUNC] = LAYOUT_split_3x5_3_wrapper(
         _FU1_5_,___5___,
         _FU2_5_,___5___,
         _FU3_5_,___5___,
         _FU4_3_,___3___
     ),
-    [_MOUS] = LAYOUT_split_3x6_3(
+    [_MOUS] = LAYOUT_split_3x5_3_wrapper(
         _MO1_5_,___5___,
         _MO2_5_,___5___,
         _MO3_5_,___5___,
         _MO4_3_,___3___
     ),
-    [_MUSI] = LAYOUT_split_3x6_3(
-        _MU_12_,_MU_12_,_MU_12_,
+    [_MUSI] = LAYOUT_split_3x5_3_wrapper(
+        _MU_10_,_MU_10_,_MU_10_,
         _MUL_3_,_MUR_3_
     )
 };
