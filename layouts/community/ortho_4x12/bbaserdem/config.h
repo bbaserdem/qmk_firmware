@@ -15,6 +15,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Code pertaining to planck rev6
 #if defined(KEYBOARD_planck_rev6)
+    // Encoder I use;
+    #ifdef RGB_DI_PIN
+    #undef ENCODER_RESOLUTION
+    #endif
+    #define ENCODER_RESOLUTION 2
     // Daughter board related utilities
     #ifdef RGB_MATRIX_ENABLE
         // Reconfigure the RGB DI Pin

@@ -72,7 +72,7 @@ endif
 
 # RGB LED (Perkey) code
 ifneq ($(strip $(RGB_MATRIX_ENABLE)),)
-    ifneq ($(strip $(RGB_MATRIX_ENABLE)),)
+    ifneq ($(strip $(RGB_MATRIX_ENABLE)), no)
 	SRC += bb-keylight.c
     endif
 endif
