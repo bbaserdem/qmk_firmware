@@ -45,34 +45,34 @@ API_SYSEX_ENABLE = no   # Allows OS to send signals.
 # Disabling this makes it compile, i dont know why
 
 # Userspace code
-SRC += bbaserdem.c
+SRC += sbp.c
 
 # Macros
-SRC += bb-macro.c
+SRC += sbp-macro.c
 
 # Audio code
 ifeq ($(strip $(AUDIO_ENABLE)), yes)
-SRC += bb-audio.c
+SRC += sbp-audio.c
 endif
 
 # Rotary encoder stuff
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
-SRC += bb-rotary.c
+SRC += sbp-rotary.c
 endif
 
 # Backlight code
 ifeq ($(strip $(BACKLIGHT_ENABLE)), yes)
-SRC += bb-backlight.c
+SRC += sbp-backlight.c
 endif
 
 # RGB LED Underglow code
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
-SRC += bb-underglow.c
+SRC += sbp-underglow.c
 endif
 
 # RGB LED (Perkey) code
 ifneq ($(strip $(RGB_MATRIX_ENABLE)),)
     ifneq ($(strip $(RGB_MATRIX_ENABLE)), no)
-	SRC += bb-keylight.c
+	SRC += sbp-keylight.c
     endif
 endif

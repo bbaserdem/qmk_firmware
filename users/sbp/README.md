@@ -1,14 +1,14 @@
-# Bbaserdem
+# SBP userspace code for qmk
 
 My userspace code for my various keyboards; available here.
 
 # Todo
 
-- [ ] Redo the number and symbol layer
+- [ ] Create encoder switch functionality
+- [ ] Add OLED support
 - [ ] Centralize color definitions for RGB
 - [ ] Document all features more extensibly
 - [ ] Generate json files to be used with Keyboard-Layout-Editor to produce images.
-- [ ] Add OLED support
 
 # Keyboards
 
@@ -30,12 +30,11 @@ These are my keyboard builds and info, it allows me to plan out my builds.
 * Artisan: Teamwolf 304 Stainless Steel Transparent Metal Keycaps
 
 I use this at the workplace to not bother coworkers; focus on silence.
-Once the daughterboard is complete; this is gonna get it.
 
 ### Planck HOME
 
 * Board: planck/rev6
-* Switches: Crystal BOX Jade
+* Switches: Crystal BOX Navy
 * Case: Planck Hi-Pro Bottom Case (MOD version): Matte Black
 * Plate: Copper with shiny finish (LaserBoost) 
 * Keycaps: Buger TH01 XDA Dye-Subbed PBT
@@ -43,20 +42,18 @@ Once the daughterboard is complete; this is gonna get it.
 
 I use this at home.
 Has all the extra pinouts exposed to play arounh with.
-Once the daughterboard is complete; this is gonna get it.
 
 ### Planck SERVER
 
-* Board: planck/rev6
-* Switches: Crystal BOX Navy
+* Board: jj40
+* Switches: BOX Navy
 * Case: Clear Acrylic Top and Bottow, with Frosted Acrylic Diffuser (Smashing Acrylics)
 * Keycaps: Datamancer Tall Deco Typewriter Keycaps
-* Artisan: Hammer Fidget Spinner Artisan Keycap
 
 I'm using this while I'm in between boards; but very usable.
 Long term plan is to use this for the server.
 The case was initially designed for planck rev4;
-I'm replacing the PCB with my first round rev6 since my rev4 one was derelict
+I'm replaced the PCB since my rev4 one was derelict
 due to repeated desolderings.
 
 ### Planck CARRY
@@ -84,9 +81,9 @@ My first work board; that is not seing any use due to being big.
 
 * Board: 40percentclub/gherkin
 * Case: Acrylic Case (Smashing Acrylics)
-* Controller: Pro Micro 
-* Switches: Gateron Yellows
-* Keycaps: Random (Replace with blanck XDA)
+* Controller: Proton C
+* Switches: Novelkeys Creams
+* Keycaps: Random
 
 The point of this is to act like a game/macro pad.
 Other than that; i just use this for bragging points.
@@ -106,79 +103,51 @@ I built this; but then I realized that I really don't enjoy ortholinear split.
 * Board: ergodox_infinity
 * Case: Datamancer Wooden case
 * Switches: Kailh Speed Gold
-* Keycaps: G20 Semiotics
+* Keycaps: None
 
 I don't like Infinity Ergodox.
-I got lucky with this drop;
-but should sell this soon cause really not seeing myself ever using this.
+Should sell this soon cause really not seeing myself ever using this.
 Lucky me got the case for free due to (then) Massdrop shipping errors.
 
 ### Corne
 
 * Board: crkbd/rev1
-* Case: IMK Corne Case Space Black
+* Case: IMK Corne Case v2 Polycarbonate
 * Switches: Healios V2
-* Keycaps: ???
+* Keycaps: POM Jelly
 
-Want to add a trackpad to this board for mouse control.
-Will join the drop for this case when it comes out.
-Going to be lubing these switches.
+I'm planning on adding a trackpad for this, as detailed
+[here](https://github.com/manna-harbour/crkbd/blob/master/trackpoint/readme.org).
 
-### Corne THEORYBOARD
+### Corne Lite
 
 * Board: crkbd/rev1
-* Case: ???
+* Case: Custom
 * Switches: Choc Low Burnt Orange
-* Keycaps: ???
+* Keycaps: [Scooped Choc Keycaps](https://mkultra.click/collections/keycaps/products/scooped-choc-keycaps?variant=31223543365730)
 
-Want to use this to test and design using a joystick as a mouse controller.
-Has the 6th column broken off.
+Getting my friend Irem to design a hipro stacked case for this.
 
 ### Kyria
 
 * Board: kyria/rev1
-* Case: ??? 
+* Case: Matte Black Acrylic High-Profile case
 * Switches: Gateron Ink Silent Black
 * Keycaps: Oblotzky SA Oblivion
 
 Want to add a joystick to this board for mouse control.
-Have not decided on a case design for this.
+Want to print a metal top plate for this.
 
 ### Big Switch
 
 * Board: bigseries/1key
 * Case: WoodKeys (KNOWN SCAMMER: DO NOT RECOMMEND)
 * Switches: Big Series Pale Blue
-* Keycaps: Default
+* Keycaps: Idea23
 
 Got this before being scammed out of 200$ by Cole Markham: owner of WoodKeys;
-The usb port got torn off; so gonna need to fix it sometime.
-
-## Planned builds
-
-* [Planck](../../layouts/community/ortho_4x12/bbaserdem)
-Planning on another `rev6`, to use at home use with Gateron Yellow for my server.
-* [Corne](../../layouts/community/split_3x6_3/bbaserdem)
-Linear switches (getting a switch tester to check it out
-I'm planning on adding a trackpad for this, as detailed
-[here](https://github.com/manna-harbour/crkbd/blob/master/trackpoint/readme.org).
-* [Kyria](../../keyboards/kyria/keymaps/bbaserdem)
-Planning on using Choc low burnt orange on this board,
-but possibly can go for tall switches.
-I want to add a
-[thumb slidepad](https://www.sparkfun.com/products/9426), or a 
-[thumb joystick](https://www.sparkfun.com/products/15168) to this keyboard.
-
-## Broken builds
-
-* [Bigseries](../../keyboards/bigseries/1key/keymaps/bbaserdem)
-While I used a big switch Pale Blue; this PCB is unavailable due to
-Cole Markham (novelkeys) being a scammer and disappeared after not delivering
-his group buys.
-Hence can't get my hands on this PCB to rebuild things.
-(No one else should attempt to purchase this; as his website is still up to
-collect funds.)
-Might repair this with a bit of epoxy; as it's just the contact.
+The usb port got torn off; and could not fix it.
+Expensive paperweight?
 
 # Firmware building
 
@@ -186,42 +155,44 @@ Might repair this with a bit of epoxy; as it's just the contact.
 
 On archlinux, the package *arm-none-eabi-gcc* is too new.
 To fix; add to the environment `CFLAGS="-Wno-error=deprecated"` to compilation commands.
+Also; try to run `avr-gcc` version `8.4.0` for smaller firmware.
+
+## Bootloader
+
+If I want to flash a new bootloader for a machine; here are steps;
+
+1. Flash the util/pro_micro_ISP_B6_10.hex to a spare promicro using;
+`avrdude -p atmega32u4 -P "$(ls /dev/ttyACM*)" -c avr109 -D -U flash:w:pro_micro_ISP_B6_10.hex`
+2. Wire the pins; (first is the ISP pro micro; second is the target)
+```
+Pro Micro 10 (B6)  <-> Keyboard RESET
+Pro Micro 15 (B1)  <-> Keyboard B1 (SCLK)
+Pro Micro 16 (B2)  <-> Keyboard B2 (MOSI)
+Pro Micro 14 (B3)  <-> Keyboard B3 (MISO)
+Pro Micro VCC      <-> Keyboard VCC
+Pro Micro GND      <-> Keyboard GND
+```
+3. Connect the flashed pro micro to my computer and run
+`avrdude -c avrisp -P "$(ls /dev/ttyACM*)" -p atmega32u4 -U flash:w:bootloader_atmega32u4_1.0.0.hex:i -U lfuse:w:0x5E:m -U hfuse:w:0xD9:m -U efuse:w:0xC3:m`
+
+The avrisp here refers to the firmware on the ISP flasher pro micro.
+The `atmega32u4` refers to the CPU used in the respective breakout boards.
+The `avrdude` command interacts with catalina bootloader.
+The shell call after the `-P` flag auto finds the port that the pro micro connects to.
+The last few arguments are some jumpers apparently.
 
 # Features
 
 My userspace has a lot of shared code between different keyboards.
-These files are prefixed with `bb-` to remove any naming clash.
+These files are prefixed with `sbp-` to remove any naming clash.
 
-* [bb-audio](bb-audio.c): Code dealing with audio playback using onboard sound.
+* [sbp-audio](bb-audio.c): Code dealing with audio playback using onboard sound.
 Also contains stuff regarding using the devices as MIDI controllers. (WIP)
-* [bb-backlight](bb-backlight.c): Controls global key single-channel LED stuff.
-* [bb-keylight](bb-keylight.c): Controls per-key RGB LED matrix stuff.
-* [bb-underglow](bb-underglow.c): Controls RGB underglow effects.
-* [bb-process](bb-macro.c): My custom keycodes; macros, tap dances, etc.
-* [bb-rotary](bb-rotary.c): Rotary encoder sutff
-
-## Current keyboards
-
-* [Bigseries](../../keyboards/bigseries/1key/keymaps/bbaserdem)
-* [Gherkin](../../keyboards/40percentclub/gherkin/keymaps/bbaserdem)
-* [Let's Split Eh](../../keyboards/lets_split_eh/keymaps/bbaserdem)
-* [Planck (rev 4, light and rev6)](../../keyboards/planck/keymaps/bbaserdem)
-* [XD75](../../keyboards/xd75/keymaps/bbaserdem)
-
-Unfortunately, the output on my bigswitch pcb broke,
-and the producer woodkeys is AWOL, (along with my 200$ for the APX case)
-thus I cannot really test it out.
-Also, I'm using my planck all the time,
-and am not testing the other layouts for bugs.
-
-## Planned keyboards
-
-* [Let's Split](../../keyboards/lets_split/keymaps/bbaserdem)
-I have two proton C's, and i want to build a board that uses choc low switches.
-I have the pcb for it, but I do need a case to solder in the switches.
-For which, I have not seen anything.
-* [Infinity Ergodox](../../keyboards/ergodox_infinity/keymaps/bbaserdem)
-I have this at hand, but never could get the LED display to work.
+* [sbp-backlight](bb-backlight.c): Controls global key single-channel LED stuff.
+* [sbp-keylight](bb-keylight.c): Controls per-key RGB LED matrix stuff.
+* [sbp-underglow](bb-underglow.c): Controls RGB underglow effects.
+* [sbp-process](bb-macro.c): My custom keycodes; macros, tap dances, etc.
+* [sbp-rotary](bb-rotary.c): Rotary encoder sutff
 
 # Layout
 

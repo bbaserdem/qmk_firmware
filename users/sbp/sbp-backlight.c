@@ -11,7 +11,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "bb-backlight.h"
+#include "sbp-backlight.h"
 /* Replaced functions with noeeprom varieties; I don't need retention across
  * booting.
  */

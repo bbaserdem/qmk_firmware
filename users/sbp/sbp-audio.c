@@ -11,7 +11,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "bb-audio.h"
+#include "sbp-audio.h"
 /* AUDIO
  * This contains some audio related stuff.
  * There is no need to wrap this up with preprocessor commands;

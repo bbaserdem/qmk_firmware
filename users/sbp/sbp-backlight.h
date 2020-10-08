@@ -12,6 +12,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "bbaserdem.h"
-// Hook to encoder stuff
-void encoder_update_user(uint8_t index, bool clockwise);
+#include "sbp.h"
+/* Hooks for backlight definitions
+ */
+
+void keyboard_post_init_backlight(void);

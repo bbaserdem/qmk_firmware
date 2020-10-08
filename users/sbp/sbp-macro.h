@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "bbaserdem.h"
+#include "sbp.h"
 /* This header file contains definitons regarding custom keycodes.
  * - Both regular and unicode macros are dealt with in this file
  */

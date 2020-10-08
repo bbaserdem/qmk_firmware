@@ -12,8 +12,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "bbaserdem.h"
-/* Hooks for backlight definitions
+#include "sbp.h"
+/* AUDIO
+ * Some functions to hook to some modes
  */
 
-void keyboard_post_init_backlight(void);
+// Hook to layer change effects
+layer_state_t layer_state_set_audio(layer_state_t state);
+
+// Hook to audio keycodes
+bool process_record_audio(uint16_t keycode, keyrecord_t *record);

@@ -21,26 +21,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 // Macros to use, this has base level code so not affected by enabled features
-#include "bb-macro.h"
+#include "sbp-macro.h"
 // Audio from onboard speakers
 #ifdef AUDIO_ENABLE
-  #include "bb-audio.h"
+  #include "sbp-audio.h"
 #endif
 // Underglow using rgb LEDs
 #ifdef RGBLIGHT_ENABLE          
-    #include "bb-underglow.h"
+    #include "sbp-underglow.h"
 #endif
 // Keycap backlight using non-rgb LEDs
 #ifdef BACKLIGHT_ENABLE         
-  #include "bb-backlight.h"
+  #include "sbp-backlight.h"
 #endif
 // Keycap backlight using rgb LEDs
 #ifdef RGB_MATRIX_ENABLE
-    #include "bb-keylight.h"
+    #include "sbp-keylight.h"
 #endif
 // Rotary encoder
 #ifdef ENCODER_ENABLE  
-    #include "bb-rotary.h"
+    #include "sbp-rotary.h"
 #endif
 
 // Function definitions that can be accessed through specific keymaps
