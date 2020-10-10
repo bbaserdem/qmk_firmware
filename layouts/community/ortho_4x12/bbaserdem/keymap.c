@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Music layer: everything
     [_MUSI] = LAYOUT_ortho_4x12_wrapper(
         _MU_12_,_MU_12_,_MU_12_,
-        MU_OFF,_MU_02_,_MUL_3_,_MUR_3_,_MU_02_,RGB_TOG)
+        MU_TOG,_MU_02_,_MUL_3_,_MUR_3_,_MU_02_,RGB_TOG)
 };
 
 // RGB Matrix configuration
@@ -127,10 +127,7 @@ void keylight_set_right(uint8_t red, uint8_t green, uint8_t blue) {
 // planck:rev6
 #elif defined(KEYBOARD_planck_rev6)
 /* Rev6 has RGB matrix to the bottom LED footprints
- * But I had a daughter board printed; and am going to be setting that up
- * The vanilla config is at the bottom
- * For now; we need to redefine the LED configuration
- * Breakdown of the daughter board layout that I used
+ * Breakdown of the daughter board layout that I'm planning to use
  * ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
  * │35│36│37│38│39│40│41│42│43│44│45│46│
  * ├──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┼──┤

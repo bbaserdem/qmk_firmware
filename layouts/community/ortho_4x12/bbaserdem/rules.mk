@@ -10,13 +10,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# None of my 4x12 boards use backlight
-BACKLIGHT_ENABLE = no
-
 # Planck rev6 has both RGBLIGHT and RGB_MATRIX enabled
 # RGBLIGHT should be enabled for a board with the underglow leds
 # RGB_MATRIX_ENABLE should be set to WS2812 for the daughter board
 ifneq (,$(findstring planck/rev6,$(KEYBOARD)))
+    RGBLIGHT_ENABLE = yes
+    RGB_MATRIX_ENABLE = no
+endif
+# JJ40 here
+ifneq (,$(findstring jj40,$(KEYBOARD)))
     RGBLIGHT_ENABLE = yes
     RGB_MATRIX_ENABLE = no
 endif

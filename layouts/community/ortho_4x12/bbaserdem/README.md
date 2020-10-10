@@ -14,7 +14,19 @@ Originally, in the firmware, the underglow rgb prints are configured both for
 I differentiate between these two; and use;
 
 * `RGBLIGHT` for underglow leds.
-* `RGB_MATRIX` for the daughterboard.
+* `RGB_MATRIX` for the daughterboard, if I get to it at some point. (Doubtful)
+
+Enable in rules.mk accordingly.
+
+## Status
+
+* [x] Layout adapted
+* [x] Have not tested build yet.
+* [x] Have not confirmed on board
+
+# JJ40
+
+A planck rev4 replacement; for the acrylic case.
 
 Enable in rules.mk accordingly.
 
@@ -27,6 +39,7 @@ Enable in rules.mk accordingly.
 # Let's Split Eh?
 
 I have a [let's split eh?](../../../../keyboards/lets_split_eh/README.md).
+Will sell this though.
 
 ## Status
 
