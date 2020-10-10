@@ -14,7 +14,9 @@
 
 # Gherkin has both RGB strip and LED lights
 ifneq (,$(findstring 40percentclub/gherkin,$(KEYBOARD)))
-    RGBLIGHT_ENABLE = yes
+    CONVERT_TO_PROTON_C = yes
+    RGB_MATRIX_ENABLE = WS2812
+    AUDIO_ENABLE = yes
     BACKLIGHT_ENABLE = yes
+    VELOCIKEY_ENABLE = yes
 endif
-
