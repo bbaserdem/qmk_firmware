@@ -14,18 +14,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "sbp-encoder.h"
 /* ROTARY ENCODER
  * This contains my general rotary encoder code
- * It is layer adaptive
+ * Encoders each have a list of different modes they can be in.
+ * Each mode also have an on click action as well.
+ * Modes can be cycled using either shift-click or ctrl-click
+ * Modes can be reset using OS click
+ * Some modes are only accessible through some keymap layers
  */
+encoder_state_t encoder_state[NUMBER_OF_ENCODERS];
+void reset_encoder_state(void) {
+    for (int i = 0; i < NUMBER_OF_ENCODERS; i++) {
+        encoder_state[i].base = i;
+        encoder_state[i].rgb = i;
+        encoder_state[i].point = i;
+    }
+}
 
 // Initialize the encoder state beginning
-encoder_state_t encoder_state[] = {
-    [0].base  = 0,
-    [0].rgb   = 0,
-    [0].point = 0,
-    [1].base  = 1,
-    [1].rgb   = 1,
-    [1].point = 1
-};
+void keyboard_post_init_encoder(void) {
+    reset_encoder_state();
+}
 
 // Encoder scroll functionality
 void encoder_update_user(uint8_t index, bool clockwise) {
@@ -333,6 +340,9 @@ bool process_record_encoder(uint16_t keycode, keyrecord_t *record) {
                         (encoder_state[encoder_index].base  + 7) % 8;
                     break;
             }
+        // If meta is active, reset the encoder states
+        } else if (get_mods() & MOD_MASK_GUI) {
+            reset_encoder_state();
         // If nothing else; just perform the click action
         } else {
             encoder_click_action(encoder_index);

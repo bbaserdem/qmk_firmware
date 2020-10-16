@@ -60,6 +60,16 @@ __attribute__ ((weak)) void keyboard_post_init_user(void) {
     keyboard_post_init_underglow();
     #endif
 
+    // Encoders
+    #ifdef UNICODEMAP_ENABLE
+    keyboard_post_init_encoder();
+    #endif
+
+    // Unicode mode
+    #ifdef UNICODEMAP_ENABLE
+    set_unicode_input_mode(UC_LNX);
+    #endif
+
     // Unicode mode
     #ifdef UNICODEMAP_ENABLE
     set_unicode_input_mode(UC_LNX);

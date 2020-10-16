@@ -18,10 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void encoder_update_user(uint8_t index, bool clockwise);
 // Complicated code for what the encoder keys do when pressed
 bool process_record_encoder(uint16_t keycode, keyrecord_t *record);
+// Initializing the encoder array
+void keyboard_post_init_encoder(void);
+// Clear the encoder settings
+void reset_encoder_state(void);
 
 // Structure to keep runtime info on encoder state
 typedef struct {
-  uint8_t base;     // The encoder state on most layers; regular function
-  uint8_t rgb;      // The encoder state on media layer; controls light settings
-  uint8_t point;    // The encoder state on mouse layer; moves pointer
+    uint8_t base;   // The encoder state on most layers; regular function
+    uint8_t rgb;    // The encoder state on media layer; controls light settings
+    uint8_t point;  // The encoder state on mouse layer; moves pointer
 } encoder_state_t;
