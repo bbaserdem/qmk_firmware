@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _BL1_5_,_BL1_1_,_BR1_1_,_BR1_5_,
         _BL2_5_,_BL2_1_,_BR2_1_,_BR2_5_,
         _BL3_5_,_BL3_1_,_BR3_1_,_BR3_5_,
-        BB_SND, KC_DOWN,KC_UP,  _BL4_3_,_BR4_3_,KC_LEFT,KC_RGHT,RGB_TOG
+        BB_ENC0,KC_DOWN,KC_UP,  _BL4_3_,_BR4_3_,KC_LEFT,KC_RGHT,RGB_TOG
     ),
     // Extra characters overlay
     [_CHAR] = LAYOUT_ortho_4x12_wrapper(
@@ -34,54 +34,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _GA1_5_,_GA1_1_,___6___,
         _GA2_5_,_GA2_1_,___6___,
         _GA3_5_,_GA3_1_,___6___,
-        KC_MUTE,___2___,_GA4_3_,___6___
+        ___3___,_GA4_3_,___6___
+    ),
+    // Media layer: right_half
+    [_MEDI] = LAYOUT_ortho_4x12_wrapper(
+        ___6___,_ME1_5_,xxx1xxx,
+        ___6___,_ME2_5_,xxx1xxx,
+        ___6___,_ME3_5_,xxx1xxx,
+        ___6___,_ME4_3_,___3___
     ),
     // Navigation layer: right_half
     [_NAVI] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_NA1_5_,
         ___6___,xxx1xxx,_NA2_5_,
         ___6___,xxx1xxx,_NA3_5_,
-        KC_BTN1,___5___,_NA4_3_,___3___
+        ___6___,_NA4_3_,___3___
     ),
     // Number layer: right_half
     [_NUMB] = LAYOUT_ortho_4x12_wrapper(
         ___6___,xxx1xxx,_NU1_5_,
         ___6___,xxx1xxx,_NU2_5_,
         ___6___,xxx1xxx,_NU3_5_,
-        KC_BSPC,___5___,_NU4_3_,___3___
+        ___6___,_NU4_3_,___3___
     ),
-    // Symbol layer: right_half
+    // Symbol layer: left_half
     [_SYMB] = LAYOUT_ortho_4x12_wrapper(
-        ___6___,xxx1xxx,_SY1_5_,
-        ___6___,xxx1xxx,_SY2_5_,
-        ___6___,xxx1xxx,_SY3_5_,
-        KC_BSPC,___5___,_SY4_3_,___3___
-    ),
-    // Media layer: left_half
-    [_MEDI] = LAYOUT_ortho_4x12_wrapper(
-        _ME1_5_,xxx1xxx,___6___,
-        _ME2_5_,xxx1xxx,___6___,
-        _ME3_5_,xxx1xxx,___6___,
-        RGB_TOG,___2___,_ME4_3_,___6___
+        xxx1xxx,_SY1_5_,___6___,
+        xxx1xxx,_SY2_5_,___6___,
+        xxx1xxx,_SY3_5_,___6___,
+        ___3___,_SY4_3_,___6___
     ),
     // Function layer: left_half
     [_FUNC] = LAYOUT_ortho_4x12_wrapper(
         _FU1_5_,xxx1xxx,___6___,
         _FU2_5_,xxx1xxx,___6___,
         _FU3_5_,xxx1xxx,___6___,
-        KC_BTN2,___2___,_FU4_3_,___6___
+        ___3___,_FU4_3_,___6___
     ),
     // Mouse layer: left_half
     [_MOUS] = LAYOUT_ortho_4x12_wrapper(
         _MO1_5_,xxx1xxx,___6___,
         _MO2_5_,xxx1xxx,___6___,
         _MO3_5_,xxx1xxx,___6___,
-        KC_BTN3,___2___,_MO4_3_,___6___
+        ___3___,_MO4_3_,___6___
     ),
     // Music layer: everything
     [_MUSI] = LAYOUT_ortho_4x12_wrapper(
         _MU_12_,_MU_12_,_MU_12_,
-        MU_TOG,_MU_02_,_MUL_3_,_MUR_3_,_MU_02_,RGB_TOG)
+        ___1___,_MU_02_,_MUL_3_,_MUR_3_,_MU_02_,___1___)
 };
 
 // RGB Matrix configuration

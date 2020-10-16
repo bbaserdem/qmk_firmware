@@ -44,6 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _GA3_5_,___5___,
                 _GA4_3_,___3___
     ),
+    [_MEDI] = LAYOUT_split_3x5_3_wrapper(
+        ___5___,_ME1_5_,
+        ___5___,_ME2_5_,
+        ___5___,_ME3_5_,
+        ___3___,_ME4_3_
+    ),
     [_NAVI] = LAYOUT_split_3x5_3_wrapper(
         ___5___,_NA1_5_,
         ___5___,_NA2_5_,
@@ -57,16 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___3___,_NU4_3_
     ),
     [_SYMB] = LAYOUT_split_3x5_3_wrapper(
-        ___5___,_SY1_5_,
-        ___5___,_SY2_5_,
-        ___5___,_SY3_5_,
-        ___3___,_SY4_3_
-    ),
-    [_MEDI] = LAYOUT_split_3x5_3_wrapper(
-        _ME1_5_,___5___,
-        _ME2_5_,___5___,
-        _ME3_5_,___5___,
-        _ME4_3_,___3___
+        _SY1_5_,___5___,
+        _SY2_5_,___5___,
+        _SY3_5_,___5___,
+        _SY4_3_,___3___
     ),
     [_FUNC] = LAYOUT_split_3x5_3_wrapper(
         _FU1_5_,___5___,

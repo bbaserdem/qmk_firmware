@@ -34,6 +34,9 @@ void rgb_matrix_indicators_user(void) {
         case _CHAR:
             rgb_matrix_set_color_all(RGB_CHARTREUSE);
             break;
+        case _MEDI:
+            keylight_set_left(RGB_CORAL);
+            break;
         case _NAVI:
             keylight_set_right(RGB_GREEN);
             break;
@@ -42,9 +45,6 @@ void rgb_matrix_indicators_user(void) {
             break;
         case _SYMB:
             keylight_set_right(RGB_PURPLE);
-            break;
-        case _MEDI:
-            keylight_set_left(RGB_CORAL);
             break;
         case _FUNC:
             keylight_set_left(RGB_RED);

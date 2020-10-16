@@ -44,6 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _GA3_1_,_GA3_5_,___6___,
                 _GA4_3_,___3___
     ),
+    [_MEDI] = LAYOUT_split_3x6_3_wrapper(
+        ___6___,_ME1_5_,xxx1xxx,
+        ___6___,_ME2_5_,xxx1xxx,
+        ___6___,_ME3_5_,xxx1xxx,
+        ___3___,_ME4_3_
+    ),
     [_NAVI] = LAYOUT_split_3x6_3_wrapper(
         ___6___,_NA1_5_,xxx1xxx,
         ___6___,_NA2_5_,xxx1xxx,
@@ -57,16 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___3___,_NU4_3_
     ),
     [_SYMB] = LAYOUT_split_3x6_3_wrapper(
-        ___6___,_SY1_5_,xxx1xxx,
-        ___6___,_SY2_5_,xxx1xxx,
-        ___6___,_SY3_5_,xxx1xxx,
-        ___3___,_SY4_3_
-    ),
-    [_MEDI] = LAYOUT_split_3x6_3_wrapper(
-        xxx1xxx,_ME1_5_,___6___,
-        xxx1xxx,_ME2_5_,___6___,
-        xxx1xxx,_ME3_5_,___6___,
-        _ME4_3_,___3___
+        xxx1xxx,_SY1_5_,___6___,
+        xxx1xxx,_SY2_5_,___6___,
+        xxx1xxx,_SY3_5_,___6___,
+        _SY4_3_,___3___
     ),
     [_FUNC] = LAYOUT_split_3x6_3_wrapper(
         xxx1xxx,_FU1_5_,___6___,

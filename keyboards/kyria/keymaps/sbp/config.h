@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     // Split definition; use the following to flash;
     //  pro-micro:      avrdude-split-left/right
     //  elite-c:        dfu-split-left/right
+    #define ENCODER_DIRECTION_FLIP
     #define EE_HANDS
 
     #ifdef OLED_DRIVER_ENABLE

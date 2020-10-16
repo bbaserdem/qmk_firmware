@@ -57,7 +57,7 @@ endif
 
 # Rotary encoder stuff
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
-SRC += sbp-rotary.c
+SRC += sbp-encoder.c
 endif
 
 # Backlight code

@@ -32,6 +32,11 @@ const rgblight_segment_t PROGMEM bb_char_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 // Right-hand layers
 
+// Media layer is orange
+const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, 30, 255, 255 
+    }
+);
 // Navigation layer is green
 const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_GREEN}
@@ -40,25 +45,20 @@ const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_CYAN}
 );
-// Symbol layer is purple
-const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_PURPLE}
-);
 
 // Left-hand layers
 
-// Pointer layer is yellow
-const rgblight_segment_t PROGMEM bb_mous_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_YELLOW}
-);
-// Media layer is orange
-const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, 30, 255, 255 
-    }
+// Symbol layer is purple
+const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_PURPLE}
 );
 // Function layer is red
 const rgblight_segment_t PROGMEM bb_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_RED}
+);
+// Pointer layer is yellow
+const rgblight_segment_t PROGMEM bb_mous_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_YELLOW}
 );
 
 // Music playback layer is magenta
@@ -93,10 +93,10 @@ layer_state_t layer_state_set_underglow(layer_state_t state) {
     rgblight_set_layer_state(_BASE, layer_state_cmp(state, _BASE));
     rgblight_set_layer_state(_GAME, layer_state_cmp(state, _GAME));
     rgblight_set_layer_state(_CHAR, layer_state_cmp(state, _CHAR));
+    rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
     rgblight_set_layer_state(_NAVI, layer_state_cmp(state, _NAVI));
     rgblight_set_layer_state(_NUMB, layer_state_cmp(state, _NUMB));
     rgblight_set_layer_state(_SYMB, layer_state_cmp(state, _SYMB));
-    rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
     rgblight_set_layer_state(_FUNC, layer_state_cmp(state, _FUNC));
     rgblight_set_layer_state(_MOUS, layer_state_cmp(state, _MOUS));
     rgblight_set_layer_state(_MUSI, layer_state_cmp(state, _MUSI));

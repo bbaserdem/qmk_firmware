@@ -20,41 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // These will be delegated to keymap specific stuff (weak definition)
 bool process_record_macro(uint16_t keycode, keyrecord_t *record);
 
-// Make it so that keymaps can use KEYMAP_SAFE_RANGE for custom keycodes
-#if defined(KEYMAP_SAFE_RANGE)
-  #define PLACEHOLDER_SAFE_RANGE KEYMAP_SAFE_RANGE
-#else
-  #define PLACEHOLDER_SAFE_RANGE SAFE_RANGE
-#endif
-
-// Custom macro keycode ranges
-enum userspace_custom_keycodes {
-    // Safe stuff
-    BB_SAFE = PLACEHOLDER_SAFE_RANGE,
-    // Double entry macros
-    DBL_ANG,
-    DBL_PAR,
-    DBL_CBR,
-    DBL_BRC,
-    // Macro key
-    BB_PGPK,
-    // Unicode strings
-    #ifdef UNICODEMAP_ENABLE
-    BB_LENY,
-    BB_TABL,
-    TR_FLAG,
-    #endif
-    //use for keymap specific codes
-    KEYMAP_SAFE_RANGE
-};
-
-// Mask these keycodes if required features are not enabled
-#ifndef UNICODEMAP_ENABLE
-#define BB_LENY KC_NO
-#define BB_TABL KC_NO
-#define TR_FLAG KC_NO
-#endif
-
 // Unicodemap implementation
 #ifdef UNICODEMAP_ENABLE
 enum userspace_unicodemap {
@@ -134,10 +99,8 @@ enum userspace_unicodemap {
 };
 #endif
 
-// Tap dance definition
-#ifdef TAP_DANCE_ENABLE
-
 // Tap dance stuff
+#ifdef TAP_DANCE_ENABLE
 enum {
     #ifdef AUDIO_ENABLE
     TD_AUDIO_TEMPO,

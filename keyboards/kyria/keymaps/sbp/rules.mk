@@ -14,5 +14,6 @@
 ifneq (,$(findstring kyria/rev1,$(KEYBOARD)))
     OLED_DRIVER_ENABLE = yes   # Enables the use of OLED displays
     ENCODER_ENABLE = yes       # Enables the use of one or more encoders
-    RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
+    RGBLIGHT_ENABLE = no       # Disable keyboard RGB underglow; can't see much
+    RGB_MATRIX_ENABLE = no
 endif

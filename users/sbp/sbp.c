@@ -100,11 +100,16 @@ __attribute__ ((weak))
 bool process_record_macro(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
+__attribute__ ((weak))
+bool process_record_encoder(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Return after running through all individual hooks
     return
         process_record_keymap(keycode, record)  &&
         process_record_audio(keycode, record)   &&
+        process_record_encoder(keycode, record)   &&
         process_record_macro(keycode, record);
 }
 

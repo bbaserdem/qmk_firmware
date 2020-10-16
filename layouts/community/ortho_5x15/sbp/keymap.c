@@ -36,12 +36,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _GA3_1_,_GA3_5_,___3___,___6___,
         ___4___,_GA4_3_,___1___,___3___,___4___
     ),
-    [_FUNC] = LAYOUT_ortho_5x15_wrapper(
+    [_MEDI] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
-        xxx1xxx,_FU1_5_,___3___,___6___,
-        xxx1xxx,_FU2_5_,___3___,___6___,
-        xxx1xxx,_FU3_5_,___3___,___6___,
-        ___4___,_FU4_3_,___1___,___3___,___4___
+        xxx1xxx,_ME1_5_,___3___,___6___,
+        xxx1xxx,_ME2_5_,___3___,___6___,
+        xxx1xxx,_ME3_5_,___3___,___6___,
+        ___4___,___3___,___1___,_ME4_3_,___4___
+    ),
+    [_NAVI] = LAYOUT_ortho_5x15_wrapper(
+        ___6___,___3___,___6___,
+        xxx1xxx,_NA1_5_,___3___,___6___,
+        xxx1xxx,_NA2_5_,___3___,___6___,
+        xxx1xxx,_NA3_5_,___3___,___6___,
+        ___4___,_NA4_3_,___1___,___3___,___4___
     ),
     [_NUMB] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
@@ -52,17 +59,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_SYMB] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
-        xxx1xxx,_SY1_5_,___3___,___6___,
-        xxx1xxx,_SY2_5_,___3___,___6___,
-        xxx1xxx,_SY3_5_,___3___,___6___,
-        ___4___,_SY4_3_,___1___,___3___,___4___
+        ___6___,___3___,_SY1_5_,xxx1xxx,
+        ___6___,___3___,_SY2_5_,xxx1xxx,
+        ___6___,___3___,_SY3_5_,xxx1xxx,
+        ___4___,___3___,___1___,_SY4_3_,___4___
     ),
-    [_MEDI] = LAYOUT_ortho_5x15_wrapper(
+    [_FUNC] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
-        ___6___,___3___,_ME1_5_,xxx1xxx,
-        ___6___,___3___,_ME2_5_,xxx1xxx,
-        ___6___,___3___,_ME3_5_,xxx1xxx,
-        ___4___,___3___,___1___,_ME4_3_,___4___
+        ___6___,___3___,_FU1_5_,xxx1xxx,
+        ___6___,___3___,_FU2_5_,xxx1xxx,
+        ___6___,___3___,_FU3_5_,xxx1xxx,
+        ___4___,___3___,___1___,_FU4_3_,___4___
     ),
     [_MOUS] = LAYOUT_ortho_5x15_wrapper(
         ___6___,___3___,___6___,
@@ -70,13 +77,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___6___,___3___,_MO2_5_,xxx1xxx,
         ___6___,___3___,_MO3_5_,xxx1xxx,
         ___4___,___3___,___1___,_MO4_3_,___4___
-    ),
-    [_NAVI] = LAYOUT_ortho_5x15_wrapper(
-        ___6___,___3___,___6___,
-        ___6___,___3___,_FU1_5_,xxx1xxx,
-        ___6___,___3___,_FU2_5_,xxx1xxx,
-        ___6___,___3___,_FU3_5_,xxx1xxx,
-        ___4___,___3___,___1___,_FU4_3_,___4___
     ),
     [_MUSI] = LAYOUT_ortho_5x15_wrapper(
         _MU_06_,_MU_03_,_MU_06_,
@@ -87,30 +87,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// XD75RE: Use as layer indicator
-#ifdef KEYBOARD_xd75
-layer_state_t layer_state_set_xd75re(layer_state_t state) {
+layer_state_t layer_state_set_keymap(layer_state_t state) {
+    // XD75RE layer indicator
+    #ifdef KEYBOARD_xd75
     if (layer_state_cmp(state, _CHAR)) {
         capslock_led_on();
         gp103_led_on();
         gp100_led_on();
-    } else if (layer_state_cmp(state, _FUNC)) {
+    } else if (layer_state_cmp(state, _MEDI)) {
         capslock_led_off();
         gp103_led_off();
         gp100_led_on();
-    } else if (layer_state_cmp(state, _NUMB)) {
-        capslock_led_off();
-        gp103_led_on();
-        gp100_led_off();
-    } else if (layer_state_cmp(state, _SYMB)) {
-        capslock_led_on();
-        gp103_led_off();
-        gp100_led_off();
     } else if (layer_state_cmp(state, _NAVI)) {
         capslock_led_off();
         gp103_led_on();
+        gp100_led_off();
+    } else if (layer_state_cmp(state, _NUMB)) {
+        capslock_led_on();
+        gp103_led_off();
+        gp100_led_off();
+    } else if (layer_state_cmp(state, _SYMB)) {
+        capslock_led_off();
+        gp103_led_on();
         gp100_led_on();
-    } else if (layer_state_cmp(state, _MEDI)) {
+    } else if (layer_state_cmp(state, _FUNC)) {
         capslock_led_on();
         gp103_led_off();
         gp100_led_on();
@@ -123,13 +123,6 @@ layer_state_t layer_state_set_xd75re(layer_state_t state) {
         gp103_led_off();
         gp100_led_off();
     }
-    return state;
-};
-#endif
-
-layer_state_t layer_state_set_keymap(layer_state_t state) {
-    // XD75RE layer indicator
-    #ifdef KEYBOARD_xd75
-    layer_state_set_xd75re(state);
     #endif
+    return state;
 };

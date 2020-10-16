@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 // Rotary encoder
 #ifdef ENCODER_ENABLE  
-    #include "sbp-rotary.h"
+    #include "sbp-encoder.h"
 #endif
 
 // Function definitions that can be accessed through specific keymaps
@@ -68,15 +68,58 @@ void suspend_wakeup_init_keymap(void);
 // For code that runs on powerdown
 void shutdown_keymap(void);
 
+// Make it so that keymaps can use KEYMAP_SAFE_RANGE for custom keycodes
+#if defined(KEYMAP_SAFE_RANGE)
+  #define PLACEHOLDER_SAFE_RANGE KEYMAP_SAFE_RANGE
+#else
+  #define PLACEHOLDER_SAFE_RANGE SAFE_RANGE
+#endif
+
+// Custom macro keycode ranges
+enum userspace_custom_keycodes {
+    // Safe stuff
+    BB_SAFE = PLACEHOLDER_SAFE_RANGE,
+    // Double entry macros
+    DBL_ANG,
+    DBL_PAR,
+    DBL_CBR,
+    DBL_BRC,
+    // Macro key
+    BB_PGPK,
+    // Unicode strings
+    #ifdef UNICODEMAP_ENABLE
+    BB_LENY,
+    BB_TABL,
+    TR_FLAG,
+    #endif
+    // Encoder buttons
+    #ifdef ENCODER_ENABLE
+    BB_ENC0,
+    BB_ENC1,
+    #endif
+    //use for keymap specific codes
+    KEYMAP_SAFE_RANGE
+};
+// Mask these keycodes if required features are not enabled
+#ifndef UNICODEMAP_ENABLE
+#define BB_LENY KC_NO
+#define BB_TABL KC_NO
+#define TR_FLAG KC_NO
+#endif
+#ifndef ENCODER_ENABLE
+#define BB_ENC0 KC_NO
+#define BB_ENC1 KC_NO
+#endif
+
 /// Enumerate of layers
 enum userspace_layers {
     _BASE = 0,  // Base layer
     _CHAR,      // Characters layer
     _GAME,      // Game layer
+    _MEDI,      // R3: Media layer
     _NAVI,      // R3: Navigation layer
     _NUMB,      // R2: Numbers layer
-    _SYMB,      // R1: Symbols layer
-    _MEDI,      // L1: Media layer
+    _SYMB,      // L1: Symbols layer
     _FUNC,      // L2: Function keys layer
     _MOUS,      // L3: Mouse keys layer
     _MUSI       // Music overlay
@@ -239,11 +282,11 @@ enum userspace_layers {
 #define ALTGR_D MT(MOD_RALT, KC_DOT)
 
 // Layer switches
-#define NAV_TAB LT(_NAVI, KC_TAB )
-#define NUM_ENT LT(_NUMB, KC_ENT )
-#define SYM_ESC LT(_SYMB, KC_ESC )
 #define MED_DEL LT(_MEDI, KC_DEL )
-#define FUN_SPC LT(_FUNC, KC_SPC )
+#define NAV_TAB LT(_NAVI, KC_TAB )
+#define NUM_SPC LT(_NUMB, KC_SPC )
+#define SYM_ENT LT(_SYMB, KC_ENT )
+#define FUN_ESC LT(_FUNC, KC_ESC )
 #define MOU_BSP LT(_MOUS, KC_BSPC)
 
 // Layer switches
@@ -259,8 +302,8 @@ enum userspace_layers {
  * ├─Gui─┼─Alt─┼─Ctr─┼─Sft─┼─────┤             ├─────┼─Sft─┼─Ctr─┼─Alt─┼─Gui─┤
  * │ ; : │  Q  │  J  │  K  │  X  │ ` ~     < > │  B  │  M  │  W  │  V  │  Z  │
  * └─────┴AltGr┴─────┼─────┼─────┼─────┐ ┌─────┼─────┼─────┼─────┴AltGr┴─────┘
- *                   │ Tab │Enter│ Esc │ │ Del │Space│BkSpc│
- *                   └─Nav─┴─Num─┴─Sym─┘ └─Med─┴─Fun─┴─Mou─┘
+ *                   │ Del │ Tab │Space│ │Enter│ Esc │BkSpc│
+ *                   └─Med─┴─Nav─┴─Num─┘ └─Sym─┴─Fun─┴─Mou─┘
  * The thing about this layout is that these will fit most boards I have.
  */
 #define _BL1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
@@ -269,8 +312,8 @@ enum userspace_layers {
 #define _BR2_5_ KC_H,   SHIFT_J,CTRL_K, ALT_L,  GUI_SCL
 #define _BL3_5_ KC_Z,   ALTGR_X,KC_C,   KC_V,   KC_B
 #define _BR3_5_ KC_N,   KC_M,   KC_COMM,ALTGR_D,KC_SLSH
-#define _BL4_3_ NAV_TAB,NUM_ENT,SYM_ESC
-#define _BR4_3_ MED_DEL,FUN_SPC,MOU_BSP
+#define _BL4_3_ MED_DEL,NAV_TAB,NUM_SPC
+#define _BR4_3_ SYM_ENT,FUN_ESC,MOU_BSP
 // The extra line for the 6th (or 0th) row
 #define _BL1_1_ KC_LBRC
 #define _BR1_1_ KC_RBRC
@@ -319,6 +362,22 @@ enum userspace_layers {
 #define _GA3_1_ KC_LSFT
 #define _GA4_3_ KC_SPC, KC_ENT, KC_ESC
 
+/* Media layer
+ *       ┌─────┬─────┬─────┬─────┬─────┐
+ *       │ Tog │ Mod │ Hue │ Sat │ Bri │ RGB
+ *       ├─────┼─────┼─────┼─────┼─────┤
+ *       │Prev.│VolDn│VolUp│Next │ Mut │
+ *       ├─────┼─────┼─────┼─────┼─────┤
+ *       │ Tog │Brth.│ Val │RgbSp│Veloc│ Led
+ * ┌─────┼─────┼─────┼─────┴─────┴─────┘
+ * │Sink │ Tog │Music│
+ * └─────┴─────┴─────┘
+ */
+#define _ME1_5_ RGB_TOG,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI
+#define _ME2_5_ KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,KC_MUTE
+#define _ME3_5_ BL_TOGG,BL_BRTG,BL_STEP,RGB_SPD,VLK_TOG
+#define _ME4_3_ KC_F13, KC_MPLY,MU_TOG
+
 /* Navigation layer
  *       ┌─────┬─────┬─────┬─────┬─────┐
  *       │Redo │Paste│Yank │ Cut │PrScr│
@@ -327,13 +386,13 @@ enum userspace_layers {
  *       ├─────┼─────┼─────┼─────┼─────┤
  *       │ Ins │Home │PgDwn│PgUp │ End │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
- * │ Del │Space│Bkspc│
+ * │Enter│ Esc │BkSpc│
  * └─────┴─────┴─────┘
  */
 #define _NA1_5_ BB_REDO,BB_PSTE,BB_YANK,BB_CUT, KC_PSCR
 #define _NA2_5_ BB_UNDO,KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT
 #define _NA3_5_ KC_INS, KC_HOME,KC_PGDN,KC_PGUP,KC_END
-#define _NA4_3_ KC_DEL, KC_SPC, KC_BSPC
+#define _NA4_3_ KC_ENT, KC_ESC, KC_BSPC
 
 /* Numbers layer (in DVORAK)
  *       ┌─────┬─────┬─────┬─────┬─────┐
@@ -343,45 +402,29 @@ enum userspace_layers {
  *       ├─────┼─────┼─────┼─────┼─────┤
  *       │ / ? │ 1 ! │ 2 @ │ 3 # │ = + │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
- * │ Del │Space│Bkspc│
+ * │Enter│ Esc │BkSpc│
  * └─────┴─────┴─────┘
  */
 #define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
 #define _NU2_5_ KC_BSLS,KC_4,   KC_5,   KC_6,   KC_QUOT
 #define _NU3_5_ KC_LBRC,KC_1,   KC_2,   KC_3,   KC_RBRC
-#define _NU4_3_ KC_DEL, KC_SPC, KC_BSPC
+#define _NU4_3_ KC_ENT, KC_ESC, KC_BSPC
 
 /* Symbols layer (in DVORAK)
- *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │CharL│  /  │  =  │  ?  │  +  │
- *       ├─────┼─────┼─────┼─────┼─────┤
- *       │CpsLk│  (  │  )  │  <  │  >  │
- *       ├─────┼─────┼─────┼─────┼─────┤
- *       │     │  [  │  ]  │  {  │  }  │
- * ┌─────┼─────┼─────┼─────┴─────┴─────┘
- * │  >  │  |  │  ~  │
- * └─────┴─────┴─────┘
- */
-#define _SY1_5_ BB_CHAR,KC_LBRC,KC_RBRC,KC_LCBR,KC_RCBR
-#define _SY2_5_ KC_CAPS,KC_LPRN,KC_RPRN,KC_NUBS,LSFT(KC_NUBS)
-#define _SY3_5_ XXXXXXX,KC_MINS,KC_EQL ,KC_UNDS,KC_PLUS
-#define _SY4_3_ _______,_______,_______
-
-/* Media layer
  * ┌─────┬─────┬─────┬─────┬─────┐
- * │ Tog │ Mod │ Hue │ Sat │ Bri │ RGB
+ * │  /  │  =  │  ?  │  +  │CharL│
  * ├─────┼─────┼─────┼─────┼─────┤
- * │Prev.│VolDn│VolUp│Next │ Mut │
+ * │  <  │  >  │  (  │  )  │CpsLk│
  * ├─────┼─────┼─────┼─────┼─────┤
- * │ Tog │Brth.│ Val │RgbSp│Veloc│ Led
+ * │  {  │  }  │  [  │  ]  │     │
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │Sink │ Tog │Music│
+ *                   │ Del │ Tab │Space│
  *                   └─────┴─────┴─────┘
  */
-#define _ME1_5_ RGB_TOG,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI
-#define _ME2_5_ KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,KC_MUTE
-#define _ME3_5_ BL_TOGG,BL_BRTG,BL_STEP,RGB_SPD,VLK_TOG
-#define _ME4_3_ KC_F13, KC_MPLY,MU_TOG
+#define _SY1_5_ KC_LBRC,KC_RBRC,KC_LCBR,KC_RCBR,BB_CHAR
+#define _SY2_5_ KC_NUBS,LSFT(KC_NUBS),KC_LPRN,KC_RPRN,KC_CAPS
+#define _SY3_5_ KC_UNDS,KC_PLUS,KC_MINS,KC_EQL ,XXXXXXX
+#define _SY4_3_ KC_DEL, KC_TAB, KC_SPC
 
 /* Function layer
  * ┌─────┬─────┬─────┬─────┬─────┐
@@ -391,13 +434,13 @@ enum userspace_layers {
  * ├─────┼─────┼─────┼─────┼─────┤
  * │ F09 │ F10 │ F11 │ F12 │GameL│
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │ Tab │Enter│ Esc │
+ *                   │ Del │ Tab │Space│
  *                   └─────┴─────┴─────┘
  */
 #define _FU1_5_ KC_F1,  KC_F2,  KC_F3,  KC_F4,  RESET
 #define _FU2_5_ KC_F5,  KC_F6,  KC_F7,  KC_F8,  EEP_RST
 #define _FU3_5_ KC_F9,  KC_F10, KC_F11, KC_F12, BB_GAME
-#define _FU4_3_ KC_TAB, KC_ENT, KC_ESC
+#define _FU4_3_ KC_DEL, KC_TAB, KC_SPC
 
 /* Mouse layer
  * ┌─────┬─────┬─────┬─────┬─────┐
@@ -407,13 +450,13 @@ enum userspace_layers {
  * ├─────┼─────┼─────┼─────┼─────┤
  * │ <<< │ vvv │ ^^^ │ >>> │ Bt5 │
  * └─────┴─────┴─────┼─────┼─────┼─────┐
- *                   │ Tab │Enter│ Esc │
+ *                   │ Del │ Tab │Space│
  *                   └─────┴─────┴─────┘
  */
 #define _MO1_5_ KC_ACL0,KC_BTN1,KC_BTN2,KC_BTN3,KC_ACL2
 #define _MO2_5_ KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,KC_BTN4
 #define _MO3_5_ KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,KC_BTN5
-#define _MO4_3_ KC_TAB, KC_ENT, KC_ESC
+#define _MO4_3_ KC_DEL, KC_TAB, KC_SPC
 
 /* Music layer
  * ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
@@ -423,11 +466,11 @@ enum userspace_layers {
  * ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
  * │   │   │   │   │   │   │   │   │   │   │   │   │
  * └───┴───┴───┼───┼───┼───┼───┼───┼───┼───┴───┴───┘
- *             │Tmp│Mod│Off│Rec│Stp│Ply│
+ *             │Rec│Stp│Ply│Tmp│Mod│Off│
  *             └───┴───┴───┴───┴───┴───┘
  */
-#define _MUL_3_ MU_TEMP,MU_MOD, MU_TOG
-#define _MUR_3_ MU_REC, MU_STOP,MU_PLAY
+#define _MUL_3_ MU_REC, MU_STOP,MU_PLAY
+#define _MUR_3_ MU_TEMP,MU_MOD, MU_TOG
 #define _MU_01_ MU_MASK
 #define _MU_02_ MU_MASK,MU_MASK
 #define _MU_03_ MU_MASK,MU_MASK,MU_MASK
