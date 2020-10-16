@@ -42,6 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef ENCODER_ENABLE  
     #include "sbp-encoder.h"
 #endif
+// Oled screen
+#ifdef OLED_DRIVER_ENABLE
+    #include "sbp-oled.h"
+#endif
 
 // Function definitions that can be accessed through specific keymaps
 // Runs before all initialization
@@ -118,8 +122,8 @@ enum userspace_layers {
     _GAME,      // Game layer
     _MEDI,      // R3: Media layer
     _NAVI,      // R3: Navigation layer
-    _NUMB,      // R2: Numbers layer
-    _SYMB,      // L1: Symbols layer
+    _SYMB,      // R1: Symbols layer
+    _NUMB,      // L1: Numbers layer
     _FUNC,      // L2: Function keys layer
     _MOUS,      // L3: Mouse keys layer
     _MUSI       // Music overlay
@@ -284,8 +288,8 @@ enum userspace_layers {
 // Layer switches
 #define MED_DEL LT(_MEDI, KC_DEL )
 #define NAV_TAB LT(_NAVI, KC_TAB )
-#define NUM_SPC LT(_NUMB, KC_SPC )
-#define SYM_ENT LT(_SYMB, KC_ENT )
+#define SYM_SPC LT(_SYMB, KC_SPC )
+#define NUM_ENT LT(_NUMB, KC_ENT )
 #define FUN_ESC LT(_FUNC, KC_ESC )
 #define MOU_BSP LT(_MOUS, KC_BSPC)
 
@@ -303,7 +307,7 @@ enum userspace_layers {
  * │ ; : │  Q  │  J  │  K  │  X  │ ` ~     < > │  B  │  M  │  W  │  V  │  Z  │
  * └─────┴AltGr┴─────┼─────┼─────┼─────┐ ┌─────┼─────┼─────┼─────┴AltGr┴─────┘
  *                   │ Del │ Tab │Space│ │Enter│ Esc │BkSpc│
- *                   └─Med─┴─Nav─┴─Num─┘ └─Sym─┴─Fun─┴─Mou─┘
+ *                   └─Med─┴─Nav─┴─Sym─┘ └─Num─┴─Fun─┴─Mou─┘
  * The thing about this layout is that these will fit most boards I have.
  */
 #define _BL1_5_ KC_Q,   KC_W,   KC_E,   KC_R,   KC_T
@@ -312,8 +316,8 @@ enum userspace_layers {
 #define _BR2_5_ KC_H,   SHIFT_J,CTRL_K, ALT_L,  GUI_SCL
 #define _BL3_5_ KC_Z,   ALTGR_X,KC_C,   KC_V,   KC_B
 #define _BR3_5_ KC_N,   KC_M,   KC_COMM,ALTGR_D,KC_SLSH
-#define _BL4_3_ MED_DEL,NAV_TAB,NUM_SPC
-#define _BR4_3_ SYM_ENT,FUN_ESC,MOU_BSP
+#define _BL4_3_ MED_DEL,NAV_TAB,SYM_SPC
+#define _BR4_3_ NUM_ENT,FUN_ESC,MOU_BSP
 // The extra line for the 6th (or 0th) row
 #define _BL1_1_ KC_LBRC
 #define _BR1_1_ KC_RBRC
@@ -394,37 +398,37 @@ enum userspace_layers {
 #define _NA3_5_ KC_INS, KC_HOME,KC_PGDN,KC_PGUP,KC_END
 #define _NA4_3_ KC_ENT, KC_ESC, KC_BSPC
 
-/* Numbers layer (in DVORAK)
+/* Symbols layer (in DVORAK)
  *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │ ` ~ │ 7 & │ 8 * │ 9 ( │ 0 ) │
+ *       │CharL│  [  │  ]  │  ?  │  +  │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │ \ | │ 4 $ │ 5 % │ 6 ^ │ - _ │
+ *       │CpsLk│  (  │  )  │  <  │  >  │
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │ / ? │ 1 ! │ 2 @ │ 3 # │ = + │
+ *       │     │  {  │  }  │  /  │  =  │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
  * │Enter│ Esc │BkSpc│
  * └─────┴─────┴─────┘
  */
-#define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
-#define _NU2_5_ KC_BSLS,KC_4,   KC_5,   KC_6,   KC_QUOT
-#define _NU3_5_ KC_LBRC,KC_1,   KC_2,   KC_3,   KC_RBRC
-#define _NU4_3_ KC_ENT, KC_ESC, KC_BSPC
+#define _SY1_5_ BB_CHAR,KC_MINS,KC_EQL, KC_LCBR,KC_RCBR
+#define _SY2_5_ KC_CAPS,KC_LPRN,KC_RPRN,KC_NUBS,LSFT(KC_NUBS)
+#define _SY3_5_ XXXXXXX,KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC
+#define _SY4_3_ KC_ENT, KC_ESC, KC_BSPC
 
-/* Symbols layer (in DVORAK)
+/* Numbers layer (in DVORAK)
  * ┌─────┬─────┬─────┬─────┬─────┐
- * │  /  │  =  │  ?  │  +  │CharL│
+ * │ ` ~ │ 7 & │ 8 * │ 9 ( │ 0 ) │
  * ├─────┼─────┼─────┼─────┼─────┤
- * │  <  │  >  │  (  │  )  │CpsLk│
+ * │ \ | │ 4 $ │ 5 % │ 6 ^ │ - _ │
  * ├─────┼─────┼─────┼─────┼─────┤
- * │  {  │  }  │  [  │  ]  │     │
+ * │ / ? │ 1 ! │ 2 @ │ 3 # │ = + │
  * └─────┴─────┴─────┼─────┼─────┼─────┐
  *                   │ Del │ Tab │Space│
  *                   └─────┴─────┴─────┘
  */
-#define _SY1_5_ KC_LBRC,KC_RBRC,KC_LCBR,KC_RCBR,BB_CHAR
-#define _SY2_5_ KC_NUBS,LSFT(KC_NUBS),KC_LPRN,KC_RPRN,KC_CAPS
-#define _SY3_5_ KC_UNDS,KC_PLUS,KC_MINS,KC_EQL ,XXXXXXX
-#define _SY4_3_ KC_DEL, KC_TAB, KC_SPC
+#define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
+#define _NU2_5_ KC_BSLS,KC_4,   KC_5,   KC_6,   KC_QUOT
+#define _NU3_5_ KC_LBRC,KC_1,   KC_2,   KC_3,   KC_RBRC
+#define _NU4_3_ KC_DEL, KC_TAB, KC_SPC
 
 /* Function layer
  * ┌─────┬─────┬─────┬─────┬─────┐

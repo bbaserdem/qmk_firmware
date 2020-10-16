@@ -38,9 +38,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Media layer: right_half
     [_MEDI] = LAYOUT_ortho_4x12_wrapper(
-        ___6___,_ME1_5_,xxx1xxx,
-        ___6___,_ME2_5_,xxx1xxx,
-        ___6___,_ME3_5_,xxx1xxx,
+        ___6___,xxx1xxx,_ME1_5_,
+        ___6___,xxx1xxx,_ME2_5_,
+        ___6___,xxx1xxx,_ME3_5_,
         ___6___,_ME4_3_,___3___
     ),
     // Navigation layer: right_half
@@ -50,19 +50,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___6___,xxx1xxx,_NA3_5_,
         ___6___,_NA4_3_,___3___
     ),
-    // Number layer: right_half
-    [_NUMB] = LAYOUT_ortho_4x12_wrapper(
-        ___6___,xxx1xxx,_NU1_5_,
-        ___6___,xxx1xxx,_NU2_5_,
-        ___6___,xxx1xxx,_NU3_5_,
-        ___6___,_NU4_3_,___3___
-    ),
-    // Symbol layer: left_half
+    // Symbol layer: right_half
     [_SYMB] = LAYOUT_ortho_4x12_wrapper(
-        xxx1xxx,_SY1_5_,___6___,
-        xxx1xxx,_SY2_5_,___6___,
-        xxx1xxx,_SY3_5_,___6___,
-        ___3___,_SY4_3_,___6___
+        ___6___,xxx1xxx,_SY1_5_,
+        ___6___,xxx1xxx,_SY2_5_,
+        ___6___,xxx1xxx,_SY3_5_,
+        ___6___,_SY4_3_,___3___
+    ),
+    // Number layer: left_half
+    [_NUMB] = LAYOUT_ortho_4x12_wrapper(
+        xxx1xxx,_NU1_5_,___6___,
+        xxx1xxx,_NU2_5_,___6___,
+        xxx1xxx,_NU3_5_,___6___,
+        ___3___,_NU4_3_,___6___
     ),
     // Function layer: left_half
     [_FUNC] = LAYOUT_ortho_4x12_wrapper(

@@ -41,16 +41,16 @@ const rgblight_segment_t PROGMEM bb_medi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM bb_navi_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_GREEN}
 );
-// Number layer is blue
-const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_CYAN}
+// Symbol layer is purple
+const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_RIGHT_BEG, RGBLIGHT_RIGHT_NUM, HSV_PURPLE}
 );
 
 // Left-hand layers
 
-// Symbol layer is purple
-const rgblight_segment_t PROGMEM bb_symb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_PURPLE}
+// Number layer is blue
+const rgblight_segment_t PROGMEM bb_numb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {RGBLIGHT_LEFT_BEG, RGBLIGHT_LEFT_NUM, HSV_CYAN}
 );
 // Function layer is red
 const rgblight_segment_t PROGMEM bb_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -70,10 +70,10 @@ const rgblight_segment_t* const PROGMEM bb_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     bb_base_layer,
     bb_char_layer,
     bb_game_layer,
-    bb_navi_layer,
-    bb_numb_layer,
-    bb_symb_layer,
     bb_medi_layer,
+    bb_navi_layer,
+    bb_symb_layer,
+    bb_numb_layer,
     bb_func_layer,
     bb_mous_layer,
     bb_musi_layer
@@ -95,8 +95,8 @@ layer_state_t layer_state_set_underglow(layer_state_t state) {
     rgblight_set_layer_state(_CHAR, layer_state_cmp(state, _CHAR));
     rgblight_set_layer_state(_MEDI, layer_state_cmp(state, _MEDI));
     rgblight_set_layer_state(_NAVI, layer_state_cmp(state, _NAVI));
-    rgblight_set_layer_state(_NUMB, layer_state_cmp(state, _NUMB));
     rgblight_set_layer_state(_SYMB, layer_state_cmp(state, _SYMB));
+    rgblight_set_layer_state(_NUMB, layer_state_cmp(state, _NUMB));
     rgblight_set_layer_state(_FUNC, layer_state_cmp(state, _FUNC));
     rgblight_set_layer_state(_MOUS, layer_state_cmp(state, _MOUS));
     rgblight_set_layer_state(_MUSI, layer_state_cmp(state, _MUSI));

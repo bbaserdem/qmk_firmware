@@ -56,17 +56,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ___5___,_NA3_5_,
         ___3___,_NA4_3_
     ),
-    [_NUMB] = LAYOUT_split_3x5_3_wrapper(
-        ___5___,_NU1_5_,
-        ___5___,_NU2_5_,
-        ___5___,_NU3_5_,
-        ___3___,_NU4_3_
-    ),
     [_SYMB] = LAYOUT_split_3x5_3_wrapper(
-        _SY1_5_,___5___,
-        _SY2_5_,___5___,
-        _SY3_5_,___5___,
-        _SY4_3_,___3___
+        ___5___,_SY1_5_,
+        ___5___,_SY2_5_,
+        ___5___,_SY3_5_,
+        ___3___,_SY4_3_
+    ),
+    [_NUMB] = LAYOUT_split_3x5_3_wrapper(
+        _NU1_5_,___5___,
+        _NU2_5_,___5___,
+        _NU3_5_,___5___,
+        _NU4_3_,___3___
     ),
     [_FUNC] = LAYOUT_split_3x5_3_wrapper(
         _FU1_5_,___5___,
