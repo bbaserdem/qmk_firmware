@@ -12,6 +12,7 @@
 
 # Common compilation flags
 EXTRAFLAGS += -flto     # Used to make code smaller
+LTO_ENABLE = yes
 
 # These should be enabled in all boards
 MOUSEKEY_ENABLE = yes   # Mouse emulation keys
@@ -20,6 +21,7 @@ UNICODEMAP_ENABLE = yes # Used for unicode character emulation
 KEY_LOCK_ENABLE = yes   # Allows locking any key. Not used in general
 TAP_DANCE_ENABLE = yes 	# Tap dance keys; i don't use tap dance but I use tap-hold
 VELOCIKEY_ENABLE = no   # Modulate speed effects with typing speed
+WPM_ENABLE = yes   	# Get WPM reports as you type
 
 # These should be disabled in all boards
 BOOTMAGIC_ENABLE = no   # Access to EEPROM settings, not needed
@@ -68,6 +70,11 @@ endif
 # RGB LED Underglow code
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
 SRC += sbp-underglow.c
+endif
+
+# OLED code
+ifeq ($(strip $(OLED_DRIVER_ENABLE)), yes)
+SRC += sbp-oled.c
 endif
 
 # RGB LED (Perkey) code

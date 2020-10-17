@@ -20,9 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Modes can be reset using OS click
  * Some modes are only accessible through some keymap layers
  */
-encoder_state_t encoder_state[NUMBER_OF_ENCODERS];
+//encoder_state_t encoder_state[NUMBER_OF_ENCODERS];
+encoder_state_t encoder_state[2];
+// Default state for the encoders
 void reset_encoder_state(void) {
-    for (int i = 0; i < NUMBER_OF_ENCODERS; i++) {
+//    for (int i = 0; i < NUMBER_OF_ENCODERS; i++) {
+    for (int i = 0; i < 2; i++) {
         encoder_state[i].base = i;
         encoder_state[i].rgb = i;
         encoder_state[i].point = i;

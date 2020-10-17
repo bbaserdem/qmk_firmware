@@ -13,3 +13,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 #include "sbp.h"
+
+// Contain the main oled writer here 
+void oled_task_user(void);

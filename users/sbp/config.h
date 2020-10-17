@@ -16,7 +16,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* CONFIG
  * Common hardware configuration accross my boards
  */
+// Space saving
+#ifdef LOCKING_SUPPORT_ENABLE
+#    undef LOCKING_SUPPORT_ENABLE
+#endif
+#ifdef LOCKING_RESYNC_ENABLE
+#    undef LOCKING_RESYNC_ENABLE
+#endif
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif
 
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif
 // Unicode entry mode
 #ifdef UNICODEMAP_ENABLE
     #define UNICODE_SELECTED_MODES UC_LNX
