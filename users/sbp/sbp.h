@@ -400,33 +400,33 @@ enum userspace_layers {
 
 /* Symbols layer (in DVORAK)
  *       ┌─────┬─────┬─────┬─────┬─────┐
- *       │CharL│  [  │  ]  │  ?  │  +  │
+ *       │ ` ~ │  [  │  ]  │ = + │CpsLk│
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │CpsLk│  (  │  )  │  <  │  >  │
+ *       │ / ? │  (  │  )  │ - _ │CharL│
  *       ├─────┼─────┼─────┼─────┼─────┤
- *       │     │  {  │  }  │  /  │  =  │
+ *       │ \ | │  {  │  }  │  <  │  >  │
  * ┌─────┼─────┼─────┼─────┴─────┴─────┘
  * │Enter│ Esc │BkSpc│
  * └─────┴─────┴─────┘
  */
-#define _SY1_5_ BB_CHAR,KC_MINS,KC_EQL, KC_LCBR,KC_RCBR
-#define _SY2_5_ KC_CAPS,KC_LPRN,KC_RPRN,KC_NUBS,LSFT(KC_NUBS)
-#define _SY3_5_ XXXXXXX,KC_UNDS,KC_PLUS,KC_LBRC,KC_RBRC
+#define _SY1_5_ KC_GRV,KC_MINS,KC_EQL, KC_RBRC,BB_CHAR
+#define _SY2_5_ KC_LBRC,KC_LPRN,KC_RPRN,KC_QUOT,KC_CAPS
+#define _SY3_5_ KC_BSLS,KC_UNDS,KC_PLUS,KC_NUBS,LSFT(KC_NUBS)
 #define _SY4_3_ KC_ENT, KC_ESC, KC_BSPC
 
 /* Numbers layer (in DVORAK)
  * ┌─────┬─────┬─────┬─────┬─────┐
- * │ ` ~ │ 7 & │ 8 * │ 9 ( │ 0 ) │
+ * │  ,  │ 7 & │ 8 * │ 9 ( │ 0 ) │
  * ├─────┼─────┼─────┼─────┼─────┤
- * │ \ | │ 4 $ │ 5 % │ 6 ^ │ - _ │
+ * │  .  │ 4 $ │ 5 % │ 6 ^ │ - _ │
  * ├─────┼─────┼─────┼─────┼─────┤
  * │ / ? │ 1 ! │ 2 @ │ 3 # │ = + │
  * └─────┴─────┴─────┼─────┼─────┼─────┐
  *                   │ Del │ Tab │Space│
  *                   └─────┴─────┴─────┘
  */
-#define _NU1_5_ KC_GRV, KC_7,   KC_8,   KC_9,   KC_0
-#define _NU2_5_ KC_BSLS,KC_4,   KC_5,   KC_6,   KC_QUOT
+#define _NU1_5_ KC_W,   KC_7,   KC_8,   KC_9,   KC_0
+#define _NU2_5_ KC_E,   KC_4,   KC_5,   KC_6,   KC_QUOT
 #define _NU3_5_ KC_LBRC,KC_1,   KC_2,   KC_3,   KC_RBRC
 #define _NU4_3_ KC_DEL, KC_TAB, KC_SPC
 

@@ -14,6 +14,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #include "sbp.h"
 
+// Code to print to OLED
+#ifdef ENCODER_ENABLE
+void oled_encoder_state_5char(uint8_t index, uint8_t layer);
+#endif
 // Hook to encoder stuff
 void encoder_update_user(uint8_t index, bool clockwise);
 // Complicated code for what the encoder keys do when pressed

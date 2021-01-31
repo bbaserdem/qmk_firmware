@@ -37,10 +37,101 @@ void keyboard_post_init_encoder(void) {
     reset_encoder_state();
 }
 
+// Oled string printing for given layer and index; ONLY for OLED
+#ifdef OLED_DRIVER_ENABLE
+void oled_encoder_state_5char(uint8_t index, uint8_t layer) {
+    // Get the layer straight from the main function
+    switch (layer) {
+        // If RGB control mode is enabled
+        #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+        case _MEDI:
+            switch (encoder_state[index].rgb) {
+                case 0:
+                    oled_write_P(PSTR(" mode"), false);
+                    break;
+                case 1:
+                    oled_write_P(PSTR(" hue "), false);
+                    break;
+                case 2:
+                    oled_write_P(PSTR("satur"), false);
+                    break;
+                case 3:
+                    oled_write_P(PSTR("value"), false);
+                    break;
+                case 4:
+                    oled_write_P(PSTR("speed"), false);
+                    break;
+                default:
+                    oled_write_P(PSTR("!oob!"), false);
+                    break;
+            }
+            break;
+        #endif
+        // If pointer control is enabled
+        #ifdef MOUSEKEY_ENABLE
+        case _MOUS:
+            switch (encoder_state[index].point) {
+                case 0:
+                    oled_write_P(PSTR("m.lat"), false);
+                    break;
+                case 1:
+                    oled_write_P(PSTR("m.ver"), false);
+                    break;
+                case 2:
+                    oled_write_P(PSTR("s.ver"), false);
+                    break;
+                case 3:
+                    oled_write_P(PSTR("s.lat"), false);
+                    break;
+                default:
+                    oled_write_P(PSTR("!oob!"), false);
+                    break;
+            }
+            break;
+        #endif
+        default:
+            switch (encoder_state[index].base) {
+                case 0:
+                    oled_write_P(PSTR(" volm"), false);
+                    break;
+                case 1:
+                    oled_write_P(PSTR(" song"), false);
+                    break;
+                case 2:
+                    oled_write_P(PSTR(" sink"), false);
+                    break;
+                case 3:
+                    oled_write_P(PSTR("s.vol"), false);
+                    break;
+                case 4:
+                    oled_write_P(PSTR(" src "), false);
+                    break;
+                case 5:
+                    oled_write_P(PSTR(" L/R "), false);
+                    break;
+                case 6:
+                    oled_write_P(PSTR(" U/D "), false);
+                    break;
+                case 7:
+                    oled_write_P(PSTR("pgU/D"), false);
+                    break;
+                case 8:
+                    oled_write_P(PSTR(" del "), false);
+                    break;
+                default:
+                    oled_write_P(PSTR("!oob!"), false);
+                    break;
+            }
+            break;
+    }
+}
+#endif
+
 // Encoder scroll functionality
 void encoder_update_user(uint8_t index, bool clockwise) {
     // Differentiate layer roles
     switch (get_highest_layer(layer_state)) {
+        #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
         case _MEDI:
             switch(encoder_state[index].rgb) {
                 case 0: // Effect the RGB mode
@@ -128,6 +219,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     break;
             }
             break;
+        #endif
+        #ifdef MOUSEKEY_ENABLE
         case _MOUS:
             switch(encoder_state[index].point) {
                 case 0: // Move mouse on horizontal axis
@@ -160,20 +253,21 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     break;
             }
             break;
+        #endif
         default:
             switch(encoder_state[index].base) {
                 case 0: // Volume
                     if (clockwise) {
-                        tap_code(KC_VOLU);
+                        tap_code16(KC_VOLU);
                     } else {
-                        tap_code(KC_VOLD);
+                        tap_code16(KC_VOLD);
                     }
                     break;
                 case 1: // Song change
                     if (clockwise) {
-                        tap_code(KC_MNXT);
+                        tap_code16(KC_MNXT);
                     } else {
-                        tap_code(KC_MPRV);
+                        tap_code16(KC_MPRV);
                     }
                     break;
                 case 2: // Move to audio sink
@@ -183,35 +277,42 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                         tap_code16(S(KC_F13));
                     }
                     break;
-                case 3: // Move to audio source
+                case 3: // Volume of source
+                    if (clockwise) {
+                        tap_code16(S(KC_VOLU));
+                    } else {
+                        tap_code16(C(KC_VOLD));
+                    }
+                    break;
+                case 4: // Move to audio source
                     if (clockwise) {
                         tap_code16(C(KC_F13));
                     } else {
                         tap_code16(C(S(KC_F13)));
                     }
                     break;
-                case 4: // Left-right
+                case 5: // Left-right
                     if (clockwise) {
                         tap_code16(KC_RGHT);
                     } else {
                         tap_code16(KC_LEFT);
                     }
                     break;
-                case 5: // Up-down
+                case 6: // Up-down
                     if (clockwise) {
                         tap_code16(KC_DOWN);
                     } else {
                         tap_code16(KC_UP);
                     }
                     break;
-                case 6: // Page Up-down
+                case 7: // Page Up-down
                     if (clockwise) {
                         tap_code16(KC_PGDN);
                     } else {
                         tap_code16(KC_PGUP);
                     }
                     break;
-                case 7: // Delete 
+                case 8: // Delete 
                     if (clockwise) {
                         tap_code16(KC_DEL);
                     } else {
@@ -226,6 +327,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 void encoder_click_action(uint8_t index) {
     // Differentiate layer roles
     switch (get_highest_layer(layer_state)) {
+        #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
         case _MEDI:
             switch(encoder_state[index].rgb) {
                 case 0: // Return to no animation
@@ -253,6 +355,8 @@ void encoder_click_action(uint8_t index) {
                     break;
             }
             break;
+        #endif
+        #ifdef MOUSEKEY_ENABLE
         case _MOUS:
             switch(encoder_state[index].point) {
                 case 0: // Left click
@@ -267,30 +371,30 @@ void encoder_click_action(uint8_t index) {
                     break;
             }
             break;
+        #endif
         default:
             switch(encoder_state[index].base) {
                 case 0: // Toggle mute
+                case 2:
                     tap_code16(KC_MUTE);
                     break;
                 case 1: // Pause
                     tap_code16(KC_MPLY);
                     break;
-                case 2: // Mute sink
-                    tap_code16(KC_MUTE);
-                    break;
                 case 3: // Mute source
+                case 4:
                     tap_code16(A(KC_MUTE));
                     break;
-                case 4: // Insert
+                case 5: // Insert
                     tap_code16(KC_INS);
                     break;
-                case 5: // Capslock
+                case 6: // Capslock
                     tap_code16(KC_CAPS);
                     break;
-                case 6: // Redo
+                case 7: // Redo
                     tap_code16(BB_REDO);
                     break;
-                case 7: // Undo
+                case 8: // Undo
                     tap_code16(BB_UNDO);
                     break;
             }
@@ -314,33 +418,41 @@ bool process_record_encoder(uint16_t keycode, keyrecord_t *record) {
         // If shifted, move mode one point forward
         if (get_mods() & MOD_MASK_SHIFT) {
             switch (get_highest_layer(layer_state)) {
-                case _NAVI:
+                #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+                case _MEDI:
                     encoder_state[encoder_index].rgb =
                         (encoder_state[encoder_index].rgb   + 1) % 5;
                     break;
+                #endif
+                #ifdef MOUSEKEY_ENABLE
                 case _MOUS:
                     encoder_state[encoder_index].point =
                         (encoder_state[encoder_index].point + 1) % 4;
                     break;
+                #endif
                 default:
                     encoder_state[encoder_index].base =
-                        (encoder_state[encoder_index].base  + 1) % 8;
+                        (encoder_state[encoder_index].base  + 1) % 9;
                     break;
             }
         // If ctrl is active, move mode one point backwards
         } else if (get_mods() & MOD_MASK_CTRL) {
             switch (get_highest_layer(layer_state)) {
-                case _NAVI:
+                #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
+                case _MEDI:
                     encoder_state[encoder_index].rgb =
-                        (encoder_state[encoder_index].rgb   + 4) % 5;
+                        (encoder_state[encoder_index].rgb   + 5 - 1) % 5;
                     break;
+                #endif
+                #ifdef MOUSEKEY_ENABLE
                 case _MOUS:
                     encoder_state[encoder_index].point =
-                        (encoder_state[encoder_index].point + 3) % 4;
+                        (encoder_state[encoder_index].point + 4 - 1) % 4;
                     break;
+                #endif
                 default:
                     encoder_state[encoder_index].base =
-                        (encoder_state[encoder_index].base  + 7) % 8;
+                        (encoder_state[encoder_index].base  + 9 - 1) % 9;
                     break;
             }
         // If meta is active, reset the encoder states

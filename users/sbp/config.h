@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Encoder settings
 #ifdef ENCODER_ENABLE
-    #define ENCODER_RESOLUTION 4
+    #define ENCODER_RESOLUTION 2
 #endif
 
 // Backlight settings
